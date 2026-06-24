@@ -1,0 +1,123 @@
+/* Importing the fonts used in the savaML design */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Inter:wght@300;400;600&display=swap');
+
+/* Color Palette Variables from the screenshot */
+:root {
+    --bg-dark: #090a0f;       /* Deep dark background */
+    --bg-card: #10121a;       /* Slightly lighter dark for cards */
+    --border-color: #1e2230;  /* Subtle card borders */
+    --accent-purple: #5c54ff; /* The electric purple/blue color */
+    --text-bright: #ffffff;   /* Pure white for headers */
+    --text-muted: #626875;    /* Gray for descriptions */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-bright);
+    font-family: 'Inter', sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Big Headline Style */
+h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+/* To get that cool purple italicized look on specific words */
+h1 em {
+    font-style: italic;
+    color: var(--accent-purple);
+    font-weight: 400;
+}
+
+.subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 50px;
+}
+
+/* Responsive Grid for Team Cards */
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Card design matching the stats boxes at the bottom of the screenshot */
+.person {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px; /* Slightly sharper corners like the screenshot */
+    padding: 30px;
+    transition: border-color 0.2s ease;
+}
+
+.person:hover {
+    border-color: var(--accent-purple); /* Glow effect on hover */
+}
+
+/* Profile Names */
+.person h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--text-bright);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Making details look like clean code data */
+.person p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-bright);
+    margin: 12px 0;
+}
+
+.person p strong {
+    color: var(--text-muted);
+    font-weight: normal;
+}
+
+/* Tech Skills List */
+.person ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.person li {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    background: #171a26;
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-bottom: 8px;
+    color: var(--accent-purple);
+    border: 1px solid var(--border-color);
+}
+
+/* The Bio box */
+.bio {
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-muted) !important;
+    line-height: 1.6;
+    border-left: 2px solid var(--accent-purple);
+    padding-left: 15px;
+    margin-top: 25px !important;
+}
+
+/* Highlight style specifically for Carina's card */
+.person.target {
+    border: 1px solid var(--accent-purple);
+    box-shadow: 0 0 15px rgba(92, 84, 255, 0.1);
+}
