@@ -1,0 +1,54 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b0c10; /* Deep dark background */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Matches the left-aligned style of the logo/links */
+    padding: 1.5rem 2rem;
+    background-color: #0b0c10;
+    border-bottom: 1px solid #1f2029; /* Subtle divider like the image */
+    gap: 2rem; /* Spacing between navigation links */
+}
+
+/* Navigation Links */
+nav a {
+    color: #9499b3; /* Muted gray for inactive states */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+nav a:hover {
+    color: #ffffff; /* Turns white on hover */
+}
+
+/* Special styling for the active or CTA link if you want to mimic the "sign_in" button */
+nav a:last-child {
+    margin-left: auto; /* Pushes the last link (e.g., Meet the Team) to the far right */
+    background-color: #4348f2; /* Vibrant purple/blue accent */
+    color: #ffffff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    font-family: monospace; /* Mimics the code-like button text */
+    font-size: 0.9rem;
+}
+
+nav a:last-child:hover {
+    background-color: #3236d1; /* Slightly darker purple on hover */
+}
