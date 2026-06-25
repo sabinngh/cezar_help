@@ -17,8 +17,82 @@ body {
     font-family: 'Inter', sans-serif;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 0 20px 60px 20px; /* Adjusted padding to look better with the header */
 }
+
+/* ==========================================================================
+   NAVIGATION HEADER BAR STYLES (Fixed to align links horizontally)
+   ========================================================================== */
+
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Pushes logo left, menu middle, button right */
+    align-items: center;            /* Centers them perfectly from top to bottom */
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-color); /* Subtle divider line underneath */
+    margin-bottom: 50px;
+}
+
+/* Logo "savaML" style */
+.logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-bright);
+    letter-spacing: -0.5px;
+}
+.meet-team {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--accent-purple); /* Makes 'ML' stand out in electric purple */
+}
+
+/* Forces middle menu links into a clean horizontal line */
+.nav-links {
+    display: flex;
+    gap: 32px; /* Adds space between each link item */
+}
+
+.nav-links a {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-muted); /* Modern gray font from screenshot */
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;    /* Removes the default browser underline */
+    transition: color 0.2s ease;
+}
+
+/* Lights up white when you hover over links */
+.nav-links a:hover {
+    color: var(--text-bright);
+}
+
+/* Right-side purple sign_in button style */
+.btn-signin {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--accent-purple);
+    color: var(--text-bright) !important;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none; /* Removes underline from button text */
+    transition: opacity 0.2s ease;
+}
+
+.btn-signin:hover {
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   PAGE CONTENT STYLES
+   ========================================================================== */
 
 /* Big Headline Style */
 h1 {
@@ -26,6 +100,7 @@ h1 {
     font-size: 3.5rem;
     font-weight: 700;
     text-align: left;
+    margin-top: 10px;
     margin-bottom: 10px;
     letter-spacing: -1px;
 }
@@ -49,6 +124,7 @@ h1 em {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
+    margin-top: 40px;
 }
 
 /* Card design matching the stats boxes at the bottom of the screenshot */
@@ -57,6 +133,7 @@ h1 em {
     border: 1px solid var(--border-color);
     border-radius: 4px; /* Slightly sharper corners like the screenshot */
     padding: 30px;
+    margin-bottom: 20px; /* Fallback spacer */
     transition: border-color 0.2s ease;
 }
 
@@ -79,6 +156,7 @@ h1 em {
     font-size: 0.9rem;
     color: var(--text-bright);
     margin: 12px 0;
+    line-height: 1.5;
 }
 
 .person p strong {
@@ -120,4 +198,35 @@ h1 em {
 .person.target {
     border: 1px solid var(--accent-purple);
     box-shadow: 0 0 15px rgba(92, 84, 255, 0.1);
+}
+
+/* Container for the pill badge */
+.badge-container {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(92, 84, 255, 0.06); /* Very subtle purple tint background */
+    border: 1px solid rgba(92, 84, 255, 0.25); /* Translucent purple border */
+    padding: 6px 14px;
+    border-radius: 4px; /* Slightly sharp corners matching the original design */
+    margin-top: 10px;
+    margin-bottom: 24px; /* Space between the badge and your main title */
+}
+
+/* The little glowing/bright dot on the left */
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-purple); /* Uses your purple color */
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 8px var(--accent-purple); /* Soft neon glow effect */
+}
+
+/* The badge text style */
+.badge-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: lowercase; /* Forces everything to stay lowercase */
+    letter-spacing: 0.5px;
+    color: #a2a7f5; /* A softer, bright indigo-gray text color */
 }
