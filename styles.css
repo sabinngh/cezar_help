@@ -121,3 +121,91 @@ h1 em {
     border: 1px solid var(--accent-purple);
     box-shadow: 0 0 15px rgba(92, 84, 255, 0.1);
 }
+
+/* Container for the pill badge */
+.badge-container {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(92, 84, 255, 0.06); /* Very subtle purple tint background */
+    border: 1px solid rgba(92, 84, 255, 0.25); /* Translucent purple border */
+    padding: 6px 14px;
+    border-radius: 4px; /* Slightly sharp corners matching the original design */
+    margin-bottom: 24px; /* Space between the badge and your main title */
+}
+
+/* The little glowing/bright dot on the left */
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-purple); /* Uses your purple color */
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 8px var(--accent-purple); /* Soft neon glow effect */
+}
+
+/* The badge text style */
+.badge-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: lowercase; /* Forces everything to stay lowercase */
+    letter-spacing: 0.5px;
+    color: #a2a7f5; /* A softer, bright indigo-gray text color */
+}
+
+/* Navigation Header Container */
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Pushes logo, links, and sign-in to their respective sides */
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 60px; /* Space between header and content below */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle bottom separator */
+}
+
+/* Logo styling */
+.logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-bright);
+}
+
+.logo span {
+    color: var(--accent-purple); /* Makes the 'ML' part purple */
+}
+
+/* Middle links configuration */
+.nav-links {
+    display: flex;
+    gap: 32px; /* Spaces out the individual nav items */
+}
+
+.nav-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-muted); /* Subdued gray links like the screenshot */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Hover effect for the middle links */
+.nav-links a:hover {
+    color: var(--text-bright); /* Lights up white when hovered */
+}
+
+/* Sign-In Button on the right */
+.btn-signin {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-bright);
+    background-color: var(--accent-purple);
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-signin:hover {
+    opacity: 0.9; /* Slight change on hover to make it interactive */
+}
