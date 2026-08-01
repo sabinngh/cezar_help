@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meet Our Team</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 <header class="main-header">
@@ -16,12 +16,13 @@
         <a href="#lessons">Lessons</a>
         <a href="#problems">Problems</a>
         <a href="#research">Research</a>
-        <a href="index.html">Home</a>
-        <a href="page.html">Meet the Team</a>
+        <a href="{{ url_for('home.home') }}">Home</a>
+        <a href="{{ url_for('home.team') }}">Meet the Team</a>
     </nav>
     
     <div class="header-actions">
-        <a href="#signin" class="btn-signin">sign_in</a>
+        <a href="{{ url_for('auth.login_page') }}" class="btn-signin">log_in</a>
+        <a href="{{ url_for('auth.signup_page') }}" class="btn-signin">sign_up</a>
     </div>
 </header>
     <div class="badge-container">
