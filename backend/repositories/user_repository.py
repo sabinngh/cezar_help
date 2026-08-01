@@ -22,3 +22,6 @@ class UserRepository:
         users = User.query.all()
         return [user.to_dict() for user in users]
     
+    def user_login():
+        user = User.query.filter_by(username=username).first()
+    
