@@ -16,12 +16,13 @@ class UserRepository:
         db.session.commit()
 
         return user
+
+    @staticmethod
+    def get_by_email(email):
+        """Looks up a user by email in PostgreSQL."""
+        return User.query.filter_by(email=email).first()
     
     @staticmethod
     def get_users():
         users = User.query.all()
         return [user.to_dict() for user in users]
-    
-    def user_login():
-        user = User.query.filter_by(username=username).first()
-    
