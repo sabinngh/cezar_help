@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meet Our Team</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header class="main-header">
-    <div class="logo">
-        sava<span>ML</span>
-    </div>
-    
-    <nav class="nav-links">
-        <a href="#lessons">Lessons</a>
-        <a href="#problems">Problems</a>
-        <a href="#research">Research</a>
-        <a href="index.html">Home</a>
-        <a href="page.html">Meet the Team</a>
-    </nav>
-    
-    <div class="header-actions">
-        <a href="#signin" class="btn-signin">sign_in</a>
-    </div>
-</header>
-    <div class="badge-container">
-    <span class="badge-dot"></span>
-    <span class="badge-text">2025–2026 season • open for enrollment</span>
-</div>
+{% extends "layout.html" %}
+
+{% block badge_class %}badge-left{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block content %}
+
 
 <h1>Learn AI. <em>Build models.</em> Ship results.</h1>
 <h1 class="meet-team">MEET OUR TEAM!</h1>
@@ -36,16 +16,12 @@
 <p>The club was founded in September 2026 by Carina and Sabin, currently students at Saint Sava National High School.</p>
 <p class="bio">It all started with a passion for AI and ML. Now our passion has been passed down to the students which share our ambition to reach superior levels in the ML competitions.</p>
 
-<!-- STUDENT 1: EDIT ONLY YOUR SECTION -->
-
 <div class="person">
     <h2>Sabin Naghi</h2>
 
-    <p><strong>Age:</strong>17</p>
-
-    <p><strong>Favourite hobby:</strong>coding</p>
-
-    <p><strong>Favourite film:</strong>Good Will Hunting</p>
+    <p><strong>Age:</strong> 17</p>
+    <p><strong>Favourite hobby:</strong> coding</p>
+    <p><strong>Favourite film:</strong> Good Will Hunting</p>
 
     <p>
         I study at Saint Sava National Highschool which represents a really important part of me. 
@@ -53,49 +29,36 @@
         On the Weekends, I like to go out with my friends. 
     </p>
 
-    <p>These are a couple of my tech skills: </p>
+    <p>These are a couple of my tech skills:</p>
     <ul>
-        <strong>
-            <li>Python</li>
-            <li>ML Python libraries: Sklearn, Numpy, Pandas, Scipy</li>
-            <li>LaTex</li>
-            <li>Basic HTML and CSS</li>
-        </strong>
+        <li><strong>Python</strong></li>
+        <li><strong>ML Python libraries: Sklearn, Numpy, Pandas, Scipy</strong></li>
+        <li><strong>LaTeX</strong></li>
+        <li><strong>Basic HTML and CSS</strong></li>
     </ul>
-
 </div>
-
-<!-- STUDENT 2: EDIT ONLY YOUR SECTION -->
 
 <div class="person">
     <h2>Carina Brebenaru</h2>
 
-    <p><strong>Age:</strong>17</p>
-
-    <p><strong>Favourite hobby:</strong>singing/listening to music</p>
-
-    <p><strong>Favourite film:</strong>Shutter Island</p>
+    <p><strong>Age:</strong> 17</p>
+    <p><strong>Favourite hobby:</strong> singing/listening to music</p>
+    <p><strong>Favourite film:</strong> Shutter Island</p>
 
     <p>
         I started this project with the hope that I'll meet more people passionate about ML 
         and AI and because of the motivation obtained after qualifying at national stage at <em>ONIA</em>. 
         In my free time I like to do graphic design and CGI models in blender for companies! 
         My favourite part about myself is my attention to details and my sense of creativity.
-
-        Some of my tech skills:
     </p>
 
+    <p>Some of my tech skills:</p>
     <ul>
-        <strong>
-            <li>C++ , C </li>
-            <li>Python</li>
-            <li>HTML & CSS</li>
-            <li>Mathematics</li>
-            <li>Blender !</li>
-        </strong>
+        <li><strong>C++ , C</strong></li>
+        <li><strong>Python</strong></li>
+        <li><strong>HTML & CSS</strong></li>
+        <li><strong>Mathematics</strong></li>
+        <li><strong>Blender !</strong></li>
     </ul>
-
 </div>
-
-</body>
-</html>
+{% endblock %}
