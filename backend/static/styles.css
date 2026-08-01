@@ -204,22 +204,46 @@ h1 em {
 .badge-container {
     display: inline-flex;
     align-items: center;
-    background-color: rgba(92, 84, 255, 0.06); /* Very subtle purple tint background */
-    border: 1px solid rgba(92, 84, 255, 0.25); /* Translucent purple border */
-    padding: 6px 14px;
-    border-radius: 4px; /* Slightly sharp corners matching the original design */
-    margin-top: 10px;
-    margin-bottom: 24px; /* Space between the badge and your main title */
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    
+    /* ADDED: Forces the badge to align to the left side */
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.badge-wrapper {
+    display: flex;
+    justify-content: center; /* Centers the box on the page */
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;        /* Spacing below header */
+    margin-bottom: 24px;
+}
+
+/* Centered alignment (Default for Home, Login, Signup) */
+.badge-wrapper.badge-center {
+    justify-content: center;
+}
+
+/* Left alignment (For Meet the Team) */
+.badge-wrapper.badge-left {
+    justify-content: flex-start;
 }
 
 /* The little glowing/bright dot on the left */
 .badge-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent-purple); /* Uses your purple color */
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #10b981; /* Green accent color */
     border-radius: 50%;
-    margin-right: 10px;
-    box-shadow: 0 0 8px var(--accent-purple); /* Soft neon glow effect */
+    flex-shrink: 0;           /* Prevents dot from squishing */
+    /* Remove any position: absolute, top, or margin overrides here */
 }
 
 /* The badge text style */

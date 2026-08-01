@@ -1,81 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>savaML</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-</head>
-<body>
+{% extends "layout.html" %}
 
-    <header class="main-header">
-        <div class="logo">
-            sava<span>ML</span>
-        </div>
-        
-        <nav class="nav-links">
-            <a href="{{ url_for('home.home') }}">Home</a>
-            <a href="{{ url_for('home.team') }}">Meet the Team</a>
-        </nav>
-        
-        <div class="header-actions">
-            <a href="{{ url_for('auth.signup_page') }}" class="btn-signin">sign_in</a>
-        </div>
-    </header>
+{% block content %}
+<section class="hero-container">
+    <div class="hero-section">
+        <h1>sava<span>ML</span> Club</h1>
+        <h4>This is the official website of the savaML Club.</h4>
+    </div>
 
-    <section class="hero-container">
-        <div class="hero-section">
-            <h1>sava<span>ML</span> Club</h1>
-            <h4>This is the official website of the savaML Club.</h4>
-        </div>
+    <div class="graphic-fullwidth-frame">
+        <model-viewer 
+            src="{{ url_for('static', filename='keyboard.glb') }}" 
+            alt="A 3D model of a keyboard" 
+            auto-rotate 
+            camera-controls 
+            disable-zoom
+            min-field-of-view="30deg"
+            field-of-view="60deg">
+        </model-viewer>
+    </div>
+</section>
 
-        <div class="graphic-fullwidth-frame">
-            <model-viewer 
-                src="{{ url_for('static', filename='keyboard.glb') }}" 
-                alt="A 3D model of a keyboard" 
-                auto-rotate 
-                camera-controls 
-                disable-zoom
-                min-field-of-view="30deg"
-                field-of-view="60deg">
-            </model-viewer>
-        </div>
-    </section>
+<main class="content-container">
+    
+    <div class="text-content">
+        <h3>Our story</h3>
+        <p>
+            Founded in September 2026, savaML was established to bring together students passionate about <em>data science</em>, <em>algorithms</em>, and <em>artificial intelligence</em>. Our core mission is to <em>cultivate curiosity</em> and enthusiasm for computer science, providing members with an environment that fosters deep learning, active collaboration, and intellectual growth.
+        </p>
+        <p>
+            Through our targeted initiatives, we aim to build a strong, engaged community while unlocking elite academic and professional opportunities. We aspire to equip students with the advanced skills and mindset needed to confidently embrace the challenges of an increasingly <em>technology-driven world</em>.
+        </p>
+        <p>
+            SavaML holds high-impact <em>weekly meetings</em> where members explore fundamental and advanced topics in machine learning and algorithmic thinking. These sessions seamlessly combine theoretical concepts with practical applications, reinforcing core technical knowledge. More insights into our curriculum can be found in the Lessons section.
+        </p>
+        <p>
+            Our platform provides an interactive ecosystem where students apply their knowledge to real-world AI challenges. Members can access problem statements, analyze datasets, and submit their code for <em>automated evaluation</em> and instant feedback—rapidly strengthening programming skills in the Problems section.
+        </p>
+        <p>
+            In addition, we offer a <em>curated collection of research resources</em> covering computer vision, neural networks, and advanced disciplines. These specialized materials are meticulously designed to support independent study, pushing members to deepen their comprehension far beyond standard school curriculums.
+        </p>
+        <p>
+            Our definitive long-term objective is to prepare students to stand out in <em>national artificial intelligence competitions</em>, specifically pushing for excellence in <em>ROAI and ONIA</em>, while fostering a lifelong passion for genuine research, breakthrough innovation, and computational mastery.
+        </p>
+    </div>
 
-    <main class="content-container">
-        
-        <div class="text-content">
-            <h3>Our story</h3>
-            <p>
-                Founded in September 2026, savaML was established to bring together students passionate about <em>data science</em>, <em>algorithms</em>, and <em>artificial intelligence</em>. Our core mission is to <em>cultivate curiosity</em> and enthusiasm for computer science, providing members with an environment that fosters deep learning, active collaboration, and intellectual growth.
-            </p>
-            <p>
-                Through our targeted initiatives, we aim to build a strong, engaged community while unlocking elite academic and professional opportunities. We aspire to equip students with the advanced skills and mindset needed to confidently embrace the challenges of an increasingly <em>technology-driven world</em>.
-            </p>
-            <p>
-                SavaML holds high-impact <em>weekly meetings</em> where members explore fundamental and advanced topics in machine learning and algorithmic thinking. These sessions seamlessly combine theoretical concepts with practical applications, reinforcing core technical knowledge. More insights into our curriculum can be found in the Lessons section.
-            </p>
-            <p>
-                Our platform provides an interactive ecosystem where students apply their knowledge to real-world AI challenges. Members can access problem statements, analyze datasets, and submit their code for <em>automated evaluation</em> and instant feedback—rapidly strengthening programming skills in the Problems section.
-            </p>
-            <p>
-                In addition, we offer a <em>curated collection of research resources</em> covering computer vision, neural networks, and advanced disciplines. These specialized materials are meticulously designed to support independent study, pushing members to deepen their comprehension far beyond standard school curriculums.
-            </p>
-            <p>
-                Our definitive long-term objective is to prepare students to stand out in <em>national artificial intelligence competitions</em>, specifically pushing for excellence in <em>ROAI and ONIA</em>, while fostering a lifelong passion for genuine research, breakthrough innovation, and computational mastery.
-            </p>
-        </div>
+    <div class="goals-section">
+        <h5>Main goals:</h5>
+        <button>ONIA</button>
+        <button>ROAI</button>
+        <h5>Most important value for a savaML member:</h5>
+        <button>PATIENCE</button>
+    </div>
 
-        <div class="goals-section">
-            <h5>Main goals:</h5>
-            <button>ONIA</button>
-            <button>ROAI</button>
-            <h5>Most important value for a savaML member:</h5>
-            <button>PATIENCE</button>
-        </div>
-
-    </main>
-
-</body>
-</html>
+</main>
+{% endblock %}
