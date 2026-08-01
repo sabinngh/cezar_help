@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 from services.user_service import UserService
 
 user_bp = Blueprint("users", __name__)
@@ -27,3 +27,7 @@ def get_users():
     users = UserService.get_users()
 
     return users, 200
+
+
+
+
