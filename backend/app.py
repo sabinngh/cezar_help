@@ -4,10 +4,13 @@ from models.user import User
 from controllers.user_controller import user_bp
 from controllers.home_controller import home_bp
 from controllers.auth_controller import auth_bp, admin_bp
+from flask_cors import CORS
 
 app = Flask(__name__,
             template_folder='templates',
             static_folder='static')
+
+CORS(app, origins=["http://localhost:5173"])
 
 # --- CONFIGURATION ---
 app.config["SECRET_KEY"] = "carinas-secret-key-here"
