@@ -8,43 +8,61 @@ auth_bp = Blueprint("auth", __name__)
 
 # --- SIGNUP ---
 
-@auth_bp.route("/signup", methods=["GET", "POST"])
+@auth_bp.route("/api/signup", methods=["POST"])
 def signup_page():
-    if request.method == "POST":
-        # Get data from HTML form fields
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
+    # if request.method == "POST":
+    #     # Get data from HTML form fields
+    #     username = request.form.get("username")
+    #     email = request.form.get("email")
+    #     password = request.form.get("password")
 
-        user, error = UserService.register_user(username, email, password)
-        if error:
-            return render_template("signup.html", error=error)
+    #     user, error = UserService.register_user(username, email, password)
+    #     if error:
+    #         return render_template("signup.html", error=error)
 
-        # Successfully registered, redirect to login page
-        return redirect(url_for("auth.login_page"))
+    #     # Successfully registered, redirect to login page
+    #     return redirect(url_for("auth.login_page"))
 
-    return render_template("signup.html")
+    # return render_template("signup.html")
 
+    data = request.get_json()
+
+    username = data['username']
+    email = data['email']
+    password = data['password']
+
+    user, error = UserService.register_user(username,email,password)
+
+    if error:
+        return {
+            "message": error
+        }, 409
+
+    return {
+        "message": "User created"
+    }, 201
 
 # --- LOGIN ---
 from werkzeug.security import check_password_hash
 
-@auth_bp.route("/login", methods=["GET", "POST"])
+@auth_bp.route("/api/login", methods=["POST"])
 def login_page():
-    if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
 
-        user = User.query.filter_by(email=email).first()
+    data = request.get_json()
 
-        # FIXED: Changed password_hash -> password to match your User model
-        if user and check_password_hash(user.password, password):
-            session["user_id"] = user.id
-            return redirect(url_for("auth.profile"))
-        else:
-            return render_template("login.html", error="Incorrect email or password!")
+    email = data["email"]
+    password = data["password"]
 
-    return render_template("login.html")
+    user, error = UserService.login_user(email, password)
+
+    if error:
+        return {
+            "message": error
+        }, 401
+
+    return {
+        "message": "Login successful"
+    }, 200
 
 
 # --- PROFILE & LOGOUT ---

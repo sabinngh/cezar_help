@@ -10,6 +10,10 @@ class UserService:
         if existing_user:
             return None, "Email is already registered"
 
+        existing_name = UserRepository.get_by_username(username)
+        if existing_name:
+            return None, "Username is already registered"
+
         # Specify pbkdf2:sha256 to avoid the hashlib scrypt error
         hashed_password = generate_password_hash(password, method="pbkdf2:sha256")
         

@@ -21,6 +21,11 @@ class UserRepository:
     def get_by_email(email):
         """Looks up a user by email in PostgreSQL."""
         return User.query.filter_by(email=email).first()
+
+    @staticmethod
+    def get_by_username(username):
+        """Looks up a user by username in PostgreSQL."""
+        return User.query.filter_by(username=username).first()
     
     @staticmethod
     def get_users():
