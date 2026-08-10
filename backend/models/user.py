@@ -18,3 +18,6 @@ class User(db.Model):
             "email": self.email
         }
 
+    # ADD THIS: Defaults to False for regular users
+    is_admin = db.Column(db.Boolean, default=False)
+
