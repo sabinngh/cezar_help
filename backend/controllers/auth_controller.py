@@ -2,6 +2,8 @@ from functools import wraps
 from flask import Blueprint, flash, request, render_template, redirect, url_for, session, g, abort
 from models.user import User
 from services.user_service import UserService
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -47,7 +49,6 @@ from werkzeug.security import check_password_hash
 
 @auth_bp.route("/api/login", methods=["POST"])
 def login_page():
-
     data = request.get_json()
 
     email = data["email"]
@@ -56,23 +57,38 @@ def login_page():
     user, error = UserService.login_user(email, password)
 
     if error:
-        return {
-            "message": error
-        }, 401
+        return {"message": error}, 401
 
+    # JWT aici, momentan putem testa fără JWT
     return {
-        "message": "Login successful"
+        "message": "Login successful",
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email
+        }
     }, 200
-
 
 # --- PROFILE & LOGOUT ---
 
-@auth_bp.route("/profile")
-def profile():
-    if not g.user:
-        return redirect(url_for("auth.login_page"))
-    return render_template("profile.html")
+@auth_bp.route("/api/profile", methods=["GET"])
+@jwt_required()
+def jwt_profile():
 
+    user_id = get_jwt_identity()
+
+    user = User.query.get(user_id)
+
+    if not user:
+        return {
+            "message": "User not found"
+        }, 404
+
+    return {
+        "id": user.id,
+        "username": user.username,
+        "email": user.email
+    }, 200
 
 @auth_bp.route("/logout")
 def logout():
