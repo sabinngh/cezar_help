@@ -1,0 +1,30 @@
+.team-page {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 70px 30px;
+}
+
+.team-title {
+
+    font-size: 4rem;
+
+    color: white;
+
+    margin-bottom: 20px;
+
+    font-family: Georgia, serif;
+}
+
+.team-description {
+
+    color: #d1d5db;
+
+    line-height: 1.8;
+
+    font-size: 1.1rem;
+
+    margin-bottom: 15px;
+}
