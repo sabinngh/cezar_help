@@ -5,11 +5,12 @@ function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/login", {
+        const response = await fetch("http://localhost:5001/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -22,12 +23,11 @@ function Login() {
 
         const data = await response.json();
 
-        if (response.ok) {
-            console.log(data);
-        } else {
-            console.log(data);
-        }
-    }
+        setMessage(data.message);
+
+        console.log(data);
+        
+    };
 
     return (
         <div>
@@ -58,7 +58,7 @@ function Login() {
                 </button>
 
             </form>
-
+            {message && <p>{message}</p>}
         </div>
     )
 }
