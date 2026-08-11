@@ -1,7 +1,9 @@
 import { useState } from "react";
-
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 function Login() {
+    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -9,25 +11,36 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
 
-        const response = await fetch("http://localhost:5001/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email,
-                password
-            })
-        });
+            const response = await fetch("http://localhost:5001/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        setMessage(data.message);
+            if (response.ok) {
+                    login(data.access_token);
+                    navigate("/");
 
-        console.log(data);
-        
+                } else {
+                    // Login failed
+                    setMessage(data.message);
+                }
+
+        } catch (error) {
+            console.error(error);
+            setMessage("Could not connect to the server.");
+        }
     };
+
 
     return (
         <div>
