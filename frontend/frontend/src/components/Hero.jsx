@@ -1,4 +1,4 @@
-//import "../styles/hero.css";
+import "../styles/hero.css";
 //import "@google/model-viewer";
 
 function Hero() {
@@ -7,7 +7,7 @@ function Hero() {
 
             <div className="hero-section">
 
-                <h1>
+                <h1 className="hero-title">
                     sava<span>ML</span> Club
                 </h1>
 
