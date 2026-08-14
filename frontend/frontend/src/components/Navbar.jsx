@@ -43,7 +43,7 @@ function Navbar() {
 
                 {isLoggedIn ? (
                     <>
-                        <div className="user-container">
+                        <Link to="/profile" className="user-container">
 
                             <div className="user-avatar">
                                 {user?.username?.charAt(0).toUpperCase()}
@@ -53,7 +53,7 @@ function Navbar() {
                                 {user?.username}
                             </span>
 
-                        </div>
+                        </Link>
 
                         <button
                             className="logout-button"

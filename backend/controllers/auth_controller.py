@@ -12,21 +12,7 @@ auth_bp = Blueprint("auth", __name__)
 
 @auth_bp.route("/api/signup", methods=["POST"])
 def signup_page():
-    # if request.method == "POST":
-    #     # Get data from HTML form fields
-    #     username = request.form.get("username")
-    #     email = request.form.get("email")
-    #     password = request.form.get("password")
-
-    #     user, error = UserService.register_user(username, email, password)
-    #     if error:
-    #         return render_template("signup.html", error=error)
-
-    #     # Successfully registered, redirect to login page
-    #     return redirect(url_for("auth.login_page"))
-
-    # return render_template("signup.html")
-
+    
     data = request.get_json()
 
     username = data['username']
@@ -88,16 +74,27 @@ def jwt_profile():
             "message": "User not found"
         }, 404
 
-    return {
-        "id": user.id,
-        "username": user.username,
-        "email": user.email
-    }, 200
+    return user.to_dict(), 200
 
-@auth_bp.route("/logout")
-def logout():
-    session.clear()  # Erases the login session
-    return redirect(url_for("home.home"))
+@auth_bp.route("/api/profile", methods=["PUT"])
+@jwt_required()
+def update_profile():
+
+    user_id = get_jwt_identity()
+
+    data = request.get_json()
+
+    user, error = UserService.update_profile(user_id, data)
+
+    if error:
+        return {
+            "message": error
+        }, 404
+
+    return {
+        "message": "Profile updated",
+        "user": user.to_dict()
+    }, 200
 
 
 # --- ADMIN DECORATOR & BLUEPRINT ---
