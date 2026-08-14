@@ -11,11 +11,22 @@ class User(db.Model):
     # Increased length to 255 to store password hashes safely
     password = db.Column(db.String(255), nullable=False)
 
+    high_school = db.Column(db.String(255))
+    city = db.Column(db.String(100))
+    country = db.Column(db.String(100))
+    github = db.Column(db.String(255))
+    about = db.Column(db.Text)
+
     def to_dict(self):
         return {
             "id": self.id,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
+            "high_school": self.high_school,
+            "city": self.city,
+            "country": self.country,
+            "github": self.github,
+            "about": self.about
         }
 
     # ADD THIS: Defaults to False for regular users

@@ -9,6 +9,7 @@ import MeetTheTeam from './pages/MeetTheTeam';
 import Navbar from './components/Navbar';
 import Problems from './pages/Problems';
 import Learning from './pages/Learning';
+import Profile from "./pages/Profile";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/problems' element={<Problems />} />
         <Route path='/learning' element={<Learning />} />
         <Route path='/meet-the-team' element={<MeetTheTeam />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
 

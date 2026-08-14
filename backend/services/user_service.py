@@ -34,3 +34,15 @@ class UserService:
     @staticmethod
     def get_users():
         return UserRepository.get_users()
+
+    @staticmethod
+    def update_profile(user_id, data):
+
+        user = UserRepository.get_by_id(user_id)
+
+        if not user:
+            return None, "User not found"
+
+        user = UserRepository.update_profile(user, data)
+
+        return user, None

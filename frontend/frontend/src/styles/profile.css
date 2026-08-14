@@ -1,0 +1,185 @@
+.profile-page{
+    display:flex;
+    justify-content:center;
+    padding:60px;
+}
+
+.profile-card{
+
+    width:650px;
+
+    background:#131722;
+
+    border:1px solid #2b3044;
+
+    border-radius:20px;
+
+    padding:40px;
+}
+
+.profile-avatar-large{
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    background:#6157ff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+    font-weight:bold;
+
+    margin:auto;
+
+    color:white;
+
+    margin-bottom:25px;
+}
+
+.profile-card h1{
+
+    text-align:center;
+}
+
+.profile-email{
+
+    text-align:center;
+
+    color:#9ea6bd;
+
+    margin-bottom:40px;
+}
+
+.profile-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid #262c3f;
+
+    padding-bottom:12px;
+}
+
+.info-row span{
+
+    color:#8d95ad;
+
+    font-weight:600;
+}
+
+.info-row p{
+
+    color:white;
+
+    margin:0;
+}
+
+.edit-profile-btn{
+
+    margin-top:35px;
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#6157ff;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.edit-profile-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#766dff;
+}
+
+.profile-info input,
+.profile-info textarea{
+
+    width:55%;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#202536;
+
+    color:white;
+}
+
+.profile-info textarea{
+
+    resize:none;
+
+    min-height:90px;
+}
+
+.profile-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+}
+
+.cancel-btn{
+
+    background:#30374d;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.save-btn{
+
+    background:#6157ff;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}

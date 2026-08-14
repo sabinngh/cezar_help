@@ -6,6 +6,7 @@ from controllers.home_controller import home_bp
 from controllers.auth_controller import auth_bp, admin_bp
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
 
 app = Flask(__name__,
             template_folder='templates',
@@ -26,6 +27,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Initialize extensions
 db.init_app(app)
+
+migrate = Migrate(app, db)
 
 # --- USER SESSION HOOK ---
 @app.before_request
