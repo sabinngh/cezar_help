@@ -59,9 +59,13 @@ def login_page():
     if error:
         return {"message": error}, 401
 
+    access_token = create_access_token(
+        identity=str(user.id)
+    )
     # JWT aici, momentan putem testa fără JWT
     return {
         "message": "Login successful",
+        "access_token": access_token,
         "user": {
             "id": user.id,
             "username": user.username,

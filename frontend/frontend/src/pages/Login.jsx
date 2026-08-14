@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+
 function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
@@ -11,8 +12,8 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
 
+        try {
             const response = await fetch("http://localhost:5001/api/login", {
                 method: "POST",
                 headers: {
@@ -26,14 +27,15 @@ function Login() {
 
             const data = await response.json();
 
-            if (response.ok) {
-                    login(data.access_token);
-                    navigate("/");
+            console.log("RESPONSE STATUS:", response.status);
+            console.log("LOGIN DATA:", data);
 
-                } else {
-                    // Login failed
-                    setMessage(data.message);
-                }
+            if (response.ok) {
+                login(data.access_token, data.user);
+                navigate("/");
+            } else {
+                setMessage(data.message);
+            }
 
         } catch (error) {
             console.error(error);
@@ -41,13 +43,11 @@ function Login() {
         }
     };
 
-
     return (
         <div>
             <h1>Login</h1>
 
             <form onSubmit={handleSubmit}>
-
                 <input
                     type="email"
                     placeholder="Email"
@@ -69,11 +69,11 @@ function Login() {
                 <button type="submit">
                     Login
                 </button>
-
             </form>
+
             {message && <p>{message}</p>}
         </div>
-    )
+    );
 }
 
 export default Login;
