@@ -1,7 +1,14 @@
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero-container {
     position: relative;
+
     min-height: 900px;
+
     padding: 100px 30px 80px;
+
     overflow: hidden;
 
     background:
@@ -10,21 +17,28 @@
             rgba(91, 74, 255, 0.13),
             transparent 35%
         ),
+        radial-gradient(
+            circle at 50% 65%,
+            rgba(0, 220, 210, 0.035),
+            transparent 40%
+        ),
         #07080d;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
     box-sizing: border-box;
 }
 
 
-/* =========================
-   GRID BACKGROUND
-========================= */
+/* =========================================================
+   GRID
+========================================================= */
 
 .hero-grid {
     position: absolute;
+
     inset: 0;
 
     background-image:
@@ -40,13 +54,15 @@
 
     background-size: 55px 55px;
 
-    mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 90%
-    );
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
 
-    animation: gridMove 20s linear infinite;
+    animation:
+        gridMove 20s linear infinite;
 
     pointer-events: none;
 }
@@ -65,39 +81,63 @@
 }
 
 
-/* =========================
-   GLOW
-========================= */
+/* =========================================================
+   GLOWS
+========================================================= */
 
 .hero-glow {
     position: absolute;
+
     border-radius: 50%;
+
     filter: blur(100px);
+
     pointer-events: none;
 }
+
 
 .glow-one {
     width: 400px;
     height: 400px;
 
-    background: rgba(94, 77, 255, 0.12);
+    background:
+        rgba(94, 77, 255, 0.12);
 
     top: 150px;
     left: 15%;
 
-    animation: floatGlow 8s ease-in-out infinite;
+    animation:
+        floatGlow 8s ease-in-out infinite;
 }
+
 
 .glow-two {
     width: 300px;
     height: 300px;
 
-    background: rgba(145, 80, 255, 0.08);
+    background:
+        rgba(145, 80, 255, 0.08);
 
     top: 300px;
     right: 10%;
 
-    animation: floatGlow 10s ease-in-out infinite reverse;
+    animation:
+        floatGlow 10s ease-in-out infinite reverse;
+}
+
+
+.glow-three {
+    width: 250px;
+    height: 250px;
+
+    background:
+        rgba(0, 220, 210, 0.045);
+
+    top: 600px;
+    left: 45%;
+
+    animation:
+        floatGlow 12s ease-in-out infinite;
 }
 
 
@@ -115,9 +155,9 @@
 }
 
 
-/* =========================
-   AI NODES
-========================= */
+/* =========================================================
+   AI PARTICLES
+========================================================= */
 
 .ai-node {
     position: absolute;
@@ -133,7 +173,8 @@
         0 0 10px #7667ff,
         0 0 25px rgba(118, 103, 255, 0.8);
 
-    animation: nodePulse 3s ease-in-out infinite;
+    animation:
+        nodePulse 3s ease-in-out infinite;
 
     z-index: 1;
 }
@@ -144,28 +185,50 @@
     left: 12%;
 }
 
+
 .node-2 {
     top: 42%;
     right: 15%;
+
     animation-delay: 1s;
 }
+
 
 .node-3 {
     top: 65%;
     left: 20%;
+
     animation-delay: 1.5s;
 }
+
 
 .node-4 {
     top: 70%;
     right: 25%;
+
     animation-delay: 2s;
 }
+
 
 .node-5 {
     top: 20%;
     right: 28%;
+
     animation-delay: 0.5s;
+}
+
+
+.node-6 {
+    top: 57%;
+    right: 8%;
+
+    background: #2de2d1;
+
+    box-shadow:
+        0 0 10px #2de2d1,
+        0 0 25px rgba(45, 226, 209, 0.7);
+
+    animation-delay: 1.8s;
 }
 
 
@@ -174,27 +237,34 @@
     0%,
     100% {
         opacity: 0.35;
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 
     50% {
         opacity: 1;
-        transform: scale(1.8);
+
+        transform:
+            scale(1.8);
     }
 
 }
 
 
-/* =========================
+/* =========================================================
    HERO CONTENT
-========================= */
+========================================================= */
 
 .hero-content {
     position: relative;
+
     z-index: 5;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     text-align: center;
@@ -203,22 +273,27 @@
 }
 
 
-/* =========================
+/* =========================================================
    BADGE
-========================= */
+========================================================= */
 
 .hero-badge {
     display: inline-flex;
+
     align-items: center;
+
     gap: 9px;
 
     padding: 8px 14px;
 
-    border: 1px solid rgba(125, 112, 255, 0.3);
+    border:
+        1px solid
+        rgba(125, 112, 255, 0.3);
 
     border-radius: 999px;
 
-    background: rgba(80, 70, 180, 0.08);
+    background:
+        rgba(80, 70, 180, 0.08);
 
     color: #a9a5c0;
 
@@ -231,7 +306,8 @@
     margin-bottom: 28px;
 
     box-shadow:
-        0 0 30px rgba(100, 85, 255, 0.06);
+        0 0 30px
+        rgba(100, 85, 255, 0.06);
 }
 
 
@@ -246,7 +322,8 @@
     box-shadow:
         0 0 8px #7667ff;
 
-    animation: statusPulse 2s infinite;
+    animation:
+        statusPulse 2s infinite;
 }
 
 
@@ -264,16 +341,21 @@
 }
 
 
-/* =========================
+/* =========================================================
    TITLE
-========================= */
+========================================================= */
 
 .hero-title {
     margin: 0;
 
     font-family: var(--heading);
 
-    font-size: clamp(64px, 8vw, 118px);
+    font-size:
+        clamp(
+            64px,
+            8vw,
+            118px
+        );
 
     font-weight: 400;
 
@@ -284,8 +366,11 @@
     color: #f5f5fa;
 
     text-shadow:
-        0 0 12px rgba(255, 255, 255, 0.45),
-        0 0 35px rgba(255, 255, 255, 0.18);
+        0 0 12px
+        rgba(255, 255, 255, 0.45),
+
+        0 0 35px
+        rgba(255, 255, 255, 0.18);
 }
 
 
@@ -293,15 +378,20 @@
     color: #7667ff;
 
     text-shadow:
-        0 0 10px rgba(118, 103, 255, 0.9),
-        0 0 35px rgba(118, 103, 255, 0.65),
-        0 0 70px rgba(118, 103, 255, 0.35);
+        0 0 10px
+        rgba(118, 103, 255, 0.9),
+
+        0 0 35px
+        rgba(118, 103, 255, 0.65),
+
+        0 0 70px
+        rgba(118, 103, 255, 0.35);
 }
 
 
-/* =========================
+/* =========================================================
    SUBTITLE
-========================= */
+========================================================= */
 
 .hero-subtitle {
     margin-top: 30px;
@@ -318,9 +408,9 @@
 }
 
 
-/* =========================
+/* =========================================================
    BUTTONS
-========================= */
+========================================================= */
 
 .hero-buttons {
     display: flex;
@@ -333,7 +423,9 @@
 
 .hero-button {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 
     padding: 13px 20px;
@@ -358,43 +450,52 @@
 
     background: #6859f5;
 
-    border: 1px solid #8175ff;
+    border:
+        1px solid
+        #8175ff;
 
     box-shadow:
-        0 0 25px rgba(104, 89, 245, 0.2);
+        0 0 25px
+        rgba(104, 89, 245, 0.2);
 }
 
 
 .hero-button.secondary {
     color: #d1cfdb;
 
-    background: rgba(255, 255, 255, 0.025);
+    background:
+        rgba(255, 255, 255, 0.025);
 
-    border: 1px solid #282b38;
+    border:
+        1px solid
+        #282b38;
 }
 
 
 .hero-button:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 }
 
 
 .hero-button.primary:hover {
     box-shadow:
-        0 0 30px rgba(104, 89, 245, 0.45);
+        0 0 30px
+        rgba(104, 89, 245, 0.45);
 }
 
 
 .hero-button.secondary:hover {
     border-color: #6258bb;
 
-    background: rgba(104, 89, 245, 0.06);
+    background:
+        rgba(104, 89, 245, 0.06);
 }
 
 
-/* =========================
+/* =========================================================
    TECH LINE
-========================= */
+========================================================= */
 
 .hero-tech-line {
     display: flex;
@@ -413,47 +514,66 @@
 }
 
 
-/* =========================
-   3D MODEL
-========================= */
+/* =========================================================
+   MAIN HOLOGRAM FRAME
+========================================================= */
 
 .graphic-fullwidth-frame {
     position: relative;
 
     z-index: 4;
 
-    width: min(720px, 90vw);
+    width:
+        min(
+            900px,
+            94vw
+        );
 
-    height: 470px;
+    height: 520px;
 
     margin-top: 70px;
 
-    border: 1px solid #20232e;
+    border:
+        1px solid
+        #20232e;
 
     border-radius: 12px;
 
     background:
         radial-gradient(
             circle at center,
-            rgba(90, 78, 255, 0.045),
+            rgba(90, 78, 255, 0.055),
             transparent 60%
         ),
+
+        radial-gradient(
+            circle at center,
+            rgba(0, 220, 210, 0.025),
+            transparent 45%
+        ),
+
         #0d0f16;
 
     box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.45),
-        inset 0 0 50px rgba(100, 90, 255, 0.025);
+        0 30px 80px
+        rgba(0, 0, 0, 0.45),
+
+        inset 0 0 50px
+        rgba(100, 90, 255, 0.025);
 
     overflow: hidden;
 }
 
 
-/* subtle grid inside model */
+/* =========================================================
+   INTERNAL GRID
+========================================================= */
 
 .graphic-fullwidth-frame::before {
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     background-image:
@@ -461,6 +581,7 @@
             rgba(120, 110, 255, 0.04) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             90deg,
             rgba(120, 110, 255, 0.04) 1px,
@@ -473,17 +594,9 @@
 }
 
 
-.graphic-fullwidth-frame model-viewer {
-    width: 100%;
-    height: 100%;
-
-    background: transparent;
-}
-
-
-/* =========================
+/* =========================================================
    MODEL LABEL
-========================= */
+========================================================= */
 
 .model-label {
     position: absolute;
@@ -491,36 +604,777 @@
     top: 18px;
     left: 20px;
 
-    z-index: 10;
+    z-index: 30;
 
     display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    letter-spacing: 1.8px;
+
+    color: #626779;
+}
+
+
+.model-link {
+    color: #74798c;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+
+.model-link:hover {
+    color: #2de2d1;
+
+    text-shadow:
+        0 0 10px
+        rgba(45, 226, 209, 0.45);
+}
+
+
+/* =========================================================
+   HUD STATS
+========================================================= */
+
+.hud-stats {
+    position: absolute;
+
+    top: 95px;
+
+    z-index: 20;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    font-family: var(--mono);
+}
+
+
+.left-stats {
+    left: 24px;
+}
+
+
+.right-stats {
+    right: 24px;
+
+    text-align: right;
+}
+
+
+.hud-stat {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.hud-stat span {
+    color: #454957;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.hud-stat strong {
+    color: #777b91;
+
+    font-size: 15px;
+
+    font-weight: 400;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 10px
+        rgba(118, 103, 255, 0.2);
+}
+
+
+.right-stats .hud-stat strong {
+    color: #657f83;
+
+    text-shadow:
+        0 0 10px
+        rgba(45, 226, 209, 0.12);
+}
+
+
+/* =========================================================
+   NEURAL STAGE
+========================================================= */
+
+.neural-stage {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    width: 540px;
+    height: 400px;
+
+    transform:
+        translate(-50%, -50%);
+
+    perspective: 1400px;
+
+    z-index: 10;
+
+    cursor: default;
+}
+
+
+/* =========================================================
+   NEURAL CUBE
+========================================================= */
+
+.neural-cube {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 330px;
+    height: 320px;
+
+    transform-style: preserve-3d;
+
+    /*
+       The network keeps exactly the same orientation.
+       Hover only adds a zoom.
+    */
+
+    transform:
+        translate(-50%, -50%)
+        rotateX(-5deg)
+        rotateY(-22deg)
+        scale(1);
+
+    transition:
+        transform 0.65s cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
+
+    will-change: transform;
+}
+
+
+/* =========================================================
+   HOVER = ZOOM ONLY
+========================================================= */
+
+.network-hovered .neural-cube {
+    transform:
+        translate(-50%, -50%)
+        rotateX(-5deg)
+        rotateY(-22deg)
+        scale(1.12);
+}
+
+
+/* =========================================================
+   NETWORK LAYERS
+========================================================= */
+
+.network-layer {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 175px;
+    height: 285px;
+
+    transform-style: preserve-3d;
+
+    border: 1px solid rgba(118, 103, 255, 0.22);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(118, 103, 255, 0.035),
+            rgba(45, 226, 209, 0.018)
+        );
+
+    box-shadow:
+        inset 0 0 30px rgba(118, 103, 255, 0.025);
+
+    transform-origin: center;
+
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   LAYER POSITIONS
+   NEVER CHANGE ON HOVER
+========================================================= */
+
+.layer-1 {
+    transform:
+        translate(-50%, -50%)
+        translateZ(-105px);
+}
+
+
+.layer-2 {
+    transform:
+        translate(-50%, -50%)
+        translateZ(-35px);
+}
+
+
+.layer-3 {
+    transform:
+        translate(-50%, -50%)
+        translateZ(35px);
+}
+
+
+.layer-4 {
+    transform:
+        translate(-50%, -50%)
+        translateZ(105px);
+
+    border-color:
+        rgba(45, 226, 209, 0.32);
+
+    box-shadow:
+        inset 0 0 30px
+        rgba(45, 226, 209, 0.025),
+
+        0 0 15px
+        rgba(45, 226, 209, 0.05);
+}
+
+
+/* =========================================================
+   LAYER LABELS
+========================================================= */
+
+.layer-title {
+    position: absolute;
+
+    top: -34px;
+    left: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    width: 100%;
+
+    color: #8581b4;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1.4px;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 8px
+        rgba(118, 103, 255, 0.25);
+}
+
+
+.layer-index {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 20px;
+    height: 14px;
+
+    border:
+        1px solid
+        rgba(118, 103, 255, 0.25);
+
+    color: #6f6aa7;
+
+    font-size: 7px;
+}
+
+
+.layer-subtitle {
+    position: absolute;
+
+    top: -20px;
+    left: 27px;
+
+    color: #3e4150;
+
+    font-family: var(--mono);
+
+    font-size: 6px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+
+.layer-4 .layer-title {
+    color: #5bcfc5;
+
+    text-shadow:
+        0 0 10px
+        rgba(45, 226, 209, 0.25);
+}
+
+
+.layer-4 .layer-index {
+    border-color:
+        rgba(45, 226, 209, 0.3);
+
+    color: #45bfb5;
+}
+
+
+/* =========================================================
+   NEURAL NODES
+========================================================= */
+
+.network-node {
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff 0%,
+            #8b83ff 30%,
+            #6258ff 65%,
+            #3d36a5 100%
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.4);
+
+    box-shadow:
+        0 0 5px
+        rgba(118, 103, 255, 0.8),
+
+        0 0 14px
+        rgba(118, 103, 255, 0.35);
+
+    animation:
+        neuralPulse 3s ease-in-out infinite;
+}
+
+
+.layer-4 .network-node {
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff 0%,
+            #6ffff3 30%,
+            #2de2d1 65%,
+            #168c85 100%
+        );
+
+    box-shadow:
+        0 0 6px
+        rgba(45, 226, 209, 0.9),
+
+        0 0 15px
+        rgba(45, 226, 209, 0.4);
+}
+
+
+@keyframes neuralPulse {
+
+    0%,
+    100% {
+        opacity: 0.65;
+
+        transform:
+            scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.08);
+    }
+
+}
+
+
+/* =========================================================
+   NODE POSITIONS
+========================================================= */
+
+.network-node.n1 {
+    top: 18%;
+    left: 22%;
+}
+
+
+.network-node.n2 {
+    top: 38%;
+    left: 67%;
+}
+
+
+.network-node.n3 {
+    top: 55%;
+    left: 28%;
+}
+
+
+.network-node.n4 {
+    top: 74%;
+    left: 68%;
+}
+
+
+.network-node.n5 {
+    top: 12%;
+    left: 65%;
+}
+
+
+.network-node.n6 {
+    top: 87%;
+    left: 25%;
+}
+
+
+.network-node.n7 {
+    top: 48%;
+    left: 48%;
+}
+
+
+/* =========================================================
+   CONNECTIONS
+========================================================= */
+
+.network-connections {
+    position: absolute;
+
+    inset: 0;
+
+    transform-style: preserve-3d;
+
+    pointer-events: none;
+}
+
+
+.connection {
+    position: absolute;
+
+    height: 1px;
+
+    transform-origin: left center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(118, 103, 255, 0.05),
+            rgba(118, 103, 255, 0.5),
+            rgba(45, 226, 209, 0.3),
+            transparent
+        );
+
+    box-shadow:
+        0 0 5px
+        rgba(118, 103, 255, 0.25);
+
+    animation:
+        connectionPulse 4s ease-in-out infinite;
+}
+
+
+.c1 {
+    width: 110px;
+
+    left: 80px;
+    top: 120px;
+
+    transform:
+        rotate(20deg)
+        translateZ(-80px);
+}
+
+
+.c2 {
+    width: 120px;
+
+    left: 90px;
+    top: 175px;
+
+    transform:
+        rotate(-15deg)
+        translateZ(-40px);
+}
+
+
+.c3 {
+    width: 100px;
+
+    left: 100px;
+    top: 230px;
+
+    transform:
+        rotate(25deg)
+        translateZ(0);
+}
+
+
+.c4 {
+    width: 115px;
+
+    left: 105px;
+    top: 95px;
+
+    transform:
+        rotate(-25deg)
+        translateZ(40px);
+}
+
+
+.c5 {
+    width: 120px;
+
+    left: 105px;
+    top: 155px;
+
+    transform:
+        rotate(18deg)
+        translateZ(80px);
+}
+
+
+.c6 {
+    width: 100px;
+
+    left: 100px;
+    top: 205px;
+
+    transform:
+        rotate(-25deg)
+        translateZ(100px);
+}
+
+
+.c7 {
+    width: 130px;
+
+    left: 85px;
+    top: 135px;
+
+    transform:
+        rotate(5deg)
+        translateZ(120px);
+}
+
+
+.c8 {
+    width: 105px;
+
+    left: 90px;
+    top: 190px;
+
+    transform:
+        rotate(-8deg)
+        translateZ(-120px);
+}
+
+
+.c9 {
+    width: 115px;
+
+    left: 95px;
+    top: 250px;
+
+    transform:
+        rotate(12deg)
+        translateZ(30px);
+}
+
+
+@keyframes connectionPulse {
+
+    0%,
+    100% {
+        opacity: 0.25;
+    }
+
+    50% {
+        opacity: 0.75;
+    }
+
+}
+
+
+/* =========================================================
+   EXPAND INDICATOR
+========================================================= */
+
+.expand-indicator {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 66px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 25;
+
+    display: flex;
+
     align-items: center;
 
     gap: 8px;
 
+    color: #3f4250;
+
     font-family: var(--mono);
 
-    font-size: 9px;
+    font-size: 7px;
 
     letter-spacing: 1.5px;
 
-    color: #555968;
+    white-space: nowrap;
+
+    transition:
+        color 0.3s ease;
 }
 
 
-/* =========================
-   CORNER DETAILS
-========================= */
+.network-hovered .expand-indicator {
+    color: #4c7777;
+}
+
+
+.expand-dot {
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #7667ff;
+
+    box-shadow:
+        0 0 8px
+        rgba(118, 103, 255, 0.7);
+}
+
+
+.network-hovered .expand-dot {
+    background: #2de2d1;
+
+    box-shadow:
+        0 0 8px
+        rgba(45, 226, 209, 0.8);
+}
+
+
+/* =========================================================
+   MODEL FOOTER
+========================================================= */
+
+.model-footer {
+    position: absolute;
+
+    bottom: 22px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 20;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    white-space: nowrap;
+
+    color: #3f4250;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.model-footer .active {
+    color: #5e5b8d;
+
+    text-shadow:
+        0 0 10px
+        rgba(118, 103, 255, 0.2);
+}
+
+
+.footer-line {
+    width: 35px;
+
+    height: 1px;
+
+    background: #292c37;
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
 
 .model-corner {
     position: absolute;
 
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
 
     border-color: #6258d8;
 
-    opacity: 0.6;
+    opacity: 0.65;
+
+    z-index: 25;
 }
 
 
@@ -532,6 +1386,7 @@
     border-left: 1px solid;
 }
 
+
 .top-right {
     top: 12px;
     right: 12px;
@@ -540,6 +1395,7 @@
     border-right: 1px solid;
 }
 
+
 .bottom-left {
     bottom: 12px;
     left: 12px;
@@ -547,6 +1403,7 @@
     border-bottom: 1px solid;
     border-left: 1px solid;
 }
+
 
 .bottom-right {
     bottom: 12px;
@@ -557,9 +1414,9 @@
 }
 
 
-/* =========================
+/* =========================================================
    SCROLL
-========================= */
+========================================================= */
 
 .scroll-indicator {
     display: flex;
@@ -586,13 +1443,16 @@
     width: 1px;
     height: 45px;
 
-    background: linear-gradient(
-        to bottom,
-        #7667ff,
-        transparent
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            #7667ff,
+            #2de2d1,
+            transparent
+        );
 
-    animation: scrollLine 2s ease-in-out infinite;
+    animation:
+        scrollLine 2s ease-in-out infinite;
 }
 
 
@@ -601,22 +1461,28 @@
     0%,
     100% {
         opacity: 0.3;
-        transform: scaleY(0.6);
+
+        transform:
+            scaleY(0.6);
+
         transform-origin: top;
     }
 
     50% {
         opacity: 1;
-        transform: scaleY(1);
+
+        transform:
+            scaleY(1);
+
         transform-origin: top;
     }
 
 }
 
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media (max-width: 700px) {
 
@@ -645,6 +1511,7 @@
         flex-direction: column;
 
         width: 100%;
+
         max-width: 280px;
     }
 
@@ -667,9 +1534,46 @@
 
     .graphic-fullwidth-frame {
         width: 100%;
-        height: 350px;
+
+        height: 430px;
 
         margin-top: 50px;
+    }
+
+
+    .neural-stage {
+        width: 350px;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.75);
+    }
+
+
+    .hud-stats {
+        display: none;
+    }
+
+
+    .model-footer {
+        font-size: 7px;
+
+        gap: 7px;
+    }
+
+
+    .expand-indicator {
+        display: none;
+    }
+
+
+    .layer-title {
+        font-size: 7px;
+    }
+
+
+    .layer-subtitle {
+        font-size: 5px;
     }
 
 

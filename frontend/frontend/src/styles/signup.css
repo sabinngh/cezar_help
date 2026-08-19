@@ -1,0 +1,320 @@
+/* =========================================================
+   SIGNUP PAGE
+   ========================================================= */
+
+.signup-page {
+    min-height: calc(100vh - 100px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
+
+    background-color: #090a0f;
+    color: #ffffff;
+
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* =========================================================
+   SIGNUP CARD
+   ========================================================= */
+
+.signup-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 42px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid #1e2230;
+    border-radius: 12px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.45);
+
+    position: relative;
+
+    animation: signupAppear 0.45s ease-out;
+}
+
+
+/* Purple accent line */
+
+.signup-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    left: 35%;
+    right: 35%;
+
+    height: 2px;
+
+    background: #5c54ff;
+
+    box-shadow:
+        0 0 12px rgba(92, 84, 255, 0.7);
+
+    border-radius: 0 0 4px 4px;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.signup-title {
+    font-family: 'Fraunces', serif;
+
+    font-size: 2.6rem;
+    font-weight: 600;
+
+    letter-spacing: -1px;
+
+    text-align: center;
+
+    margin-bottom: 8px;
+
+    color: #ffffff;
+}
+
+.signup-title span {
+    color: #5c54ff;
+}
+
+
+/* Subtitle */
+
+.signup-subtitle {
+    text-align: center;
+
+    color: #626875;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    font-size: 0.8rem;
+
+    margin-bottom: 32px;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+.signup-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.signup-form-group label {
+    color: #a1a1aa;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    font-size: 0.75rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.signup-input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid #1e2230;
+
+    border-radius: 6px;
+
+    color: #ffffff;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 0.95rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.signup-input::placeholder {
+    color: #4f5562;
+}
+
+
+.signup-input:hover {
+    border-color: #2b3040;
+}
+
+
+.signup-input:focus {
+    border-color: #5c54ff;
+
+    background: rgba(92, 84, 255, 0.035);
+
+    box-shadow:
+        0 0 0 3px rgba(92, 84, 255, 0.12);
+}
+
+
+/* =========================================================
+   SIGNUP BUTTON
+   ========================================================= */
+
+.signup-button {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    margin-top: 4px;
+
+    background: #5c54ff;
+
+    border: 1px solid #5c54ff;
+
+    border-radius: 5px;
+
+    color: #ffffff;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.signup-button:hover {
+    background: #4f46e5;
+
+    border-color: #6b63ff;
+
+    box-shadow:
+        0 0 20px rgba(92, 84, 255, 0.2);
+
+    transform: translateY(-1px);
+}
+
+
+.signup-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.signup-message {
+    margin-top: 20px;
+
+    padding: 11px 14px;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    border: 1px solid #1e2230;
+
+    border-radius: 5px;
+
+    color: #a1a1aa;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    font-size: 0.75rem;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.signup-footer {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #1e2230;
+
+    text-align: center;
+
+    color: #4f5562;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    font-size: 0.7rem;
+}
+
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes signupAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .signup-page {
+        padding: 40px 18px;
+    }
+
+    .signup-card {
+        padding: 32px 24px;
+    }
+
+    .signup-title {
+        font-size: 2.2rem;
+    }
+}

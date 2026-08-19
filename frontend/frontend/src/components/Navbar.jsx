@@ -45,9 +45,7 @@ function Navbar() {
                     <>
                         <Link to="/profile" className="user-container">
 
-                            <div className="user-avatar">
-                                {user?.username?.charAt(0).toUpperCase()}
-                            </div>
+                            <div className="user-avatar"> {user?.username?.charAt(0).toUpperCase()} </div>
 
                             <span className="username">
                                 {user?.username}
@@ -68,7 +66,7 @@ function Navbar() {
                             Log In
                         </Link>
 
-                        <Link to="/signup" className="signup-button">
+                        <Link to="/signup" className="login-button">
                             Sign Up
                         </Link>
                     </>
