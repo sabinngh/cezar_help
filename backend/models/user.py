@@ -17,6 +17,12 @@ class User(db.Model):
     github = db.Column(db.String(255))
     about = db.Column(db.Text)
 
+    role = db.Column(
+        db.String(20),
+        nullable=False,
+        default="user"
+    )
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -26,9 +32,15 @@ class User(db.Model):
             "city": self.city,
             "country": self.country,
             "github": self.github,
-            "about": self.about
+            "about": self.about,
+            "role" : self.role
         }
 
-    # ADD THIS: Defaults to False for regular users
-    is_admin = db.Column(db.Boolean, default=False)
+    problems = db.relationship(
+        "Problem",
+        backref="author",
+        lazy=True
+    )
+
+
 

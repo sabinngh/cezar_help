@@ -1,0 +1,107 @@
+.create-problem-page{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:60px;
+
+}
+
+.create-problem-card{
+
+    width:800px;
+
+    background:#171b28;
+
+    border:1px solid #2c3040;
+
+    border-radius:24px;
+
+    padding:45px;
+
+}
+
+.create-problem-card h1{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.create-problem-card form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.create-problem-card label{
+
+    font-weight:600;
+
+}
+
+.create-problem-card input,
+.create-problem-card textarea,
+.create-problem-card select{
+
+    background:#252a3b;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+.create-problem-card textarea{
+
+    resize:vertical;
+
+}
+
+.create-problem-card button{
+
+    margin-top:20px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#6157ff;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.create-problem-card button:hover{
+
+    background:#7269ff;
+
+}
+
+.form-error{
+
+    color:#ff5b5b;
+
+    text-align:center;
+
+}

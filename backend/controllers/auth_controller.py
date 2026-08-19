@@ -52,11 +52,7 @@ def login_page():
     return {
         "message": "Login successful",
         "access_token": access_token,
-        "user": {
-            "id": user.id,
-            "username": user.username,
-            "email": user.email
-        }
+        "user": user.to_dict()
     }, 200
 
 # --- PROFILE & LOGOUT ---
@@ -97,31 +93,3 @@ def update_profile():
     }, 200
 
 
-# --- ADMIN DECORATOR & BLUEPRINT ---
-
-def admin_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        # 1. Check if user is logged in
-        user_id = session.get("user_id")
-        if not user_id:
-            abort(401)  # Unauthorized
-
-        # 2. Query user from DB and check is_admin
-        user = User.query.get(user_id)
-        if not user or not user.is_admin:
-            abort(403)  # Forbidden
-
-        return f(*args, **kwargs)
-
-    return decorated_function
-
-
-admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
-
-
-@admin_bp.route("/dashboard")
-@admin_required
-def admin_dashboard():
-    # Only users with is_admin = True can access this
-    return render_template("admin/dashboard.html")

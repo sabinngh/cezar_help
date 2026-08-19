@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 
 function Profile() {
 
-    
-
-    const { token } = useAuth();
-
-    const [user, setUser] = useState(null);
+    const {
+        token,
+        user,
+        updateUser
+    } = useAuth();
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -37,15 +37,7 @@ function Profile() {
 
             if(response.ok){
 
-                setUser(data);
-
-                setFormData({
-                    high_school: data.high_school || "",
-                    city: data.city || "",
-                    country: data.country || "",
-                    github: data.github || "",
-                    about: data.about || ""
-                });
+                updateUser(data);
 
             }
 
@@ -55,6 +47,26 @@ function Profile() {
         
 
     }, [token]);
+
+    useEffect(() => {
+
+        if (!user) return;
+
+        setFormData({
+
+            high_school: user.high_school || "",
+
+            city: user.city || "",
+
+            country: user.country || "",
+
+            github: user.github || "",
+
+            about: user.about || ""
+
+        });
+
+    }, [user]);
 
     const handleChange = (e) => {
 
@@ -70,7 +82,7 @@ function Profile() {
 
     if(!user){
 
-        return <h2>Loading...</h2>;
+        return <h2>Please login.</h2>;
 
     }
 
@@ -96,7 +108,7 @@ function Profile() {
 
             if (response.ok) {
 
-                setUser(data.user);
+                updateUser(data.user);
 
                 setIsEditing(false);
 

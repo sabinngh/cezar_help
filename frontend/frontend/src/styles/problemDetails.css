@@ -1,0 +1,42 @@
+.problem-details{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:60px 20px;
+}
+
+.problem-details h1{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+}
+
+.problem-details p{
+
+    margin-top:20px;
+
+    line-height:1.8;
+
+    color:#d4d6df;
+}
+
+.problem-details h3{
+
+    margin-top:40px;
+}
+
+.problem-details a{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    color:#6157ff;
+
+    font-weight:bold;
+
+    text-decoration:none;
+}
