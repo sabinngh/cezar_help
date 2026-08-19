@@ -1,0 +1,117 @@
+.problems-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+
+    gap:30px;
+
+    margin-top:50px;
+
+}
+
+.problem-card{
+
+    background:#171b28;
+
+    border:1px solid #2d3140;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    transition:.25s;
+
+}
+
+.problem-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+.problem-card-top{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.difficulty{
+
+    padding:7px 15px;
+
+    border-radius:999px;
+
+    font-weight:bold;
+
+    font-size:14px;
+
+}
+
+.easy{
+
+    background:#143e22;
+
+    color:#61ff8b;
+
+}
+
+.medium{
+
+    background:#4b3a14;
+
+    color:#ffca55;
+
+}
+
+.hard{
+
+    background:#4b1818;
+
+    color:#ff6b6b;
+
+}
+
+.problem-card h2{
+
+    margin:20px 0;
+
+}
+
+.problem-description{
+
+    color:#aeb5ca;
+
+    line-height:1.6;
+
+    height:75px;
+
+    overflow:hidden;
+
+}
+
+.problem-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:30px;
+
+}
+
+.problem-open-btn{
+
+    text-decoration:none;
+
+    color:#7368ff;
+
+    font-weight:bold;
+
+}

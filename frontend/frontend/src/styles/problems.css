@@ -1,0 +1,83 @@
+.problems-page{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:60px 20px;
+}
+
+.problems-page h1{
+
+    font-size:46px;
+
+    margin-bottom:10px;
+}
+
+.problems-page p{
+
+    color:#9aa0b4;
+
+    margin-bottom:40px;
+}
+
+.problems-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+}
+
+.add-problem-btn{
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    background:#6157ff;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.25s;
+}
+
+.add-problem-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 20px rgba(97,87,255,.4);
+}
+
+.problems-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+}
+
+.problems-title h1{
+
+    margin-bottom:20px;
+}
+
+.problems-title p{
+
+    color:#9aa0b4;
+
+    font-size:20px;
+}
+
+.admin-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-bottom:35px;
+}

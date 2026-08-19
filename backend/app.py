@@ -1,9 +1,14 @@
 from flask import Flask, g, session
 from extensions import db
+
 from models.user import User
+from models.problem import Problem
+
 from controllers.user_controller import user_bp
 from controllers.home_controller import home_bp
-from controllers.auth_controller import auth_bp, admin_bp
+from controllers.auth_controller import auth_bp
+from controllers.problem_controller import problem_bp
+
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
@@ -42,8 +47,9 @@ def load_logged_in_user():
 # --- BLUEPRINTS ---
 app.register_blueprint(user_bp)
 app.register_blueprint(auth_bp)
-app.register_blueprint(admin_bp)
+
 app.register_blueprint(home_bp)
+app.register_blueprint(problem_bp)
 
 # --- DB INITIALIZATION ---
 with app.app_context():
