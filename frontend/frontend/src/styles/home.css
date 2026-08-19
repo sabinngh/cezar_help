@@ -1,489 +1,1291 @@
-/* Importing the high-end design fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Inter:wght@300;400;600&display=swap');
+/* =========================================================
+   FONTS
+   ========================================================= */
 
-/* Reset rules */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=Michroma&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Color variables mapped directly from the savaML UI design */
-:root {
-    --bg-dark: #090a0f;       /* Deep matte black background */
-    --bg-card: #10121a;       /* Dark card background */
-    --border-color: #1e2230;  /* Tech border gray */
-    --accent-purple: #5c54ff; /* savaML Electric Purple */
-    --accent-blue: #547fff;   /* Soft electric blue color for text em */
-    --text-bright: #ffffff;   /* Crisp white titles */
-    --text-muted: #626875;    /* Subdued description text */
+html {
+    background: #05060a;
 }
 
-/* Global Reset & Base Layout */
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-bright);
+    background: #05060a;
+    color: #ffffff;
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     min-height: 100vh;
 }
 
-/* ==========================================================================
-   NAVIGATION HEADER BAR STYLES
-   ========================================================================== */
-.main-header {
-    max-width: 1200px;
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+    --bg-outside: #05060a;
+    --bg-dark: #090a0f;
+    --bg-card: #10121a;
+    --bg-card-light: #141722;
+
+    --border-color: #1e2230;
+    --border-light: rgba(255, 255, 255, 0.08);
+
+    --accent-purple: #5c54ff;
+    --accent-purple-light: #817cff;
+    --accent-blue: #547fff;
+
+    --text-bright: #ffffff;
+    --text-body: #cbd5e1;
+    --text-muted: #626875;
+
+    --page-width: 1200px;
+}
+
+
+/* =========================================================
+   CENTRAL PAGE
+   ========================================================= */
+
+.home-page {
+    width: 100%;
+    max-width: var(--page-width);
+
+    min-height: 100vh;
+
     margin: 0 auto;
+
+    background: var(--bg-dark);
+
+    border-left: 1px solid rgba(255, 255, 255, 0.035);
+    border-right: 1px solid rgba(255, 255, 255, 0.035);
+
+    box-shadow:
+        0 0 100px rgba(0, 0, 0, 0.4);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.main-header {
+    width: 100%;
+
     display: flex;
     justify-content: space-between;
-    align-items: center;            
-    padding: 30px 20px;
+    align-items: center;
+
+    padding: 28px 34px;
+
     border-bottom: 1px solid var(--border-color);
 }
 
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
 .logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 1.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+
+    font-weight: 600;
+    font-size: 1.2rem;
+
+    letter-spacing: 0.8px;
+
     color: var(--text-bright);
-    letter-spacing: -0.5px;
+
+    text-decoration: none;
+
+    white-space: nowrap;
 }
 
-.logo span, h1 span {
+.logo span {
     color: var(--accent-purple);
 }
 
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
 .nav-links {
     display: flex;
+    align-items: center;
+
     gap: 32px;
 }
 
 .nav-links a {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+
     color: var(--text-muted);
-    font-size: 0.95rem;
+
+    font-size: 0.86rem;
     font-weight: 500;
-    text-decoration: none;    
-    transition: color 0.2s ease;
+
+    letter-spacing: 0.5px;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .nav-links a:hover {
     color: var(--text-bright);
 }
 
+
+/* =========================================================
+   HEADER SIGN UP / SIGN IN
+   ========================================================= */
+
 .btn-signin {
-    font-family: 'JetBrains Mono', monospace;
-    background-color: var(--accent-purple);
-    color: var(--text-bright) !important;
-    padding: 8px 18px;
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    min-width: max-content;
+
+    flex-shrink: 0;
+
+    padding: 9px 18px;
+
+    background: var(--accent-purple);
+
+    color: #ffffff !important;
+
     border-radius: 4px;
-    font-size: 0.85rem;
+
+    font-family: 'Space Grotesk', sans-serif;
+
+    font-size: 0.8rem;
     font-weight: 600;
+
+    letter-spacing: 0.5px;
+
     text-decoration: none;
-    transition: opacity 0.2s ease;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .btn-signin:hover {
-    opacity: 0.9;
+    background: #6962ff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 20px rgba(92, 84, 255, 0.25);
 }
 
-/* ==========================================================================
-   FULL SCREEN HERO SECTION (Huge text stacked above keyboard)
-   ========================================================================== */
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px 0 20px;
-    text-align: center; /* Centering the titles above the canvas */
-}
-
-h1 {
-    font-family: 'Fraunces', serif;
-    font-size: 4.5rem; /* Upgraded size to look massive and premium */
-    font-weight: 700;
-    letter-spacing: -2px;
-    margin-bottom: 12px;
-}
-
-h4 {
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 40px;
-}
-
-/* FULL SCREEN GRAPHIC FRAME - Stretches fully across your column track */
-.graphic-fullwidth-frame {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
     width: 100%;
-    height: 550px; /* Generous height for a sprawling 3D keyboard presence */
-    overflow: hidden;
-    margin-bottom: 80px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+    padding: 72px 34px 0;
+
+    text-align: center;
 }
+
+
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
+/*
+   Michroma = wide, geometric, aerospace-style font.
+   This is the main "NASA / space technology" feeling.
+*/
+
+/* =========================================================
+   FUTURISTIC HERO TITLE
+   ========================================================= */
+
+/* =========================================================
+   FUTURISTIC / NASA STYLE HERO TITLE
+   ========================================================= */
+
+.hero-container h1 {
+    font-family: 'Michroma', sans-serif;
+
+    font-size: 4.2rem;
+    font-weight: 600;
+
+    letter-spacing: -2.5px;
+    line-height: 1.05;
+
+    margin-bottom: 16px;
+
+    color: #ffffff;
+
+    position: relative;
+
+    /* Very subtle white atmospheric glow */
+    text-shadow:
+        0 0 18px rgba(255, 255, 255, 0.08),
+        0 0 45px rgba(92, 84, 255, 0.08);
+
+    animation: titleEntrance 1.2s cubic-bezier(.16,1,.3,1) both;
+}
+
+
+/* =========================================================
+   savaML CLUB
+   ========================================================= */
+
+.hero-container h1 span {
+    position: relative;
+
+    display: inline-block;
+
+    /*
+       Violet -> blue gradient
+       Gives it more of a futuristic interface look
+    */
+    background: linear-gradient(
+        90deg,
+        #6d65ff 0%,
+        #817cff 35%,
+        #5d8cff 70%,
+        #6d65ff 100%
+    );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    /*
+       Slight futuristic glow
+    */
+    filter:
+        drop-shadow(0 0 8px rgba(92, 84, 255, 0.35))
+        drop-shadow(0 0 25px rgba(84, 127, 255, 0.15));
+
+    animation:
+        gradientFlow 5s linear infinite,
+        titleGlow 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   SCI-FI SCAN LINE
+   ========================================================= */
+
+.hero-container h1 span::after {
+    content: "";
+
+    position: absolute;
+
+    top: -10%;
+    left: -15%;
+
+    width: 5px;
+    height: 120%;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    filter: blur(4px);
+
+    opacity: 0;
+
+    transform: skewX(-15deg);
+
+    animation: scanLine 5s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SMALL TECH MARKER
+   ========================================================= */
+
+.hero-container h1 span::before {
+    content: "AI";
+
+    position: absolute;
+
+    top: -18px;
+    right: -30px;
+
+    font-family: 'Space Grotesk', sans-serif;
+
+    font-size: 0.45rem;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    color: #7370ff;
+
+    opacity: 0;
+
+    animation: markerAppear 1.5s ease 0.8s forwards;
+}
+
+
+/* =========================================================
+   TITLE ENTRANCE
+   ========================================================= */
+
+@keyframes titleEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(0.98);
+
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   MOVING GRADIENT
+   ========================================================= */
+
+@keyframes gradientFlow {
+
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+
+/* =========================================================
+   GLOW BREATHING
+   ========================================================= */
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+        filter:
+            drop-shadow(0 0 7px rgba(92, 84, 255, 0.30))
+            drop-shadow(0 0 20px rgba(84, 127, 255, 0.10));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 10px rgba(92, 84, 255, 0.50))
+            drop-shadow(0 0 32px rgba(84, 127, 255, 0.18));
+    }
+}
+
+
+/* =========================================================
+   SCANNING LIGHT
+   ========================================================= */
+
+@keyframes scanLine {
+
+    0% {
+        left: -15%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    18% {
+        opacity: 0.7;
+    }
+
+    30% {
+        left: 115%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 115%;
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   AI MARKER
+   ========================================================= */
+
+@keyframes markerAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 0.6;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   HERO SUBTITLE
+   ========================================================= */
+
+.hero-container h4 {
+    font-family: 'Space Grotesk', sans-serif;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+    font-weight: 400;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 40px;
+
+    text-shadow:
+        0 0 12px rgba(84, 127, 255, 0.08);
+
+    animation: subtitleGlow 4s ease-in-out infinite;
+}
+
+
+@keyframes subtitleGlow {
+
+    0%,
+    100% {
+        opacity: 0.72;
+        text-shadow:
+            0 0 8px rgba(84, 127, 255, 0.05);
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow:
+            0 0 16px rgba(84, 127, 255, 0.12);
+    }
+}
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.badge-wrapper {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 22px;
+    margin-bottom: 28px;
+}
+
+.badge-wrapper.badge-center {
+    justify-content: center;
+}
+
+.badge-wrapper.badge-left {
+    justify-content: flex-start;
+}
+
+
+.badge-container {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 7px 17px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background: rgba(255, 255, 255, 0.025);
+
+    box-shadow:
+        0 0 18px rgba(16, 185, 129, 0.08);
+}
+
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #10b981;
+
+    box-shadow:
+        0 0 6px #10b981,
+        0 0 12px rgba(16, 185, 129, 0.7);
+}
+
+
+.badge-text {
+    font-family: 'Space Grotesk', sans-serif;
+
+    color: #a2a7f5;
+
+    font-size: 0.7rem;
+
+    font-weight: 500;
+
+    letter-spacing: 1.2px;
+
+    text-transform: lowercase;
+}
+
+
+/* =========================================================
+   3D KEYBOARD
+   ========================================================= */
+
+.graphic-fullwidth-frame {
+    width: 100%;
+
+    height: 550px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(92, 84, 255, 0.045),
+            transparent 58%
+        ),
+        var(--bg-card);
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    margin-bottom: 110px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
 
 model-viewer {
     width: 100%;
     height: 100%;
+
     background-color: transparent;
+
     --poster-color: transparent;
 }
 
-/* ==========================================================================
-   LOWER STORY LAYOUT CONTAINER (Optimized center column reading text)
-   ========================================================================== */
+
+/* =========================================================
+   MAIN STORY
+   ========================================================= */
+
 .content-container {
-    max-width: 800px; /* Narrower width for optimal reading comfort */
+    width: 100%;
+
+    max-width: 850px;
+
     margin: 0 auto;
-    padding: 0 20px 100px 20px;
+
+    padding: 0 30px 120px;
 }
 
-h3 {
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.content-container h3 {
     font-family: 'Fraunces', serif;
-    font-size: 2.5rem;
-    margin-top: 0;
+
+    font-size: 2.6rem;
+
+    font-weight: 600;
+
+    line-height: 1.15;
+
+    color: var(--text-bright);
+
     margin-bottom: 30px;
-    border-left: 3px solid var(--accent-purple);
+
     padding-left: 20px;
+
+    border-left: 3px solid var(--accent-purple);
 }
+
+
+/* =========================================================
+   BODY TEXT
+   ========================================================= */
 
 .text-content p {
-    color: #cbd5e1;
+    color: var(--text-body);
+
     font-size: 1.05rem;
+
+    line-height: 1.75;
+
     margin-bottom: 24px;
+
     text-align: justify;
-    line-height: 1.7;
 }
 
 .text-content p em {
     color: var(--accent-blue);
+
     font-style: italic;
+
     font-weight: 500;
 }
 
-/* ==========================================================================
-   GOALS & VALUES BUTTON SECTIONS
-   ========================================================================== */
+
+/* =========================================================
+   GOALS
+   ========================================================= */
+
 .goals-section {
-    margin-top: 60px;
-    border-top: 1px solid var(--border-color);
+    margin-top: 70px;
+
     padding-top: 40px;
+
+    border-top: 1px solid var(--border-color);
 }
 
-h5 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
+
+.goals-section h5 {
+    font-family: 'Space Grotesk', sans-serif;
+
     color: var(--text-muted);
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
     text-transform: uppercase;
+
     margin-top: 25px;
     margin-bottom: 15px;
-    letter-spacing: 0.5px;
 }
 
+
+/* =========================================================
+   GENERAL BUTTONS
+   ========================================================= */
+
 button {
-    font-family: 'JetBrains Mono', monospace;
-    background-color: #171a26;
-    color: var(--accent-purple);
+    font-family: 'Space Grotesk', sans-serif;
+
+    background: #171a26;
+
+    color: var(--accent-purple-light);
+
     border: 1px solid var(--border-color);
+
     padding: 10px 24px;
+
     border-radius: 4px;
-    font-size: 0.85rem;
+
+    font-size: 0.82rem;
+
     font-weight: 600;
+
+    letter-spacing: 0.5px;
+
     cursor: pointer;
+
     margin-right: 12px;
-    transition: all 0.2s ease;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
 button:hover {
     border-color: var(--accent-purple);
-    background-color: rgba(92, 84, 255, 0.05);
-    box-shadow: 0 0 15px rgba(92, 84, 255, 0.1);
+
+    background: rgba(92, 84, 255, 0.06);
+
+    box-shadow:
+        0 0 18px rgba(92, 84, 255, 0.12);
+
+    transform: translateY(-1px);
 }
 
-/* Responsive adjustment for mobile screens */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
-    .graphic-fullwidth-frame {
-        height: 350px;
-    }
+button:active {
+    transform: translateY(0);
 }
 
-/* Container to center the form vertically and horizontally */
+
+/* =========================================================
+   AUTH
+   ========================================================= */
+
 .auth-container {
+    width: 100%;
+
     display: flex;
+
     justify-content: center;
-    align-items: flex-start; /* Aligns card near the top instead of vertical center */
-    min-height: auto;        /* Removes full-height stretching */
-    padding: 10px 20px 40px 20px; /* Small top padding */
-    margin-top: 0;
+    align-items: flex-start;
+
+    padding: 25px 20px 70px;
+
+    margin: 0;
 }
 
-/* Form Card Container */
+
 .auth-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    padding: 40px;
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+    max-width: 430px;
+
+    padding: 42px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.015)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 12px;
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5);
 }
+
 
 .auth-card h2 {
+    font-family: 'Space Grotesk', sans-serif;
+
     color: #ffffff;
-    font-size: 1.8rem;
+
+    font-size: 1.9rem;
+
     font-weight: 600;
-    margin-bottom: 24px;
+
+    letter-spacing: -0.5px;
+
+    margin-bottom: 30px;
+
     text-align: center;
 }
 
-/* Form Groups */
+
+/* =========================================================
+   FORM GROUPS
+   ========================================================= */
+
 .form-group {
     display: flex;
+
     flex-direction: column;
+
     gap: 8px;
+
     margin-bottom: 20px;
 }
 
+
 .form-group label {
+    font-family: 'Space Grotesk', sans-serif;
+
     color: #a1a1aa;
-    font-size: 0.9rem;
+
+    font-size: 0.82rem;
+
     font-weight: 500;
+
+    letter-spacing: 0.3px;
 }
 
-/* Inputs styling */
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
 .form-group input {
     width: 100%;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 6px;
+
     color: #ffffff;
-    font-size: 0.95rem;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 0.93rem;
+
     outline: none;
-    transition: all 0.2s ease-in-out;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-/* Input placeholder text */
+
 .form-group input::placeholder {
-    color: #71717a;
+    color: #626875;
 }
 
-/* Focus glow matching your primary purple/blue */
+
+.form-group input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+
 .form-group input:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-purple);
+
+    background: rgba(92, 84, 255, 0.035);
+
+    box-shadow:
+        0 0 0 3px rgba(92, 84, 255, 0.12);
 }
 
-/* Primary Button */
+
+/* =========================================================
+   PRIMARY AUTH BUTTON
+   ========================================================= */
+
 .btn-primary {
     width: 100%;
-    padding: 12px;
-    background: #6366f1; /* Matching your header blue/purple button background */
+
+    padding: 13px 18px;
+
+    margin-top: 8px;
+
+    background: var(--accent-purple);
+
     color: #ffffff;
+
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+
+    border-radius: 5px;
+
+    font-family: 'Space Grotesk', sans-serif;
+
+    font-size: 0.9rem;
+
     font-weight: 600;
+
+    letter-spacing: 0.5px;
+
     cursor: pointer;
-    transition: background 0.2s ease-in-out, transform 0.1s ease;
-    margin-top: 10px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+
 .btn-primary:hover {
-    background: #4f46e5;
+    background: #6962ff;
+
     transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 25px rgba(92, 84, 255, 0.22);
 }
+
 
 .btn-primary:active {
     transform: translateY(0);
 }
 
-/* Auth Footer Link */
+
+/* =========================================================
+   AUTH FOOTER
+   ========================================================= */
+
 .auth-footer {
-    color: #a1a1aa;
-    font-size: 0.9rem;
+    color: #717783;
+
+    font-size: 0.85rem;
+
     text-align: center;
-    margin-top: 24px;
+
+    margin-top: 25px;
 }
+
 
 .auth-footer a {
     color: #818cf8;
+
     text-decoration: none;
+
+    font-family: 'Space Grotesk', sans-serif;
+
     font-weight: 500;
+
+    transition: color 0.2s ease;
 }
 
+
 .auth-footer a:hover {
+    color: #a09cff;
+
     text-decoration: underline;
 }
 
-/* Center the badge wrapper with padding */
-.badge-wrapper {
+
+/* =========================================================
+   USER PILL
+   ========================================================= */
+
+.user-pill {
     display: flex;
-    justify-content: center; /* Centers the box on the page */
+
     align-items: center;
-    width: 100%;
-    margin-top: 24px;        /* Spacing below header */
-    margin-bottom: 24px;
+
+    gap: 12px;
+
+    padding: 6px 14px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 20px;
 }
 
-/* Centered alignment (Default for Home, Login, Signup) */
-.badge-wrapper.badge-center {
-    justify-content: center;
+
+.user-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #ffffff;
+
+    font-size: 0.9rem;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
 }
 
-/* Left alignment (For Meet the Team) */
-.badge-wrapper.badge-left {
-    justify-content: flex-start;
+
+.user-name:hover {
+    color: #60a5fa;
 }
 
-/* The badge pill card */
-.badge-container {
-    display: inline-flex;     /* Keeps text and dot aligned in a single line */
-    align-items: center;      /* Vertically aligns dot and text in the center */
-    justify-content: center;
-    gap: 8px;                 /* Space between dot and text */
-    padding: 6px 16px;
-    border-radius: 9999px;    /* Rounded pill shape */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.03);
-    
-    /* Optional: Slight container glow to bring everything together */
-    box-shadow: 0 0 12px rgba(16, 185, 129, 0.15); 
+
+.btn-logout {
+    color: #f87171;
+
+    font-size: 0.82rem;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    padding-left: 10px;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+
+    transition: color 0.2s ease;
 }
 
-/* Animated green or purple glowing dot */
-.badge-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: #10b981; /* Green accent color */
-    border-radius: 50%;
-    flex-shrink: 0;           /* Prevents dot from squishing */
-    
-    /* ADDED: Green Dot Glow */
-    box-shadow: 
-        0 0 6px #10b981, 
-        0 0 12px #10b981;
+
+.btn-logout:hover {
+    color: #ef4444;
 }
 
-/* Text inside the badge */
-.badge-text {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    text-transform: lowercase; /* Forces everything to stay lowercase */
-    letter-spacing: 0.5px;
-    color: #a2a7f5; /* A softer, bright indigo-gray text color */
-}
 
-/* Dark Overlay for Popup */
+/* =========================================================
+   MODAL
+   ========================================================= */
+
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
+
+    inset: 0;
+
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(6px);
+
     display: flex;
+
     justify-content: center;
     align-items: center;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    backdrop-filter: blur(7px);
+
     z-index: 9999;
+
     animation: fadeIn 0.2s ease-out;
 }
 
-/* Modal Box */
+
 .modal-card {
-    background-color: var(--bg-card);
-    border: 1px solid #ef4444; /* Alert red border */
-    border-radius: 12px;
-    padding: 30px;
     width: 90%;
+
     max-width: 360px;
+
+    padding: 30px;
+
     text-align: center;
-    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2);
+
+    background: var(--bg-card);
+
+    border: 1px solid #ef4444;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 15px 40px rgba(239, 68, 68, 0.18);
 }
+
 
 .modal-icon {
     font-size: 2.5rem;
+
     margin-bottom: 10px;
 }
 
+
 .modal-card h3 {
     font-family: 'Fraunces', serif;
+
     color: #ffffff;
+
     font-size: 1.5rem;
+
     margin-bottom: 8px;
+
     border: none;
+
     padding: 0;
 }
 
+
 .modal-card p {
     font-family: 'Inter', sans-serif;
+
     color: var(--text-muted);
+
     font-size: 0.9rem;
+
     margin-bottom: 20px;
 }
 
+
 .modal-card .btn-primary {
-    background: #ef4444; /* Red button for dismissal */
+    background: #ef4444;
 }
+
 
 .modal-card .btn-primary:hover {
     background: #dc2626;
 }
 
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* User badge container in header */
-.user-pill {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 6px 14px;
-    border-radius: 20px;
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .main-header {
+        padding: 24px 25px;
+    }
+
+    .hero-container {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .hero-container h1 {
+        font-size: 3rem;
+        letter-spacing: 1px;
+    }
+
+    .graphic-fullwidth-frame {
+        height: 480px;
+    }
 }
 
-/* Username button styling */
-.user-name {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s ease;
+
+@media (max-width: 768px) {
+
+    .home-page {
+        border-left: none;
+        border-right: none;
+    }
+
+    .main-header {
+        padding: 20px;
+
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 0.84rem;
+    }
+
+    .hero-container {
+        padding: 50px 20px 0;
+    }
+
+    .hero-container h1 {
+        font-size: 2.35rem;
+        letter-spacing: 0.8px;
+    }
+
+    .hero-container h4 {
+        font-size: 0.9rem;
+    }
+
+    .graphic-fullwidth-frame {
+        height: 350px;
+
+        margin-bottom: 70px;
+    }
+
+    .content-container {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .content-container h3 {
+        font-size: 2.1rem;
+    }
+
+    .text-content p {
+        text-align: left;
+    }
+
+    .auth-card {
+        padding: 35px 28px;
+    }
 }
 
-.user-name:hover {
-    color: #60a5fa; /* Slight light blue highlight on hover */
-}
 
-/* Red logout text link */
-.btn-logout {
-    color: #f87171; /* Soft red */
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding-left: 10px;
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    transition: color 0.2s ease;
-}
+@media (max-width: 500px) {
 
-.btn-logout:hover {
-    color: #ef4444; /* Bright red on hover */
+    .main-header {
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        justify-content: center;
+
+        order: 3;
+    }
+
+    .hero-container h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-container h4 {
+        font-size: 0.8rem;
+    }
+
+    .graphic-fullwidth-frame {
+        height: 280px;
+    }
+
+    .content-container h3 {
+        font-size: 1.9rem;
+    }
+
+    .auth-card {
+        padding: 30px 24px;
+    }
 }

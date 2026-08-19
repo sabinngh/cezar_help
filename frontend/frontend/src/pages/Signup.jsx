@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/signup.css";
 
 function Signup() {
     const [username, setUsername] = useState("");
@@ -43,54 +44,101 @@ function Signup() {
     };
 
     return (
-        <div>
-            <h1>Signup</h1>
+        <div className="signup-page">
 
-            <form onSubmit={handleSubmit}>
+            <div className="signup-card">
 
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    name="username"
-                    required
-                />
+                <h1 className="signup-title">
+                    Create <span>account.</span>
+                </h1>
 
-                <br />
-                <br />
+                <p className="signup-subtitle">
+                    // initialize your savaML profile
+                </p>
 
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    name="email"
-                    required
-                />
 
-                <br />
-                <br />
+                <form
+                    className="signup-form"
+                    onSubmit={handleSubmit}
+                >
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    name="password"
-                    required
-                />
+                    <div className="signup-form-group">
+                        <label htmlFor="username">
+                            Username
+                        </label>
 
-                <br />
-                <br />
+                        <input
+                            id="username"
+                            className="signup-input"
+                            type="text"
+                            placeholder="your_username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            name="username"
+                            required
+                        />
+                    </div>
 
-                <button type="submit">
-                    Sign Up
-                </button>
 
-            </form>
+                    <div className="signup-form-group">
+                        <label htmlFor="signup-email">
+                            Email
+                        </label>
 
-            {message && <p>{message}</p>}
+                        <input
+                            id="signup-email"
+                            className="signup-input"
+                            type="email"
+                            placeholder="you@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            name="email"
+                            required
+                        />
+                    </div>
+
+
+                    <div className="signup-form-group">
+                        <label htmlFor="signup-password">
+                            Password
+                        </label>
+
+                        <input
+                            id="signup-password"
+                            className="signup-input"
+                            type="password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            name="password"
+                            required
+                        />
+                    </div>
+
+
+                    <button
+                        className="signup-button"
+                        type="submit"
+                    >
+                        [ CREATE ACCOUNT ]
+                    </button>
+
+                </form>
+
+
+                {message && (
+                    <p className="signup-message">
+                        {message}
+                    </p>
+                )}
+
+
+                <div className="signup-footer">
+                    savaML // account registration
+                </div>
+
+            </div>
+
         </div>
     );
 }
