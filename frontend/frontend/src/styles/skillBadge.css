@@ -1,27 +1,82 @@
 .skill-badge {
-    background: #1b2030;
+    display: inline-flex;
 
-    color: #7d8fff;
+    align-items: center;
 
-    border: 1px solid #343d59;
+    gap: 7px;
 
-    padding: 8px 16px;
+    padding: 7px 11px;
 
-    border-radius: 999px;
+    border:
+        1px solid
+        rgba(118, 103, 255, 0.18);
 
-    font-size: .9rem;
+    border-radius: 7px;
 
-    font-weight: 600;
+    background:
+        rgba(118, 103, 255, 0.055);
 
-    transition: .25s;
-}
+    color: #968cff;
 
-.skill-badge:hover {
-    background: #5865f2;
+    font-family: var(--mono);
 
-    color: white;
+    font-size: 10px;
 
-    transform: scale(1.08);
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 
     cursor: default;
+}
+
+
+.skill-dot {
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #7667ff;
+
+    box-shadow:
+        0 0 6px
+        rgba(118, 103, 255, 0.65);
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.skill-badge:hover {
+    transform:
+        translateY(-2px);
+
+    color: #dff5ec;
+
+    border-color:
+        rgba(179, 227, 207, 0.28);
+
+    background:
+        rgba(179, 227, 207, 0.055);
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+.skill-badge:hover .skill-dot {
+    background: #b3e3cf;
+
+    box-shadow:
+        0 0 7px
+        rgba(179, 227, 207, 0.7);
 }

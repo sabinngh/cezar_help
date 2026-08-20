@@ -4,22 +4,34 @@
 
 .our-story {
     position: relative;
+
     width: 100%;
-    padding: 140px 0 180px;
+
+    padding: 50px 0 180px;
+
     overflow: hidden;
     isolation: isolate;
 
     background:
         radial-gradient(
-            circle at 50% 20%,
-            rgba(100, 75, 255, 0.08),
-            transparent 35%
+            ellipse at 50% 5%,
+            rgba(105, 85, 255, 0.18),
+            rgba(80, 65, 190, 0.08) 28%,
+            transparent 58%
         ),
+
         radial-gradient(
-            circle at 15% 65%,
-            rgba(100, 75, 255, 0.045),
+            circle at 20% 35%,
+            rgba(118, 103, 255, 0.07),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 82% 42%,
+            rgba(179, 227, 207, 0.025),
             transparent 25%
         ),
+
         #08090e;
 }
 
@@ -117,21 +129,46 @@
 
     width: min(900px, 90%);
 
-    margin: 0 auto 130px;
+    margin: 0 auto 110px;
 
-    padding: 80px 40px;
+    padding: 55px 40px 70px;
 
     box-sizing: border-box;
 
     text-align: center;
 
     overflow: hidden;
-
     isolation: isolate;
 
     border-radius: 24px;
 }
 
+.story-intro::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 320px;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(118, 103, 255, 0.13),
+            transparent 68%
+        );
+
+    filter: blur(35px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
 
 /* =========================================================
    FUTURISTIC GRID
@@ -875,5 +912,390 @@
 
     .competition-tags {
         flex-wrap: wrap;
+    }
+}
+
+/* =========================================================
+   STORY TRANSITION TICKER
+   ========================================================= */
+
+.story-ticker-wrapper {
+    width: 100vw;
+
+    position: relative;
+    left: 50%;
+
+    margin-left: -50vw;
+
+    padding: 24px 0 18px;
+
+    overflow: hidden;
+
+    z-index: 10;
+}
+
+/* =========================================================
+   PURPLE BAR
+   ========================================================= */
+
+.story-ticker {
+    width: 108vw;
+
+    position: relative;
+    left: 50%;
+
+    overflow: hidden;
+
+    padding: 19px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5148f6,
+            #7168ff 45%,
+            #5c54ff
+        );
+
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 0 35px rgba(92, 84, 255, 0.2),
+        0 15px 50px rgba(0, 0, 0, 0.28);
+
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        translateY(170px)
+        rotate(-3deg)
+        scale(0.96);
+
+    transform-origin: center;
+
+    transition:
+        transform 1.05s cubic-bezier(.16, 1, .3, 1),
+        opacity 0.7s ease;
+
+    will-change: transform, opacity;
+}
+
+
+/* CÂND OUR STORY INTRĂ ÎN VIEWPORT */
+.story-visible .story-ticker {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0)
+        rotate(-1.5deg)
+        scale(1);
+}
+
+
+/* după ele continuă restul CSS-ului */
+.story-ticker-track {
+    display: flex;
+    width: max-content;
+
+    animation:
+        storyTickerMove
+        25s
+        linear
+        infinite;
+}
+/* subtle tech texture */
+
+.story-ticker::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 24px 24px;
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* moving highlight */
+
+.story-ticker::after {
+    content: "";
+    position: absolute;
+    width: 25%;
+    height: 200%;
+    top: -50%;
+    left: -30%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.13),
+            transparent
+        );
+
+    transform: rotate(15deg);
+
+    animation:
+        tickerLight
+        6s
+        ease-in-out
+        infinite;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   MOVING CONTENT
+   ========================================================= */
+
+.story-ticker-track {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: max-content;
+
+    animation:
+        storyTickerMove
+        25s
+        linear
+        infinite;
+}
+
+.story-ticker-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 35px;
+    padding-right: 35px;
+}
+
+.story-ticker-group span {
+    font-family:
+        "Michroma",
+        "Space Grotesk",
+        sans-serif;
+
+    font-size:
+        clamp(
+            1rem,
+            1.6vw,
+            1.45rem
+        );
+
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.18);
+}
+
+.story-ticker-group i {
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: #b3e3cf;
+
+    text-shadow:
+        0 0 7px rgba(179, 227, 207, 0.65),
+        0 0 15px rgba(179, 227, 207, 0.3);
+
+    animation:
+        tickerStarPulse
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+/* =========================================================
+   SCROLL ENTRANCE — SLIDES UP
+   ========================================================= */
+
+@keyframes tickerBarSlideUp {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(170px)
+            rotate(-3deg)
+            scale(0.96);
+    }
+
+    22% {
+        opacity: 0.18;
+    }
+
+    48% {
+        opacity: 0.72;
+
+        transform:
+            translateX(-50%)
+            translateY(92px)
+            rotate(-2.6deg)
+            scale(0.98);
+    }
+
+    78% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(18px)
+            rotate(-1.8deg)
+            scale(1);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            rotate(-1.5deg)
+            scale(1);
+    }
+}
+
+/* =========================================================
+   INFINITE TEXT
+   ========================================================= */
+
+@keyframes storyTickerMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================================
+   LIGHT SWEEP
+   ========================================================= */
+
+@keyframes tickerLight {
+    0%,
+    60% {
+        left: -35%;
+    }
+
+    100% {
+        left: 125%;
+    }
+}
+
+/* =========================================================
+   TURQUOISE STAR
+   ========================================================= */
+
+@keyframes tickerStarPulse {
+    0%,
+    100% {
+        opacity: 0.55;
+
+        transform:
+            scale(0.85)
+            rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.15)
+            rotate(90deg);
+    }
+}
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.story-ticker:hover .story-ticker-track {
+    animation-duration: 14s;
+}
+
+.story-ticker:hover {
+    box-shadow:
+        0 0 45px rgba(92, 84, 255, 0.3),
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .story-ticker-wrapper {
+        padding: 70px 0 80px;
+    }
+
+    .story-ticker {
+        width: 114vw;
+        padding: 15px 0;
+
+        transform:
+            translateX(-50%)
+            translateY(145px)
+            rotate(-2.5deg)
+            scale(0.97);
+
+        animation-range: entry 0% cover 30%;
+    }
+
+    .story-ticker-group {
+        gap: 25px;
+        padding-right: 25px;
+    }
+
+    .story-ticker-group span {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .story-ticker {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            rotate(-1.5deg)
+            scale(1);
+
+        animation: none;
+    }
+
+    .story-ticker-track {
+        animation: none;
+    }
+
+    .story-ticker-group i {
+        animation: none;
+    }
+
+    .story-ticker::after {
+        animation: none;
     }
 }

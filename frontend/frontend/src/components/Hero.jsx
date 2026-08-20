@@ -7,7 +7,8 @@ function Hero() {
     const [hovered, setHovered] = useState(false);
 
     return (
-        <section className="hero-container">
+        
+        <section id="hero" className="hero-container">
 
             {/* =====================================================
                 BACKGROUND

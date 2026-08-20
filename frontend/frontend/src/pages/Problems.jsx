@@ -28,6 +28,8 @@ function Problems() {
                 );
 
                 const data = await response.json();
+                console.log(response.status);
+                console.log(data);
 
                 if (response.ok) {
 
