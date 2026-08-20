@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/our-story.css";
+
 
 function OurStory() {
     const [mousePosition, setMousePosition] = useState({
@@ -7,11 +8,19 @@ function OurStory() {
         y: 50
     });
 
+    const [storyVisible, setStoryVisible] = useState(false);
+
+    const storyRef = useRef(null);
+
+
     const handleMouseMove = (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
 
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        const x =
+            ((e.clientX - rect.left) / rect.width) * 100;
+
+        const y =
+            ((e.clientY - rect.top) / rect.height) * 100;
 
         setMousePosition({
             x,
@@ -19,8 +28,105 @@ function OurStory() {
         });
     };
 
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setStoryVisible(entry.isIntersecting);
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -10% 0px"
+            }
+        );
+
+        const currentStory = storyRef.current;
+
+        if (currentStory) {
+            observer.observe(currentStory);
+        }
+
+        return () => {
+            if (currentStory) {
+                observer.unobserve(currentStory);
+            }
+
+            observer.disconnect();
+        };
+    }, []);
+
+
     return (
-        <section className="our-story">
+        <section
+            id="story"
+            ref={storyRef}
+            className={`our-story ${
+                storyVisible ? "story-visible" : ""
+            }`}
+        >
+
+            {/* =====================================================
+                SLIDING TICKER
+            ===================================================== */}
+
+            <div className="story-ticker-wrapper">
+
+                <div className="story-ticker">
+
+                    <div className="story-ticker-track">
+
+                        <div className="story-ticker-group">
+
+                            <span>SAVAML</span>
+                            <i>✦</i>
+
+                            <span>LEARN AI</span>
+                            <i>✦</i>
+
+                            <span>BUILD MODELS</span>
+                            <i>✦</i>
+
+                            <span>EXPLORE ML</span>
+                            <i>✦</i>
+
+                            <span>SOLVE PROBLEMS</span>
+                            <i>✦</i>
+
+                        </div>
+
+
+                        <div
+                            className="story-ticker-group"
+                            aria-hidden="true"
+                        >
+
+                            <span>SAVAML</span>
+                            <i>✦</i>
+
+                            <span>LEARN AI</span>
+                            <i>✦</i>
+
+                            <span>BUILD MODELS</span>
+                            <i>✦</i>
+
+                            <span>EXPLORE ML</span>
+                            <i>✦</i>
+
+                            <span>SOLVE PROBLEMS</span>
+                            <i>✦</i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {/* =====================================================
+                INTRO
+            ===================================================== */}
 
             <div
                 className="story-intro"
@@ -30,33 +136,47 @@ function OurStory() {
                     "--mouse-y": `${mousePosition.y}%`
                 }}
             >
+
                 <div className="intro-grid"></div>
+
 
                 <span className="section-tag">
                     01 / OUR STORY
                 </span>
+
 
                 <h2>
                     More than a club.
                     <span> A community.</span>
                 </h2>
 
+
                 <p>
                     Founded in September 2026, savaML brings together students
                     passionate about data science, algorithms, and artificial
                     intelligence.
                 </p>
+
             </div>
 
 
+            {/* =====================================================
+                TIMELINE
+            ===================================================== */}
+
             <div className="story-timeline">
 
-                {/* NODE 01 */}
-                <div className="story-node">
+
+                {/* =================================================
+                    NODE 01
+                ================================================= */}
+
+                <div id="practice" className="story-node">
 
                     <div className="node-point">
                         <span>01</span>
                     </div>
+
 
                     <div className="story-card">
 
@@ -64,9 +184,11 @@ function OurStory() {
                             FOUNDATION
                         </span>
 
+
                         <h3>
                             Curiosity <span>drives us.</span>
                         </h3>
+
 
                         <p>
                             Our core mission is to cultivate curiosity and
@@ -80,12 +202,16 @@ function OurStory() {
                 </div>
 
 
-                {/* NODE 02 */}
-                <div className="story-node">
+                {/* =================================================
+                    NODE 02
+                ================================================= */}
+
+                <div id="research" className="story-node">
 
                     <div className="node-point">
                         <span>02</span>
                     </div>
+
 
                     <div className="story-card">
 
@@ -93,9 +219,11 @@ function OurStory() {
                             LEARNING
                         </span>
 
+
                         <h3>
                             Learn. <span>Build. Grow.</span>
                         </h3>
+
 
                         <p>
                             Through our weekly meetings, members explore
@@ -109,12 +237,16 @@ function OurStory() {
                 </div>
 
 
-                {/* NODE 03 */}
-                <div className="story-node">
+                {/* =================================================
+                    NODE 03
+                ================================================= */}
+
+                <div id="future" className="story-node">
 
                     <div className="node-point">
                         <span>03</span>
                     </div>
+
 
                     <div className="story-card">
 
@@ -122,9 +254,11 @@ function OurStory() {
                             PRACTICE
                         </span>
 
+
                         <h3>
                             Theory meets <span>reality.</span>
                         </h3>
+
 
                         <p>
                             Our platform provides an interactive ecosystem where
@@ -138,12 +272,16 @@ function OurStory() {
                 </div>
 
 
-                {/* NODE 04 */}
-                <div className="story-node">
+                {/* =================================================
+                    NODE 04
+                ================================================= */}
+
+                <div id="goals" className="story-node">
 
                     <div className="node-point">
                         <span>04</span>
                     </div>
+
 
                     <div className="story-card">
 
@@ -151,9 +289,11 @@ function OurStory() {
                             RESEARCH
                         </span>
 
+
                         <h3>
                             Explore the <span>unknown.</span>
                         </h3>
+
 
                         <p>
                             We provide curated resources covering computer
@@ -167,12 +307,16 @@ function OurStory() {
                 </div>
 
 
-                {/* NODE 05 */}
-                <div className="story-node">
+                {/* =================================================
+                    NODE 05
+                ================================================= */}
+
+                <div id="future" className="story-node">
 
                     <div className="node-point final">
                         <span>05</span>
                     </div>
+
 
                     <div className="story-card final-card">
 
@@ -180,9 +324,11 @@ function OurStory() {
                             THE FUTURE
                         </span>
 
+
                         <h3>
                             Ready for <span>the challenge.</span>
                         </h3>
+
 
                         <p>
                             Our long-term objective is to prepare students to
@@ -191,11 +337,14 @@ function OurStory() {
                             innovation.
                         </p>
 
+
                         <div className="competition-tags">
+
                             <span>ROAI</span>
                             <span>ONIA</span>
                             <span>AI</span>
                             <span>ML</span>
+
                         </div>
 
                     </div>
@@ -207,5 +356,6 @@ function OurStory() {
         </section>
     );
 }
+
 
 export default OurStory;

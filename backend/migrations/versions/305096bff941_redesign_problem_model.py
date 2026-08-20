@@ -17,94 +17,114 @@ depends_on = None
 
 def upgrade():
 
+    conn = op.get_bind()
+    inspector = sa.inspect(conn)
+
+    existing_columns = {
+        column["name"]
+        for column in inspector.get_columns("problems")
+    }
+
     with op.batch_alter_table("problems") as batch_op:
 
-        batch_op.add_column(
-            sa.Column(
-                "short_description",
-                sa.String(500),
-                nullable=True
+        if "short_description" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "short_description",
+                    sa.String(500),
+                    nullable=True
+                )
             )
-        )
 
-        batch_op.add_column(
-            sa.Column(
-                "statement",
-                sa.Text(),
-                nullable=True
+        if "statement" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "statement",
+                    sa.Text(),
+                    nullable=True
+                )
             )
-        )
 
-        batch_op.add_column(
-            sa.Column(
-                "input_description",
-                sa.Text()
+        if "input_description" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "input_description",
+                    sa.Text()
+                )
             )
-        )
 
-        batch_op.add_column(
-            sa.Column(
-                "output_description",
-                sa.Text()
+        if "output_description" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "output_description",
+                    sa.Text()
+                )
             )
-        )
 
-        batch_op.add_column(
-            sa.Column(
-                "constraints",
-                sa.Text()
+        if "constraints" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "constraints",
+                    sa.Text()
+                )
             )
-        )
 
-        batch_op.add_column(
-            sa.Column(
-                "examples",
-                sa.Text()
+        if "examples" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "examples",
+                    sa.Text()
+                )
             )
-        )
 
-        batch_op.add_column(
-            sa.Column(
-                "evaluation",
-                sa.Text()
+        if "evaluation" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "evaluation",
+                    sa.Text()
+                )
             )
-        )
 
-        batch_op.add_column(
-            sa.Column(
-                "image_url",
-                sa.String(500)
+        if "image_url" not in existing_columns:
+            batch_op.add_column(
+                sa.Column(
+                    "image_url",
+                    sa.String(500)
+                )
             )
-        )
 
-    # Copiem vechea descriere
+    # Refresh schema info after additions
+    inspector = sa.inspect(conn)
+    existing_columns = {
+        column["name"]
+        for column in inspector.get_columns("problems")
+    }
 
-    op.execute("""
-
-        UPDATE problems
-
-        SET
-
-            short_description = LEFT(description, 250),
-
-            statement = description
-
-    """)
+    # Only copy from description if the old column still exists
+    if "description" in existing_columns:
+        op.execute("""
+            UPDATE problems
+            SET
+                short_description = COALESCE(short_description, LEFT(description, 250)),
+                statement = COALESCE(statement, description)
+        """)
 
     with op.batch_alter_table("problems") as batch_op:
 
         batch_op.alter_column(
             "short_description",
+            existing_type=sa.String(500),
             nullable=False
         )
 
         batch_op.alter_column(
             "statement",
+            existing_type=sa.Text(),
             nullable=False
         )
 
-        batch_op.drop_column("description")
-
+        if "description" in existing_columns:
+            batch_op.drop_column("description")
 
 def downgrade():
 

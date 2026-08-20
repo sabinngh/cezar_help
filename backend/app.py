@@ -13,6 +13,10 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 
+from controllers.lesson_controller import lesson_bp
+from models.lesson import Lesson
+from datetime import timedelta
+
 app = Flask(__name__,
             template_folder='templates',
             static_folder='static')
@@ -23,7 +27,7 @@ CORS(app, origins=["http://localhost:5173"])
 # --- CONFIGURATION ---
 app.config["SECRET_KEY"] = "carinas-secret-key-here"
 app.config["JWT_SECRET_KEY"] = "carinas-jwt-secret-key"
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=8)
 
 jwt = JWTManager(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = \
@@ -48,6 +52,7 @@ def load_logged_in_user():
 app.register_blueprint(user_bp)
 app.register_blueprint(auth_bp)
 
+app.register_blueprint(lesson_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(problem_bp)
 
