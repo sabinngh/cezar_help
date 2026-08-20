@@ -1,0 +1,105 @@
+.problems-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#151927;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.problems-table thead{
+
+    background:#1e2333;
+
+}
+
+.problems-table th{
+
+    padding:20px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    color:#9ea7bd;
+
+}
+
+.problems-table td{
+
+    padding:18px 20px;
+
+    border-top:1px solid #2b3143;
+
+}
+
+.problems-table tr:hover{
+
+    background:#1b2031;
+
+}
+
+.empty-table{
+
+    text-align:center;
+
+    padding:80px;
+
+    color:#9ea7bd;
+
+    background:#171b28;
+
+    border-radius:18px;
+
+}
+
+.edit-btn{
+
+    background:#6157ff;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    margin-right:10px;
+
+    cursor:pointer;
+
+}
+
+.delete-btn{
+
+    background:#d83c3c;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.edit-btn:hover{
+
+    background:#7268ff;
+
+}
+
+.delete-btn:hover{
+
+    background:#ef4f4f;
+
+}

@@ -1,42 +1,199 @@
-.problem-details{
+.problem-page {
 
-    max-width:900px;
+    min-height: 100vh;
 
-    margin:auto;
+    background: #090a10;
 
-    padding:60px 20px;
+    color: white;
+
+    padding: 60px 20px;
+
 }
 
-.problem-details h1{
+.problem-container {
 
-    font-size:48px;
+    max-width: 950px;
 
-    margin-bottom:20px;
+    margin: auto;
+
 }
 
-.problem-details p{
+.problem-title {
 
-    margin-top:20px;
+    font-size: 3.2rem;
 
-    line-height:1.8;
+    text-align: center;
 
-    color:#d4d6df;
+    margin-bottom: 20px;
+
+    color: white;
+
 }
 
-.problem-details h3{
+.problem-meta {
 
-    margin-top:40px;
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 25px;
+
 }
 
-.problem-details a{
+.difficulty-badge {
 
-    display:inline-block;
+    padding: 8px 22px;
 
-    margin-top:30px;
+    border-radius: 999px;
 
-    color:#6157ff;
+    font-weight: 700;
 
-    font-weight:bold;
+    font-size: .95rem;
 
-    text-decoration:none;
+}
+
+.difficulty-badge.easy {
+
+    background: rgba(34,197,94,.15);
+
+    color: #22c55e;
+
+}
+
+.difficulty-badge.medium {
+
+    background: rgba(245,158,11,.15);
+
+    color: #f59e0b;
+
+}
+
+.difficulty-badge.hard {
+
+    background: rgba(239,68,68,.15);
+
+    color: #ef4444;
+
+}
+
+.problem-short-description {
+
+    text-align: center;
+
+    color: #b8bfd3;
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+
+    margin-bottom: 40px;
+
+}
+
+.problem-image {
+
+    width: 100%;
+
+    border-radius: 16px;
+
+    margin-bottom: 40px;
+
+    border: 1px solid #2f3448;
+
+}
+
+.problem-section {
+
+    background: #141824;
+
+    border: 1px solid #272d3f;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    margin-bottom: 28px;
+
+    transition: .25s;
+
+}
+
+.problem-section:hover {
+
+    border-color: #5d54ff;
+
+    transform: translateY(-2px);
+
+}
+
+.problem-section h2 {
+
+    font-size: 1.4rem;
+
+    margin-bottom: 20px;
+
+    color: white;
+
+}
+
+.problem-section p {
+
+    color: #c6cce1;
+
+    line-height: 1.9;
+
+    font-size: 1.03rem;
+
+    white-space: pre-wrap;
+
+}
+
+.problem-link {
+
+    display: inline-block;
+
+    margin-top: 8px;
+
+    color: #6d63ff;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: .2s;
+
+}
+
+.problem-link:hover {
+
+    color: white;
+
+}
+
+.problem-footer {
+
+    text-align: center;
+
+    margin-top: 50px;
+
+    color: #8b94b0;
+
+    font-size: .95rem;
+
+}
+
+.problem-loading {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: white;
+
+    font-size: 1.5rem;
+
 }

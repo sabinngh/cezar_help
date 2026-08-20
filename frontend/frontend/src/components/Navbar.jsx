@@ -29,6 +29,22 @@ function Navbar() {
                     Problems
                 </Link>
 
+                {user?.role === "admin" && (
+
+                    <Link
+
+                        to="/admin"
+
+                        className="nav-link"
+
+                    >
+
+                        Admin
+
+                    </Link>
+
+                )}
+
                 <Link to="/learning" className="nav-link">
                     Learning
                 </Link>
