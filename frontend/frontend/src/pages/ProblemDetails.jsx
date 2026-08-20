@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
-
 import { useEffect, useState } from "react";
+
+import { useParams } from "react-router-dom";
 
 import "../styles/problemDetails.css";
 
@@ -10,21 +10,39 @@ function ProblemDetails() {
 
     const [problem, setProblem] = useState(null);
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
 
         const fetchProblem = async () => {
 
-            const response = await fetch(
+            try {
 
-                `http://localhost:5001/api/problems/${slug}`
+                const response = await fetch(
 
-            );
+                    `http://localhost:5001/api/problems/${slug}`
 
-            const data = await response.json();
+                );
 
-            if(response.ok){
+                const data = await response.json();
 
-                setProblem(data);
+                if (response.ok) {
+
+                    setProblem(data);
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+            }
+
+            finally {
+
+                setLoading(false);
 
             }
 
@@ -34,67 +52,212 @@ function ProblemDetails() {
 
     }, [slug]);
 
-    if(!problem){
+    if (loading) {
 
-        return <h2>Loading...</h2>;
+        return (
+
+            <div className="problem-loading">
+
+                Loading...
+
+            </div>
+
+        );
 
     }
 
-    return(
+    if (!problem) {
 
-        <div className="problem-details">
+        return (
 
-            <h1>
+            <div className="problem-loading">
 
-                {problem.title}
+                Problem not found.
 
-            </h1>
+            </div>
 
-            <span className={`difficulty ${problem.difficulty.toLowerCase()}`}>
+        );
 
-                {problem.difficulty}
+    }
 
-            </span>
+    return (
 
-            <p>
+        <div className="problem-page">
 
-                {problem.description}
+            <div className="problem-container">
 
-            </p>
+                <h1 className="problem-title">
 
-            {problem.hints && (
+                    {problem.title}
 
-                <>
+                </h1>
 
-                    <h3>Hints</h3>
+                <div className="problem-meta">
 
-                    <p>
+                    <span
+                        className={`difficulty-badge ${problem.difficulty.toLowerCase()}`}
+                    >
 
-                        {problem.hints}
+                        {problem.difficulty}
+
+                    </span>
+
+                </div>
+
+                {problem.short_description && (
+
+                    <p className="problem-short-description">
+
+                        {problem.short_description}
 
                     </p>
 
-                </>
+                )}
 
-            )}
+                {problem.image_url && (
 
-            {problem.resource_link && (
+                    <img
 
-                <a
+                        src={problem.image_url}
 
-                    href={problem.resource_link}
+                        alt={problem.title}
 
-                    target="_blank"
+                        className="problem-image"
 
-                    rel="noreferrer"
+                    />
 
-                >
+                )}
 
-                    Additional Resource
+                <Section
 
-                </a>
+                    title="Problem Statement"
 
-            )}
+                    content={problem.statement}
+
+                />
+
+                <Section
+
+                    title="Input"
+
+                    content={problem.input_description}
+
+                />
+
+                <Section
+
+                    title="Output"
+
+                    content={problem.output_description}
+
+                />
+
+                <Section
+
+                    title="Constraints"
+
+                    content={problem.constraints}
+
+                />
+
+                <Section
+
+                    title="Examples"
+
+                    content={problem.examples}
+
+                />
+
+                <Section
+
+                    title="Evaluation"
+
+                    content={problem.evaluation}
+
+                />
+
+                <Section
+
+                    title="Hints"
+
+                    content={problem.hints}
+
+                />
+
+                {problem.resource_link && (
+
+                    <div className="problem-section">
+
+                        <h2>
+
+                            🔗 Additional Resource
+
+                        </h2>
+
+                        <a
+
+                            href={problem.resource_link}
+
+                            target="_blank"
+
+                            rel="noreferrer"
+
+                            className="problem-link"
+
+                        >
+
+                            Open Resource
+
+                        </a>
+
+                    </div>
+
+                )}
+
+                <div className="problem-footer">
+
+                    Created by
+
+                    <strong>
+
+                        {" "}
+                        {problem.author?.username || "Unknown"}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    );
+
+}
+
+function Section({ title, content }) {
+
+    if (!content || content.trim() === "") {
+
+        return null;
+
+    }
+
+    return (
+
+        <div className="problem-section">
+
+            <h2>
+
+                {title}
+
+            </h2>
+
+            <p>
+
+                {content}
+
+            </p>
 
         </div>
 

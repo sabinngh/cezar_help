@@ -12,6 +12,7 @@ import ProblemDetails from './pages/ProblemDetails';
 import Learning from './pages/Learning';
 import Profile from "./pages/Profile";
 import CreateProblem from "./pages/CreateProblem";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/learning' element={<Learning />} />
         <Route path='/meet-the-team' element={<MeetTheTeam />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path='/admin' element={<AdminDashboard />} />
       </Routes>
     </>
 

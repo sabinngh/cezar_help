@@ -1,0 +1,109 @@
+.confirm-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(5px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:5000;
+
+}
+
+.confirm-modal{
+
+    width:420px;
+
+    background:#171c29;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
+
+}
+
+.confirm-modal h2{
+
+    color:white;
+
+    margin-bottom:15px;
+
+}
+
+.confirm-modal p{
+
+    color:#9ca3af;
+
+    line-height:1.6;
+
+    margin-bottom:30px;
+
+}
+
+.confirm-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+}
+
+.confirm-buttons button{
+
+    border:none;
+
+    padding:12px 24px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.cancel-btn{
+
+    background:#2b3245;
+
+    color:white;
+
+}
+
+.cancel-btn:hover{
+
+    background:#3b445d;
+
+}
+
+.delete-btn{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+}
