@@ -1,185 +1,4233 @@
-.profile-page{
-    display:flex;
-    justify-content:center;
-    padding:60px;
+@import url(
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@600;700;800&display=swap'
+);
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+.profile-page {
+    --profile-bg: #080a11;
+    --profile-panel: #121722;
+    --profile-panel-2: #171c29;
+
+    --profile-border: #2a3144;
+
+    --profile-text: #f1f3f7;
+    --profile-text-soft: #aab0c1;
+    --profile-muted: #70778b;
+
+    --profile-purple: #7768ff;
+    --profile-purple-soft: #9a8cff;
+
+    --profile-mint: #b3e3cf;
+    --profile-mint-strong: #76dfca;
+
+    --profile-heading:
+        "Space Grotesk",
+        sans-serif;
+
+    --profile-body:
+        "Inter",
+        sans-serif;
+
+    --profile-mono:
+        "IBM Plex Mono",
+        monospace;
 }
 
-.profile-card{
 
-    width:650px;
+/* =========================================================
+   PAGE
+========================================================= */
 
-    background:#131722;
+.profile-page {
+    position: relative;
 
-    border:1px solid #2b3044;
+    min-height: 100vh;
 
-    border-radius:20px;
+    padding:
+        72px
+        clamp(24px, 6vw, 110px)
+        130px;
 
-    padding:40px;
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    color: var(--profile-text);
+
+    background:
+        radial-gradient(
+            circle at 72% 12%,
+            rgba(119, 104, 255, 0.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 12% 58%,
+            rgba(179, 227, 207, 0.045),
+            transparent 26%
+        ),
+        linear-gradient(
+            180deg,
+            #080a11,
+            #090c14
+        );
+
+    font-family:
+        var(--profile-body);
+
+    line-height: 1.65;
 }
 
-.profile-avatar-large{
 
-    width:100px;
-    height:100px;
+/* subtle grid */
 
-    border-radius:50%;
+.profile-page::before {
+    content: "";
 
-    background:#6157ff;
+    position: absolute;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    inset: 0;
 
-    font-size:42px;
-    font-weight:bold;
+    background-image:
+        linear-gradient(
+            rgba(119, 104, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(119, 104, 255, 0.025) 1px,
+            transparent 1px
+        );
 
-    margin:auto;
+    background-size:
+        64px 64px;
 
-    color:white;
+    pointer-events: none;
 
-    margin-bottom:25px;
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            black 60%,
+            transparent
+        );
 }
 
-.profile-card h1{
 
-    text-align:center;
+.profile-shell {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1400px, 100%);
+
+    margin: 0 auto;
 }
 
-.profile-email{
 
-    text-align:center;
+/* =========================================================
+   AMBIENT ELEMENTS
+========================================================= */
 
-    color:#9ea6bd;
+.profile-ambient {
+    position: absolute;
 
-    margin-bottom:40px;
+    inset: 0;
+
+    pointer-events: none;
 }
 
-.profile-info{
 
-    display:flex;
+.ambient-dot {
+    position: absolute;
 
-    flex-direction:column;
+    width: 5px;
+    height: 5px;
 
-    gap:20px;
+    border-radius: 50%;
+
+    background:
+        var(--profile-mint);
+
+    box-shadow:
+        0 0 10px
+        rgba(179, 227, 207, 0.8);
+
+    animation:
+        ambientFloat
+        7s
+        ease-in-out
+        infinite;
 }
 
-.info-row{
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    border-bottom:1px solid #262c3f;
-
-    padding-bottom:12px;
+.ambient-a {
+    top: 18%;
+    left: 6%;
 }
 
-.info-row span{
 
-    color:#8d95ad;
+.ambient-b {
+    top: 34%;
+    right: 7%;
 
-    font-weight:600;
+    animation-delay: -2s;
 }
 
-.info-row p{
 
-    color:white;
+.ambient-c {
+    top: 66%;
+    left: 42%;
 
-    margin:0;
+    background:
+        var(--profile-purple);
+
+    animation-delay: -4s;
 }
 
-.edit-profile-btn{
 
-    margin-top:35px;
+.ambient-d {
+    bottom: 13%;
+    right: 17%;
 
-    width:100%;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#6157ff;
-
-    color:white;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.25s;
+    animation-delay: -1s;
 }
 
-.edit-profile-btn:hover{
 
-    transform:translateY(-2px);
+.ambient-line {
+    position: absolute;
 
-    background:#766dff;
+    width: 90px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(179, 227, 207, 0.35),
+            transparent
+        );
 }
 
-.profile-info input,
-.profile-info textarea{
 
-    width:55%;
+.ambient-line-a {
+    top: 25%;
+    right: 4%;
 
-    padding:10px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#202536;
-
-    color:white;
+    transform:
+        rotate(-20deg);
 }
 
-.profile-info textarea{
 
-    resize:none;
+.ambient-line-b {
+    bottom: 22%;
+    left: 4%;
 
-    min-height:90px;
+    transform:
+        rotate(15deg);
 }
 
-.profile-buttons{
 
-    margin-top:30px;
+@keyframes ambientFloat {
+    0%,
+    100% {
+        transform:
+            translateY(0);
 
-    display:flex;
+        opacity: 0.35;
+    }
 
-    justify-content:flex-end;
+    50% {
+        transform:
+            translateY(-13px);
 
-    gap:15px;
+        opacity: 1;
+    }
 }
 
-.cancel-btn{
 
-    background:#30374d;
+/* =========================================================
+   HERO
+========================================================= */
 
-    color:white;
+.profile-hero {
+    position: relative;
 
-    border:none;
+    display: grid;
 
-    padding:12px 22px;
+    grid-template-columns:
+        minmax(0, 1fr)
+        260px
+        auto;
 
-    border-radius:10px;
+    align-items: center;
 
-    cursor:pointer;
+    gap: 42px;
+
+    min-height: 220px;
 }
 
-.save-btn{
 
-    background:#6157ff;
+/*
+   IMPORTANT:
+   forces eyebrow -> username -> subtitle
+   to always stay vertically stacked
+*/
 
-    color:white;
+.profile-hero-left {
+    min-width: 0;
 
-    border:none;
+    display: flex;
+    flex-direction: column;
 
-    padding:12px 22px;
+    align-items: flex-start;
+    justify-content: center;
+}
 
-    border-radius:10px;
 
-    cursor:pointer;
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.profile-eyebrow {
+    display: flex;
+    align-items: center;
+
+    width: max-content;
+    max-width: 100%;
+
+    gap: 10px;
+
+    margin:
+        0 0 22px 0;
+
+    color:
+        var(--profile-purple-soft);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+}
+
+
+.eyebrow-dot {
+    flex-shrink: 0;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--profile-mint);
+
+    box-shadow:
+        0 0 12px
+        rgba(179, 227, 207, 0.75);
+
+    animation:
+        eyebrowPulse
+        2.4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes eyebrowPulse {
+    0%,
+    100% {
+        transform:
+            scale(1);
+
+        box-shadow:
+            0 0 8px
+            rgba(179, 227, 207, 0.55);
+    }
+
+    50% {
+        transform:
+            scale(1.35);
+
+        box-shadow:
+            0 0 16px
+            rgba(179, 227, 207, 0.9);
+    }
+}
+
+
+/* =========================================================
+   USERNAME — ORBITRON FUTURISTIC
+========================================================= */
+
+.profile-hero h1 {
+    position: relative;
+
+    display: block;
+
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 0;
+
+    font-family:
+        "Orbitron",
+        "Space Grotesk",
+        sans-serif;
+
+    font-size:
+        clamp(
+            50px,
+            6vw,
+            80px
+        );
+
+    font-weight: 700;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    color: transparent;
+
+    background:
+        linear-gradient(
+            90deg,
+            #f6f7fb 0%,
+            #ffffff 28%,
+            #a99fff 46%,
+            #ffffff 62%,
+            #f6f7fb 100%
+        );
+
+    background-size:
+        240% 100%;
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    text-shadow:
+        0 0 18px
+        rgba(118, 103, 255, 0.1);
+
+    animation:
+        usernameGlowSweep
+        5s
+        linear
+        infinite;
+}
+
+
+/* scanner underneath username */
+
+.profile-hero h1::after {
+    content: "";
+
+    position: absolute;
+
+    left: -10%;
+    bottom: -11px;
+
+    width: 28%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #7667ff,
+            #b3e3cf,
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(118, 103, 255, 0.55),
+
+        0 0 14px
+        rgba(179, 227, 207, 0.16);
+
+    opacity: 0;
+
+    animation:
+        usernameUnderlineScan
+        4.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes usernameGlowSweep {
+    0% {
+        background-position:
+            220% center;
+
+        filter:
+            drop-shadow(
+                0 0 3px
+                rgba(118, 103, 255, 0.08)
+            );
+    }
+
+    45% {
+        filter:
+            drop-shadow(
+                0 0 10px
+                rgba(118, 103, 255, 0.25)
+            );
+    }
+
+    100% {
+        background-position:
+            -20% center;
+
+        filter:
+            drop-shadow(
+                0 0 3px
+                rgba(118, 103, 255, 0.08)
+            );
+    }
+}
+
+
+@keyframes usernameUnderlineScan {
+    0% {
+        left: -15%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    22% {
+        opacity: 1;
+    }
+
+    55% {
+        opacity: 0.9;
+    }
+
+    75% {
+        left: 88%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 88%;
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   HERO SUBTITLE
+========================================================= */
+
+.profile-hero-left > p {
+    display: block;
+
+    width: 100%;
+
+    margin:
+        34px 0 0;
+
+    color:
+        var(--profile-text-soft);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    letter-spacing: 0.1px;
+}
+
+
+.profile-hero-left > p span {
+    color:
+        var(--profile-mint);
+}
+
+
+/* =========================================================
+   SCATTER VISUAL
+========================================================= */
+
+.profile-scatter {
+    position: relative;
+
+    width: 230px;
+    height: 150px;
+
+    opacity: 0.8;
+}
+
+
+.scatter-axis {
+    position: absolute;
+
+    background:
+        rgba(179, 227, 207, 0.22);
+}
+
+
+.scatter-axis-x {
+    left: 15px;
+    right: 5px;
+
+    bottom: 20px;
+
+    height: 1px;
+}
+
+
+.scatter-axis-y {
+    left: 24px;
+
+    top: 5px;
+    bottom: 10px;
+
+    width: 1px;
+}
+
+
+.scatter-dot {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(179, 227, 207, 0.55);
+
+    background:
+        rgba(179, 227, 207, 0.14);
+
+    box-shadow:
+        0 0 8px
+        rgba(179, 227, 207, 0.22);
+
+    animation:
+        scatterFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+.sd-1 {
+    left: 20%;
+    top: 65%;
+}
+
+
+.sd-2 {
+    left: 30%;
+    top: 46%;
+
+    animation-delay: -1s;
+}
+
+
+.sd-3 {
+    left: 40%;
+    top: 35%;
+
+    animation-delay: -2s;
+}
+
+
+.sd-4 {
+    left: 54%;
+    top: 48%;
+
+    animation-delay: -0.5s;
+}
+
+
+.sd-5 {
+    left: 64%;
+    top: 25%;
+
+    animation-delay: -1.5s;
+}
+
+
+.sd-6 {
+    left: 72%;
+    top: 40%;
+
+    animation-delay: -3s;
+}
+
+
+.sd-7 {
+    left: 82%;
+    top: 18%;
+}
+
+
+.sd-8 {
+    left: 87%;
+    top: 58%;
+
+    animation-delay: -2.5s;
+}
+
+
+.scatter-link {
+    position: absolute;
+
+    height: 1px;
+
+    transform-origin:
+        left center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(179, 227, 207, 0.12),
+            rgba(179, 227, 207, 0.38)
+        );
+}
+
+
+.sl-1 {
+    width: 66px;
+
+    left: 31%;
+    top: 49%;
+
+    transform:
+        rotate(-17deg);
+}
+
+
+.sl-2 {
+    width: 69px;
+
+    left: 53%;
+    top: 47%;
+
+    transform:
+        rotate(-25deg);
+}
+
+
+.sl-3 {
+    width: 52px;
+
+    left: 67%;
+    top: 28%;
+
+    transform:
+        rotate(34deg);
+}
+
+
+.scatter-label {
+    position: absolute;
+
+    right: 0;
+    bottom: -4px;
+
+    color:
+        rgba(179, 227, 207, 0.5);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 7px;
+
+    letter-spacing:
+        1.5px;
+}
+
+
+@keyframes scatterFloat {
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-5px)
+            scale(1.12);
+    }
+}
+
+
+/* =========================================================
+   MINI USER CARD
+========================================================= */
+
+.profile-mini-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    min-width: 265px;
+
+    padding: 17px;
+
+    border:
+        1px solid
+        var(--profile-border);
+
+    border-radius: 14px;
+
+    background:
+        rgba(18, 23, 34, 0.92);
+
+    box-shadow:
+        0 18px 60px
+        rgba(0, 0, 0, 0.25);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+
+.profile-mini-avatar {
+    flex-shrink: 0;
+
+    width: 65px;
+    height: 65px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.8);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7567ff,
+            #5547ee
+        );
+
+    color: white;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 0 22px
+        rgba(117, 103, 255, 0.16);
+}
+
+
+.profile-mini-content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items:
+        flex-start;
+
+    gap: 5px;
+}
+
+
+.profile-mini-content strong {
+    color:
+        var(--profile-text);
+
+    font-size: 15px;
+
+    line-height: 1.3;
+}
+
+
+.profile-mini-content span {
+    color:
+        var(--profile-muted);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1.1px;
+}
+
+
+.profile-mini-content button {
+    margin-top: 7px;
+
+    padding:
+        8px 11px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.3);
+
+    border-radius: 5px;
+
+    background:
+        rgba(119, 104, 255, 0.05);
+
+    color:
+        #d8d7e5;
+
+    font-family:
+        var(--profile-body);
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        0.25s ease;
+}
+
+
+.profile-mini-content button:hover {
+    color: white;
+
+    border-color:
+        var(--profile-mint);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   PROFILE PICTURE
+========================================================= */
+
+.profile-avatar-upload {
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 65px;
+    height: 65px;
+
+    display: block;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+
+.profile-avatar-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.8);
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+}
+
+
+.avatar-upload-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    background:
+        rgba(8, 10, 17, 0.72);
+
+    color:
+        var(--profile-mint);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    backdrop-filter:
+        blur(3px);
+
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.profile-avatar-upload:hover
+.avatar-upload-overlay {
+    opacity: 1;
+}
+
+
+.large-profile-avatar-image {
+    width: 72px;
+    height: 72px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.8);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 30px
+        rgba(100, 84, 255, 0.18);
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.profile-divider {
+    width: 100%;
+    height: 1px;
+
+    margin:
+        32px 0
+        46px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(119, 104, 255, 0.38),
+            rgba(179, 227, 207, 0.22),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.profile-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    margin-bottom:
+        48px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.23);
+
+    background:
+        rgba(18, 20, 34, 0.65);
+}
+
+
+.profile-stat {
+    position: relative;
+
+    min-height: 145px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content:
+        space-between;
+
+    padding:
+        26px 28px;
+
+    box-sizing:
+        border-box;
+
+    border-right:
+        1px solid
+        rgba(119, 104, 255, 0.16);
+
+    overflow: hidden;
+
+    transition:
+        background 0.3s ease;
+}
+
+
+.profile-stat:last-child {
+    border-right: none;
+}
+
+
+.profile-stat::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--profile-purple),
+            var(--profile-mint)
+        );
+
+    transition:
+        width 0.35s ease;
+}
+
+
+.profile-stat:hover {
+    background:
+        rgba(119, 104, 255, 0.055);
+}
+
+
+.profile-stat:hover::before {
+    width: 100%;
+}
+
+
+.stat-label {
+    color:
+        #8e94a8;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 9px;
+
+    font-weight: 500;
+
+    letter-spacing:
+        1.25px;
+}
+
+
+.profile-stat strong {
+    margin-top: 20px;
+
+    color:
+        var(--profile-text);
+
+    font-family:
+        var(--profile-heading);
+
+    font-size:
+        clamp(
+            29px,
+            2.4vw,
+            38px
+        );
+
+    font-weight: 600;
+
+    line-height: 1.1;
+}
+
+
+.profile-stat small {
+    margin-top: 9px;
+
+    color:
+        #72798e;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.profile-dashboard {
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 335px)
+        minmax(0, 1fr);
+
+    gap: 38px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   SHARED CARDS
+========================================================= */
+
+.profile-about-card,
+.dashboard-card {
+    border:
+        1px solid
+        var(--profile-border);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22, 27, 40, 0.98),
+            rgba(14, 18, 27, 0.98)
+        );
+
+    box-shadow:
+        0 18px 60px
+        rgba(0, 0, 0, 0.2);
+}
+
+
+.profile-about-card {
+    overflow: hidden;
+}
+
+
+.profile-card-heading,
+.dashboard-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        space-between;
+
+    gap: 20px;
+
+    padding:
+        21px 22px;
+
+    border-bottom:
+        1px solid
+        var(--profile-border);
+}
+
+
+.profile-card-heading > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.profile-card-heading h2,
+.dashboard-card-header h2 {
+    margin: 0;
+
+    color:
+        #e9eaf0;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    letter-spacing:
+        -0.25px;
+}
+
+
+.heading-icon {
+    color:
+        var(--profile-mint);
+}
+
+
+.small-edit-button {
+    padding:
+        6px 9px;
+
+    border:
+        1px solid
+        #363d51;
+
+    border-radius: 4px;
+
+    background:
+        transparent;
+
+    color:
+        #8b91a3;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+
+.small-edit-button:hover {
+    color:
+        var(--profile-mint);
+
+    border-color:
+        rgba(179, 227, 207, 0.4);
+}
+
+
+/* =========================================================
+   ABOUT ROWS
+========================================================= */
+
+.about-list {
+    padding:
+        0 20px;
+}
+
+
+.about-row {
+    display: grid;
+
+    grid-template-columns:
+        24px
+        minmax(0, 1fr);
+
+    gap: 11px;
+
+    padding:
+        17px 0;
+
+    border-bottom:
+        1px solid
+        #282e40;
+}
+
+
+.about-row:last-child {
+    border-bottom: none;
+}
+
+
+.about-icon {
+    padding-top: 2px;
+
+    color:
+        var(--profile-mint);
+
+    font-size: 13px;
+
+    opacity: 0.75;
+}
+
+
+.about-row small {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color:
+        #747b8f;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1.2px;
+}
+
+
+.about-row p {
+    margin: 0;
+
+    overflow-wrap:
+        anywhere;
+
+    color:
+        #c5c9d5;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+.about-row .accent-value {
+    color:
+        #a99cff;
+}
+
+
+.about-row input,
+.wide-profile-input {
+    width: 100%;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        10px 11px;
+
+    border:
+        1px solid
+        #353c52;
+
+    border-radius: 5px;
+
+    outline: none;
+
+    background:
+        #0c1018;
+
+    color: white;
+
+    font-family:
+        var(--profile-body);
+
+    font-size: 13px;
+}
+
+
+.about-row input:focus,
+.wide-profile-input:focus {
+    border-color:
+        var(--profile-mint);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(179, 227, 207, 0.05);
+}
+
+
+/* =========================================================
+   PROFILE SUBSECTION
+========================================================= */
+
+.profile-subsection {
+    padding: 21px;
+
+    border-top:
+        1px solid
+        #343a4e;
+}
+
+
+.subsection-label {
+    display: block;
+
+    margin-bottom:
+        13px;
+
+    color:
+        #7e8497;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    font-weight: 500;
+
+    letter-spacing:
+        1.5px;
+}
+
+
+.profile-subsection h3 {
+    margin:
+        0 0 8px;
+
+    color:
+        #a698ff;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 1.55;
+}
+
+
+.profile-subsection p {
+    margin: 0;
+
+    color:
+        #858b9d;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+.github-link {
+    color:
+        var(--profile-mint);
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    overflow-wrap:
+        anywhere;
+}
+
+
+.github-link:hover {
+    text-decoration:
+        underline;
+}
+
+
+.empty-value {
+    color:
+        #676e80 !important;
+}
+
+
+/* =========================================================
+   RIGHT COLUMN
+========================================================= */
+
+.profile-main-column {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction:
+        column;
+
+    gap: 27px;
+}
+
+
+.dashboard-card {
+    overflow: hidden;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.card-kicker {
+    display: block;
+
+    margin-bottom:
+        7px;
+
+    color:
+        var(--profile-purple-soft);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing:
+        1.6px;
+}
+
+
+.mint-kicker {
+    color:
+        var(--profile-mint);
+}
+
+
+/* =========================================================
+   MEMBER STATUS
+========================================================= */
+
+.member-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        rgba(179, 227, 207, 0.25);
+
+    border-radius:
+        999px;
+
+    color:
+        var(--profile-mint);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1px;
+}
+
+
+.member-status > span {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        var(--profile-mint);
+
+    box-shadow:
+        0 0 8px
+        rgba(179, 227, 207, 0.8);
+
+    animation:
+        memberPulse
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes memberPulse {
+    50% {
+        transform:
+            scale(1.4);
+
+        opacity: 0.65;
+    }
+}
+
+
+/* =========================================================
+   MEMBER OVERVIEW
+========================================================= */
+
+.member-overview {
+    display: grid;
+
+    grid-template-columns:
+        auto
+        repeat(3, 1fr);
+
+    align-items: center;
+
+    gap: 27px;
+
+    padding:
+        30px 28px;
+}
+
+
+.large-profile-avatar {
+    width: 72px;
+    height: 72px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.8);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6e61ff,
+            #5146d9
+        );
+
+    color: white;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 0 30px
+        rgba(100, 84, 255, 0.18);
+}
+
+
+.member-data {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction:
+        column;
+
+    gap: 8px;
+}
+
+
+.member-data span {
+    color:
+        #737a8e;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1.25px;
+}
+
+
+.member-data strong {
+    overflow: hidden;
+
+    color:
+        #dce0e8;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+
+    text-overflow:
+        ellipsis;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.member-progress {
+    padding:
+        0 28px
+        28px;
+}
+
+
+.member-progress > div:first-child {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        12px;
+
+    color:
+        #798095;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1px;
+}
+
+
+.progress-track {
+    overflow: hidden;
+
+    width: 100%;
+    height: 9px;
+
+    border:
+        1px solid
+        #45405f;
+
+    background:
+        #121421;
+}
+
+
+.progress-fill {
+    position: relative;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7464ff,
+            #9b8cff,
+            var(--profile-mint)
+        );
+
+    background-size:
+        200% 100%;
+
+    box-shadow:
+        0 0 14px
+        rgba(119, 101, 255, 0.4);
+
+    animation:
+        progressGlow
+        4s
+        linear
+        infinite;
+
+    transition:
+        width 0.6s
+        cubic-bezier(.16, 1, .3, 1);
+}
+
+
+@keyframes progressGlow {
+    to {
+        background-position:
+            200% center;
+    }
+}
+
+
+/* =========================================================
+   BIO
+========================================================= */
+
+.bio-card {
+    min-height: 200px;
+}
+
+
+.profile-about-text {
+    margin: 0;
+
+    padding:
+        27px 28px
+        30px;
+
+    color:
+        var(--profile-text-soft);
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    letter-spacing:
+        0.05px;
+}
+
+
+.profile-about-editor {
+    display: block;
+
+    width:
+        calc(100% - 56px);
+
+    min-height: 140px;
+
+    box-sizing:
+        border-box;
+
+    margin: 28px;
+
+    padding: 16px;
+
+    resize: vertical;
+
+    border:
+        1px solid
+        #384057;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    background:
+        #0c1018;
+
+    color:
+        #e5e7ed;
+
+    font-family:
+        var(--profile-body);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+.profile-about-editor:focus {
+    border-color:
+        var(--profile-mint);
+}
+
+
+/* =========================================================
+   ACHIEVEMENTS
+========================================================= */
+
+.achievement-count {
+    color:
+        #737a8e;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1.2px;
+}
+
+
+.achievements-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
+    gap: 13px;
+
+    padding: 23px;
+}
+
+
+.achievement-card {
+    position: relative;
+
+    min-height: 175px;
+
+    padding: 19px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        #30374a;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171b27,
+            #0f131c
+        );
+
+    transition:
+        0.3s ease;
+}
+
+
+.achievement-card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(179, 227, 207, 0.32);
+}
+
+
+.achievement-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: -55px;
+    right: -45px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(179, 227, 207, 0.05);
+
+    filter:
+        blur(15px);
+}
+
+
+.achievement-rarity {
+    position: absolute;
+
+    top: 12px;
+    right: 13px;
+
+    color:
+        #666d7e;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 7px;
+
+    letter-spacing:
+        1px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.achievement-icon {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom:
+        25px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.35);
+
+    background:
+        rgba(119, 104, 255, 0.06);
+
+    color:
+        var(--profile-purple-soft);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 18px;
+}
+
+
+.achievement-content strong {
+    display: block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        #e4e6ed;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+.achievement-content p {
+    margin: 0;
+
+    color:
+        #7b8295;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+.achievement-card.common
+.achievement-icon {
+    color:
+        var(--profile-mint);
+
+    border-color:
+        rgba(179, 227, 207, 0.32);
+
+    background:
+        rgba(179, 227, 207, 0.04);
+}
+
+
+.achievement-card.rare:hover {
+    border-color:
+        rgba(119, 104, 255, 0.5);
+}
+
+
+.achievement-card.epic {
+    background:
+        radial-gradient(
+            circle at 82% 15%,
+            rgba(143, 107, 255, 0.1),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #181827,
+            #10131c
+        );
+}
+
+
+/* =========================================================
+   EMPTY ACHIEVEMENTS
+========================================================= */
+
+.no-achievements {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    padding:
+        38px 28px;
+}
+
+
+.empty-achievement-orbit {
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 58px;
+    height: 58px;
+
+    border:
+        1px solid
+        rgba(179, 227, 207, 0.2);
+
+    border-radius: 50%;
+
+    animation:
+        emptyOrbit
+        6s
+        linear
+        infinite;
+}
+
+
+.empty-achievement-orbit::before {
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    top: -3px;
+    left: 50%;
+
+    border-radius: 50%;
+
+    background:
+        var(--profile-mint);
+
+    box-shadow:
+        0 0 8px
+        rgba(179, 227, 207, 0.8);
+}
+
+
+.empty-achievement-orbit span {
+    position: absolute;
+
+    inset: 15px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.3);
+
+    border-radius: 50%;
+}
+
+
+@keyframes emptyOrbit {
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+.no-achievements strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color:
+        #c3c7d3;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 14px;
+}
+
+
+.no-achievements p {
+    margin: 0;
+
+    color:
+        #777e91;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   INTEREST CARDS
+========================================================= */
+
+.profile-interest-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+
+.interest-card {
+    position: relative;
+
+    min-height: 160px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content:
+        flex-end;
+
+    padding: 21px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        #2c3346;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151925,
+            #0f131c
+        );
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.interest-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    right: -30px;
+    bottom: -30px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.1);
+
+    border-radius:
+        50%;
+}
+
+
+.mint-card:hover {
+    border-color:
+        rgba(179, 227, 207, 0.4);
+}
+
+
+.interest-number {
+    position: absolute;
+
+    top: 13px;
+    right: 15px;
+
+    color:
+        #596074;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 9px;
+}
+
+
+.interest-icon {
+    margin-bottom: auto;
+
+    color:
+        var(--profile-purple-soft);
+
+    font-size: 20px;
+}
+
+
+.mint-card
+.interest-icon {
+    color:
+        var(--profile-mint);
+}
+
+
+.interest-card small {
+    margin-bottom: 8px;
+
+    color:
+        #747b8e;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1.3px;
+}
+
+
+.interest-card strong {
+    color:
+        #d8dbe4;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   EDIT BAR
+========================================================= */
+
+.profile-edit-bar {
+    position: sticky;
+
+    z-index: 20;
+
+    bottom: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        space-between;
+
+    gap: 30px;
+
+    margin-top:
+        36px;
+
+    padding:
+        18px 21px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.48);
+
+    background:
+        rgba(14, 17, 28, 0.94);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 20px 70px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+.profile-edit-bar span {
+    color:
+        var(--profile-mint);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing:
+        1.5px;
+}
+
+
+.profile-edit-bar p {
+    margin:
+        4px 0 0;
+
+    color:
+        #7b8294;
+
+    font-size: 12px;
+}
+
+
+.profile-edit-actions {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.cancel-btn,
+.save-btn {
+    padding:
+        11px 18px;
+
+    border-radius: 5px;
+
+    font-family:
+        var(--profile-body);
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.cancel-btn {
+    border:
+        1px solid
+        #3b4256;
+
+    background:
+        #171b25;
+
+    color:
+        #b7bbc7;
+}
+
+
+.save-btn {
+    border:
+        1px solid
+        var(--profile-purple);
+
+    background:
+        #6659f4;
+
+    color: white;
+}
+
+
+.cancel-btn:hover,
+.save-btn:hover {
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.profile-loading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        center;
+
+    gap: 12px;
+
+    margin:
+        150px auto;
+
+    color:
+        #8f85ff;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 11px;
+
+    letter-spacing:
+        2px;
+}
+
+
+.profile-loading > span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--profile-mint);
+
+    box-shadow:
+        0 0 10px
+        rgba(179, 227, 207, 0.7);
+
+    animation:
+        loadingPulse
+        1.4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes loadingPulse {
+    50% {
+        transform:
+            scale(1.5);
+
+        opacity: 0.4;
+    }
+}
+
+
+/* =========================================================
+   SCROLL REVEAL / SPRING JUMP
+========================================================= */
+
+.reveal-on-scroll {
+    opacity: 0;
+
+    transform:
+        translate3d(0, 58px, 0)
+        scale(0.955);
+
+    filter:
+        blur(5px);
+
+    transition:
+        opacity 0.58s ease,
+        filter 0.58s ease,
+        transform 0.82s
+            cubic-bezier(
+                0.34,
+                1.56,
+                0.64,
+                1
+            );
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+
+    transform:
+        translate3d(0, 0, 0)
+        scale(1);
+
+    filter:
+        blur(0);
+}
+
+
+/* hero */
+
+.reveal-hero {
+    transform:
+        translate3d(0, 30px, 0)
+        scale(0.985);
+}
+
+
+/* stats */
+
+.reveal-stats {
+    transform:
+        translate3d(0, 55px, 0)
+        scale(0.97);
+}
+
+
+/* left card */
+
+.reveal-about {
+    transform:
+        translate3d(-38px, 58px, 0)
+        scale(0.955);
+}
+
+
+/* right cards */
+
+.reveal-member,
+.reveal-bio,
+.reveal-achievements {
+    transform:
+        translate3d(38px, 58px, 0)
+        scale(0.955);
+}
+
+
+.reveal-on-scroll.revealed.reveal-hero,
+.reveal-on-scroll.revealed.reveal-stats,
+.reveal-on-scroll.revealed.reveal-about,
+.reveal-on-scroll.revealed.reveal-member,
+.reveal-on-scroll.revealed.reveal-bio,
+.reveal-on-scroll.revealed.reveal-achievements {
+    transform:
+        translate3d(0, 0, 0)
+        scale(1);
+}
+
+
+/* =========================================================
+   INTEREST CARD REVEAL
+========================================================= */
+
+.reveal-interest {
+    transform:
+        translate3d(0, 58px, 0)
+        scale(0.91);
+}
+
+
+.profile-interest-grid
+.reveal-interest:nth-child(1) {
+    transition-delay:
+        0.03s;
+}
+
+
+.profile-interest-grid
+.reveal-interest:nth-child(2) {
+    transition-delay:
+        0.12s;
+}
+
+
+.profile-interest-grid
+.reveal-interest:nth-child(3) {
+    transition-delay:
+        0.21s;
+}
+
+
+/* =========================================================
+   REVEALED CARD GLOW
+========================================================= */
+
+.profile-about-card.reveal-on-scroll,
+.dashboard-card.reveal-on-scroll,
+.profile-stats.reveal-on-scroll {
+    transition:
+        opacity 0.58s ease,
+        filter 0.58s ease,
+
+        transform 0.82s
+            cubic-bezier(
+                0.34,
+                1.56,
+                0.64,
+                1
+            ),
+
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+.profile-about-card.revealed,
+.dashboard-card.revealed,
+.profile-stats.revealed {
+    border-color:
+        rgba(119, 104, 255, 0.34);
+
+    box-shadow:
+        0 18px 60px
+        rgba(0, 0, 0, 0.22),
+
+        0 0 28px
+        rgba(119, 104, 255, 0.035);
+}
+
+
+/* =========================================================
+   HOVERS AFTER REVEAL
+========================================================= */
+
+.dashboard-card.reveal-on-scroll.revealed:hover {
+    transform:
+        translateY(-5px)
+        scale(1);
+
+    border-color:
+        rgba(179, 227, 207, 0.32);
+
+    box-shadow:
+        0 24px 65px
+        rgba(0, 0, 0, 0.28),
+
+        0 0 25px
+        rgba(179, 227, 207, 0.04);
+}
+
+
+.profile-about-card.reveal-on-scroll.revealed:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(179, 227, 207, 0.3);
+}
+
+
+.interest-card.reveal-on-scroll.revealed:hover {
+    transform:
+        translateY(-6px)
+        scale(1);
+
+    border-color:
+        rgba(119, 104, 255, 0.45);
+}
+
+
+.mint-card.reveal-on-scroll.revealed:hover {
+    border-color:
+        rgba(179, 227, 207, 0.45);
+
+    box-shadow:
+        0 12px 35px
+        rgba(179, 227, 207, 0.045);
+}
+
+
+/* =========================================================
+   RESPONSIVE — LAPTOP
+========================================================= */
+
+@media (max-width: 1150px) {
+    .profile-hero {
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+    }
+
+
+    .profile-scatter {
+        display: none;
+    }
+
+
+    .profile-dashboard {
+        grid-template-columns:
+            290px
+            minmax(0, 1fr);
+
+        gap: 24px;
+    }
+
+
+    .achievements-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+    .profile-page {
+        padding:
+            50px
+            22px
+            100px;
+    }
+
+
+    .profile-hero {
+        grid-template-columns:
+            1fr;
+
+        gap: 30px;
+    }
+
+
+    .profile-hero-left {
+        width: 100%;
+    }
+
+
+    .profile-mini-card {
+        width: 100%;
+
+        box-sizing:
+            border-box;
+    }
+
+
+    .profile-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .profile-stat:nth-child(2) {
+        border-right: none;
+    }
+
+
+    .profile-stat:nth-child(-n + 2) {
+        border-bottom:
+            1px solid
+            rgba(119, 104, 255, 0.16);
+    }
+
+
+    .profile-dashboard {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .reveal-about,
+    .reveal-member,
+    .reveal-bio,
+    .reveal-achievements {
+        transform:
+            translate3d(0, 55px, 0)
+            scale(0.96);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+    .profile-page {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+
+    .profile-hero-left {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .profile-eyebrow {
+        width: auto;
+
+        margin-bottom: 18px;
+
+        font-size: 9px;
+
+        letter-spacing:
+            1.6px;
+
+        white-space: normal;
+    }
+
+
+    .profile-hero h1 {
+        display: block;
+
+        width: fit-content;
+
+        font-size: 44px;
+
+        line-height: 1.05;
+
+        letter-spacing:
+            -1.5px;
+    }
+
+
+    .profile-hero-left > p {
+        width: 100%;
+
+        margin-top: 30px;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+
+    .profile-stats {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .profile-stat {
+        min-height: 110px;
+
+        border-right: none;
+
+        border-bottom:
+            1px solid
+            rgba(119, 104, 255, 0.16);
+    }
+
+
+    .profile-stat:last-child {
+        border-bottom: none;
+    }
+
+
+    .member-overview {
+        grid-template-columns:
+            auto
+            1fr;
+    }
+
+
+    .member-data:nth-of-type(3),
+    .member-data:nth-of-type(4) {
+        display: none;
+    }
+
+
+    .achievements-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .profile-interest-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .profile-edit-bar {
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+    }
+
+
+    .profile-edit-actions {
+        width: 100%;
+    }
+
+
+    .profile-edit-actions button {
+        flex: 1;
+    }
+
+
+    .dashboard-card-header {
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+    .ambient-dot,
+    .scatter-dot,
+    .eyebrow-dot,
+    .member-status > span,
+    .progress-fill,
+    .empty-achievement-orbit,
+    .profile-loading > span,
+    .profile-hero h1,
+    .profile-hero h1::after {
+        animation: none;
+    }
+
+
+    .reveal-on-scroll,
+    .reveal-on-scroll.revealed {
+        opacity: 1;
+
+        transform:
+            none !important;
+
+        filter: none;
+
+        transition: none;
+    }
+}
+
+/* =========================================================
+   LOCKED ACHIEVEMENTS
+========================================================= */
+
+.locked-achievements-card {
+    position: relative;
+}
+
+
+.locked-achievements-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.locked-achievement {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        45px
+        72px
+        minmax(0, 1fr)
+        34px;
+
+    align-items: center;
+
+    gap: 20px;
+
+    min-height: 120px;
+
+    padding:
+        20px 24px;
+
+    box-sizing: border-box;
+
+    border-bottom:
+        1px solid
+        rgba(119, 104, 255, 0.12);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(119, 104, 255, 0.025),
+            transparent 55%
+        );
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.locked-achievement:last-child {
+    border-bottom: none;
+}
+
+
+.locked-achievement:hover {
+    transform:
+        translateX(5px);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(119, 104, 255, 0.075),
+            rgba(179, 227, 207, 0.025),
+            transparent
+        );
+
+    border-color:
+        rgba(179, 227, 207, 0.18);
+}
+
+
+/* number */
+
+.locked-achievement-number {
+    color:
+        #4e5569;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+/* icon */
+
+.locked-achievement-icon {
+    position: relative;
+
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid
+        #33394c;
+
+    background:
+        rgba(8, 11, 18, 0.55);
+}
+
+
+.locked-achievement-icon > span {
+    color:
+        #676d81;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 17px;
+
+    filter:
+        grayscale(1);
+}
+
+
+.locked-achievement-icon i {
+    position: absolute;
+
+    left: 50%;
+    bottom: -5px;
+
+    padding:
+        2px 5px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #11151f;
+
+    border:
+        1px solid
+        #343a4d;
+
+    color:
+        #5f6679;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 6px;
+
+    font-style: normal;
+
+    letter-spacing: 1px;
+}
+
+
+/* information */
+
+.locked-achievement-info {
+    min-width: 0;
+}
+
+
+.locked-achievement-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 5px;
+}
+
+
+.locked-achievement-title h3 {
+    margin: 0;
+
+    color:
+        #a8adbd;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+.locked-achievement-info p {
+    max-width: 580px;
+
+    margin:
+        0 0 11px;
+
+    color:
+        #676e82;
+
+    font-size: 11px;
+
+    line-height: 1.65;
+}
+
+
+/* rarity */
+
+.locked-rarity {
+    padding:
+        3px 6px;
+
+    border:
+        1px solid
+        #343a4d;
+
+    color:
+        #666d80;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 6px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+.locked-rarity.rare {
+    border-color:
+        rgba(119, 104, 255, 0.2);
+
+    color:
+        rgba(154, 140, 255, 0.65);
+}
+
+
+.locked-rarity.epic {
+    border-color:
+        rgba(171, 113, 255, 0.22);
+
+    color:
+        rgba(184, 139, 255, 0.65);
+}
+
+
+/* requirement */
+
+.locked-requirement {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color:
+        #7d8395;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    letter-spacing: 0.7px;
+}
+
+
+.requirement-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        var(--profile-mint);
+
+    opacity: 0.5;
+
+    box-shadow:
+        0 0 7px
+        rgba(179, 227, 207, 0.35);
+}
+
+
+/* right lock marker */
+
+.locked-symbol {
+    color:
+        #444b60;
+
+    font-size: 18px;
+
+    text-align: right;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.locked-achievement:hover
+.locked-symbol {
+    color:
+        var(--profile-mint);
+
+    transform:
+        rotate(45deg);
+
+    opacity: 0.7;
+}
+
+
+/* completed everything */
+
+.all-achievements-complete {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding:
+        35px 26px;
+}
+
+
+.all-achievements-complete > span {
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(179, 227, 207, 0.35);
+
+    color:
+        var(--profile-mint);
+
+    box-shadow:
+        0 0 20px
+        rgba(179, 227, 207, 0.07);
+}
+
+
+.all-achievements-complete strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+        #d8dce5;
+
+    font-family:
+        var(--profile-heading);
+}
+
+
+.all-achievements-complete p {
+    margin: 0;
+
+    color:
+        #747b8e;
+
+    font-size: 11px;
+}
+
+
+/* responsive */
+
+@media (max-width: 650px) {
+
+    .locked-achievement {
+        grid-template-columns:
+            34px
+            55px
+            minmax(0, 1fr);
+
+        gap: 13px;
+
+        padding:
+            18px 15px;
+    }
+
+
+    .locked-achievement-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+
+    .locked-symbol {
+        display: none;
+    }
+
+
+    .locked-achievement-title {
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap: 5px;
+    }
+
+}
+/* =========================================================
+   NOT YET ACHIEVED
+========================================================= */
+
+.locked-achievements-section {
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SCROLL CONTAINER
+========================================================= */
+
+.locked-achievement-scroll {
+    position: relative;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding:
+        26px 0
+        30px;
+
+    scroll-behavior: smooth;
+
+    overscroll-behavior-x:
+        contain;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(119, 104, 255, 0.55)
+        rgba(255, 255, 255, 0.025);
+}
+
+
+/* edge fade */
+
+.locked-achievement-scroll::after {
+    content: "";
+
+    position: sticky;
+
+    right: 0;
+
+    display: block;
+
+    width: 45px;
+    height: 1px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.locked-achievement-scroll::-webkit-scrollbar {
+    height: 7px;
+}
+
+
+.locked-achievement-scroll::-webkit-scrollbar-track {
+    margin:
+        0 24px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+}
+
+
+.locked-achievement-scroll::-webkit-scrollbar-thumb {
+    border-radius:
+        999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--profile-purple),
+            var(--profile-mint)
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(119, 104, 255, 0.2);
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.locked-achievement-track {
+    display: flex;
+
+    align-items: stretch;
+
+    gap: 14px;
+
+    width: max-content;
+
+    padding:
+        0 24px;
+}
+
+
+/* =========================================================
+   LOCKED CARD
+========================================================= */
+
+.locked-achievement-card {
+    position: relative;
+
+    flex:
+        0 0 245px;
+
+    min-height: 270px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        #30364a;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22, 26, 39, 0.98),
+            rgba(12, 15, 23, 0.98)
+        );
+
+    opacity: 0.82;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        opacity 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* circular decoration */
+
+.locked-achievement-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    right: -52px;
+    bottom: -52px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.12);
+
+    border-radius: 50%;
+
+    transition:
+        border-color 0.3s ease,
+        transform 0.4s ease;
+}
+
+
+/* tiny grid inside */
+
+.locked-achievement-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.12;
+
+    background-image:
+        linear-gradient(
+            rgba(179, 227, 207, 0.08)
+            1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(179, 227, 207, 0.08)
+            1px,
+            transparent 1px
+        );
+
+    background-size:
+        26px 26px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 65%
+        );
+}
+
+
+.locked-achievement-card:hover {
+    transform:
+        translateY(-7px);
+
+    opacity: 1;
+
+    border-color:
+        rgba(179, 227, 207, 0.32);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.35),
+
+        0 0 30px
+        rgba(179, 227, 207, 0.035);
+}
+
+
+.locked-achievement-card:hover::before {
+    transform:
+        scale(1.15);
+
+    border-color:
+        rgba(179, 227, 207, 0.18);
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.locked-card-number {
+    position: absolute;
+
+    top: 14px;
+    right: 15px;
+
+    z-index: 2;
+
+    color:
+        #51586c;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 9px;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.locked-card-icon {
+    position: relative;
+
+    z-index: 2;
+
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 22px;
+
+    border:
+        1px solid
+        rgba(119, 104, 255, 0.28);
+
+    background:
+        rgba(119, 104, 255, 0.045);
+
+    color:
+        #756c9d;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 16px;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.locked-achievement-card:hover
+.locked-card-icon {
+    transform:
+        translateY(-2px)
+        rotate(-3deg);
+}
+
+
+/* =========================================================
+   LOCKED LABEL
+========================================================= */
+
+.locked-card-status {
+    position: relative;
+
+    z-index: 2;
+
+    width: fit-content;
+
+    margin-bottom: 9px;
+
+    padding:
+        3px 6px;
+
+    border:
+        1px solid
+        #34394b;
+
+    color:
+        #62697b;
+
+    background:
+        rgba(9, 11, 17, 0.55);
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 6px;
+
+    letter-spacing:
+        1.4px;
+}
+
+
+/* =========================================================
+   RARITY
+========================================================= */
+
+.locked-card-rarity {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        #6d7488;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 7px;
+
+    letter-spacing:
+        1.2px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.locked-achievement-card h3 {
+    position: relative;
+
+    z-index: 2;
+
+    margin:
+        0 0 9px;
+
+    color:
+        #c8ccd7;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.locked-achievement-card p {
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 54px;
+
+    margin:
+        0 0 16px;
+
+    color:
+        #70778b;
+
+    font-size: 11px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   REQUIREMENT
+========================================================= */
+
+.locked-card-requirement {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: auto;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid
+        rgba(119, 104, 255, 0.1);
+
+    color:
+        #858c9f;
+
+    font-family:
+        var(--profile-mono);
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+
+.locked-card-requirement > span {
+    flex-shrink: 0;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        var(--profile-mint);
+
+    opacity: 0.45;
+
+    box-shadow:
+        0 0 6px
+        rgba(179, 227, 207, 0.4);
+}
+
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+.locked-common
+.locked-card-icon {
+    color:
+        rgba(179, 227, 207, 0.55);
+
+    border-color:
+        rgba(179, 227, 207, 0.2);
+
+    background:
+        rgba(179, 227, 207, 0.025);
+}
+
+
+.locked-common:hover {
+    border-color:
+        rgba(179, 227, 207, 0.3);
+}
+
+
+/* =========================================================
+   RARE
+========================================================= */
+
+.locked-rare
+.locked-card-icon {
+    color:
+        rgba(154, 140, 255, 0.75);
+
+    border-color:
+        rgba(154, 140, 255, 0.26);
+}
+
+
+.locked-rare:hover {
+    border-color:
+        rgba(154, 140, 255, 0.42);
+}
+
+
+/* =========================================================
+   EPIC
+========================================================= */
+
+.locked-epic {
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(125, 90, 255, 0.08),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #171724,
+            #0d1119
+        );
+}
+
+
+.locked-epic
+.locked-card-icon {
+    color:
+        #927bc2;
+
+    border-color:
+        rgba(146, 123, 194, 0.3);
+
+    box-shadow:
+        0 0 18px
+        rgba(119, 104, 255, 0.035);
+}
+
+
+.locked-epic:hover {
+    border-color:
+        rgba(142, 115, 255, 0.48);
+}
+
+
+/* =========================================================
+   LEGENDARY
+========================================================= */
+
+.locked-legendary {
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(179, 227, 207, 0.055),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #151923,
+            #0d1119
+        );
+
+    border-color:
+        rgba(179, 227, 207, 0.14);
+}
+
+
+.locked-legendary
+.locked-card-icon {
+    color:
+        rgba(179, 227, 207, 0.75);
+
+    border-color:
+        rgba(179, 227, 207, 0.25);
+
+    box-shadow:
+        0 0 18px
+        rgba(179, 227, 207, 0.035);
+}
+
+
+.locked-legendary
+.locked-card-rarity {
+    color:
+        rgba(179, 227, 207, 0.6);
+}
+
+
+.locked-legendary:hover {
+    border-color:
+        rgba(179, 227, 207, 0.45);
+}
+
+
+/* =========================================================
+   MYTHIC
+========================================================= */
+
+.locked-mythic {
+    background:
+        radial-gradient(
+            circle at 75% 15%,
+            rgba(179, 227, 207, 0.09),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 90%,
+            rgba(119, 104, 255, 0.12),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #141925,
+            #0c1018
+        );
+
+    border-color:
+        rgba(179, 227, 207, 0.18);
+}
+
+
+.locked-mythic
+.locked-card-icon {
+    color:
+        var(--profile-mint);
+
+    border-color:
+        rgba(179, 227, 207, 0.32);
+
+    box-shadow:
+        0 0 20px
+        rgba(179, 227, 207, 0.07);
+}
+
+
+.locked-mythic
+.locked-card-rarity {
+    color:
+        var(--profile-mint);
+}
+
+
+.locked-mythic:hover {
+    border-color:
+        rgba(179, 227, 207, 0.55);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.35),
+
+        0 0 35px
+        rgba(179, 227, 207, 0.055);
+}
+
+
+/* =========================================================
+   ALL COMPLETE
+========================================================= */
+
+.all-achievements-complete {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding:
+        36px 27px;
+}
+
+
+.all-achievements-complete > span {
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid
+        rgba(179, 227, 207, 0.35);
+
+    color:
+        var(--profile-mint);
+
+    font-size: 20px;
+
+    box-shadow:
+        0 0 20px
+        rgba(179, 227, 207, 0.06);
+}
+
+
+.all-achievements-complete strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+        #d8dce5;
+
+    font-family:
+        var(--profile-heading);
+
+    font-size: 15px;
+}
+
+
+.all-achievements-complete p {
+    margin: 0;
+
+    color:
+        #747b8e;
+
+    font-size: 11px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .locked-achievement-track {
+        gap: 11px;
+
+        padding:
+            0 15px;
+    }
+
+
+    .locked-achievement-card {
+        flex-basis:
+            215px;
+
+        min-height:
+            260px;
+    }
+
+
+    .locked-achievement-scroll::-webkit-scrollbar-track {
+        margin:
+            0 15px;
+    }
+
 }

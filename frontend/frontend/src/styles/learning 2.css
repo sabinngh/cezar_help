@@ -1,0 +1,1730 @@
+/* =========================================================
+   LEARNING PAGE
+   ========================================================= */
+
+.learning-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 120px 40px 100px;
+
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(105, 82, 255, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(179, 227, 207, 0.035),
+            transparent 28%
+        ),
+        #08090e;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.learning-header {
+    position: relative;
+
+    width: min(1260px, 94%);
+    min-height: 360px;
+
+    margin: 0 auto 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 55px;
+
+    text-align: left;
+}
+
+
+.learning-header-text {
+    position: relative;
+    z-index: 4;
+
+    max-width: 650px;
+}
+
+
+.learning-tag {
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    color: #7b6aff;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 12px rgba(123, 106, 255, 0.45);
+}
+
+
+.learning-header h1 {
+    margin: 0 0 20px;
+
+    color: #f5f5fa;
+
+    font-family: var(--heading);
+
+    font-size: clamp(48px, 6vw, 82px);
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+}
+
+
+.learning-header h1 span {
+    color: #7667ff;
+
+    text-shadow:
+        0 0 16px rgba(118, 103, 255, 0.5),
+        0 0 36px rgba(118, 103, 255, 0.2);
+}
+
+
+.learning-header p {
+    max-width: 640px;
+
+    margin: 0;
+
+    color: #858898;
+
+    font-family: var(--mono);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   WORD2VEC GRAPHIC
+   ========================================================= */
+
+.wordvec-graphic {
+    position: relative;
+
+    width: 500px;
+    max-width: 42vw;
+
+    opacity: 0.88;
+
+    pointer-events: auto;
+
+    transform:
+        perspective(900px)
+        rotateX(2deg)
+        rotateY(-3deg)
+        translateY(-8px);
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.55s cubic-bezier(.2, .8, .2, 1),
+        filter 0.55s ease,
+        opacity 0.4s ease;
+}
+
+
+.wordvec-graphic:hover {
+    opacity: 1;
+
+    transform:
+        perspective(900px)
+        rotateX(-2deg)
+        rotateY(3deg)
+        translateY(-13px)
+        scale(1.025);
+
+    filter:
+        drop-shadow(
+            0 0 24px
+            rgba(118, 103, 255, 0.12)
+        );
+}
+
+
+/* background glow */
+
+.wordvec-graphic::before {
+    content: "";
+
+    position: absolute;
+
+    width: 340px;
+    height: 270px;
+
+    top: 35px;
+    left: 75px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(118, 103, 255, 0.11),
+            rgba(179, 227, 207, 0.025) 40%,
+            transparent 68%
+        );
+
+    filter: blur(34px);
+
+    z-index: -1;
+
+    animation: wordvecGlow 5.5s ease-in-out infinite;
+}
+
+
+/* scanner */
+
+.wordvec-graphic::after {
+    content: "";
+
+    position: absolute;
+
+    left: 6%;
+    right: 6%;
+
+    top: 12%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(179, 227, 207, 0.5),
+            rgba(118, 103, 255, 0.35),
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px rgba(179, 227, 207, 0.2);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation: vectorScan 8s ease-in-out infinite;
+}
+
+
+.wordvec-label {
+    position: absolute;
+
+    top: 0;
+    right: 10px;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: #575b6c;
+
+    opacity: 0;
+
+    animation:
+        wordvecLabelIn 0.8s ease 1.8s forwards;
+}
+
+
+.wordvec-svg {
+    width: 100%;
+    height: auto;
+
+    overflow: visible;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(118, 103, 255, 0.08)
+        );
+}
+
+
+/* =========================================================
+   WORD2VEC AXES
+   ========================================================= */
+
+.axis-line {
+    stroke: rgba(230, 232, 244, 0.7);
+
+    stroke-width: 1.6;
+
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+
+    animation:
+        drawAxis 1.3s ease forwards;
+}
+
+
+.axis-arrow {
+    fill: none;
+
+    stroke: rgba(230, 232, 244, 0.72);
+
+    stroke-width: 1.6;
+
+    opacity: 0;
+
+    animation:
+        axisArrowIn 0.35s ease 1.15s forwards;
+}
+
+
+.axis-text {
+    fill: #666a79;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    opacity: 0;
+
+    animation:
+        axisTextIn 0.7s ease 1.25s forwards;
+}
+
+
+/* =========================================================
+   WORD2VEC VECTORS
+   ========================================================= */
+
+.vector-purple,
+.vector-mint {
+    stroke-width: 4;
+
+    stroke-linecap: round;
+
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+}
+
+
+.vector-purple {
+    stroke: #7564ff;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(117, 100, 255, 0.55)
+        );
+
+    animation:
+        drawVector 1.7s cubic-bezier(.22, .8, .3, 1) 0.5s forwards,
+        vectorGlowPurple 4s ease-in-out 2.3s infinite;
+}
+
+
+.vector-mint {
+    stroke: #b3e3cf;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(179, 227, 207, 0.42)
+        );
+
+    animation:
+        drawVector 1.7s cubic-bezier(.22, .8, .3, 1) 0.7s forwards,
+        vectorGlowMint 4.5s ease-in-out 2.4s infinite;
+}
+
+
+/* =========================================================
+   WORD2VEC POINTS
+   ========================================================= */
+
+.point-purple,
+.point-mint {
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        pointAppear 0.4s ease 1.55s forwards,
+        pointPulse 3s ease-in-out 2.1s infinite;
+}
+
+
+.point-purple {
+    fill: #7564ff;
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(117, 100, 255, 0.8)
+        );
+}
+
+
+.point-mint {
+    fill: #b3e3cf;
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(179, 227, 207, 0.65)
+        );
+}
+
+
+/* =========================================================
+   WORD2VEC LABELS
+   ========================================================= */
+
+.word-purple,
+.word-mint {
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    opacity: 0;
+
+    animation:
+        wordLabelIn 0.8s ease 1.7s forwards;
+}
+
+
+.word-purple {
+    fill: #9287ff;
+}
+
+
+.word-mint {
+    fill: #b3e3cf;
+}
+
+
+/* =========================================================
+   WORD2VEC PROJECTIONS
+   ========================================================= */
+
+.projection {
+    stroke-width: 1.5;
+
+    stroke-dasharray: 6 8;
+
+    opacity: 0;
+
+    animation:
+        projectionAppear 0.8s ease 1.25s forwards,
+        projectionFlow 5s linear 2s infinite;
+}
+
+
+.projection-purple {
+    stroke: #7564ff;
+}
+
+
+.projection-mint {
+    stroke: #b3e3cf;
+}
+
+
+/* =========================================================
+   WORD2VEC ORIGIN
+   ========================================================= */
+
+.origin-glow {
+    fill: rgba(118, 103, 255, 0.08);
+
+    stroke: rgba(118, 103, 255, 0.28);
+
+    stroke-width: 1;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        originPulse 2.8s ease-in-out infinite;
+}
+
+
+.origin-point {
+    fill: #ffffff;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    filter:
+        drop-shadow(
+            0 0 7px
+            rgba(255, 255, 255, 0.75)
+        );
+
+    animation:
+        centerPulse 2.8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   WORD2VEC ANIMATIONS
+   ========================================================= */
+
+@keyframes drawAxis {
+    from {
+        stroke-dashoffset: 500;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+@keyframes axisArrowIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes axisTextIn {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes drawVector {
+    from {
+        stroke-dashoffset: 500;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+@keyframes vectorGlowPurple {
+    0%,
+    100% {
+        opacity: 0.72;
+    }
+
+    50% {
+        opacity: 1;
+
+        filter:
+            drop-shadow(
+                0 0 8px
+                rgba(117, 100, 255, 0.75)
+            );
+    }
+}
+
+
+@keyframes vectorGlowMint {
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+
+        filter:
+            drop-shadow(
+                0 0 8px
+                rgba(179, 227, 207, 0.6)
+            );
+    }
+}
+
+
+@keyframes projectionAppear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.3;
+    }
+}
+
+
+@keyframes projectionFlow {
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: -112;
+    }
+}
+
+
+@keyframes pointAppear {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes pointPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.38);
+    }
+}
+
+
+@keyframes wordLabelIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes wordvecLabelIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes originPulse {
+    0%,
+    100% {
+        transform: scale(0.85);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: scale(1.45);
+        opacity: 0.75;
+    }
+}
+
+
+@keyframes centerPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.35);
+    }
+}
+
+
+@keyframes wordvecGlow {
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: scale(0.96);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.04);
+    }
+}
+
+
+@keyframes vectorScan {
+    0% {
+        top: 10%;
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.5;
+    }
+
+    42% {
+        opacity: 0.25;
+    }
+
+    52% {
+        top: 88%;
+        opacity: 0;
+    }
+
+    100% {
+        top: 88%;
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.learning-layout {
+    width: min(1200px, 96%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.lesson-sidebar {
+    position: sticky;
+
+    top: 110px;
+
+    padding: 22px;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 21, 30, 0.96),
+            rgba(10, 11, 17, 0.98)
+        );
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.28);
+
+    overflow: hidden;
+}
+
+
+.lesson-sidebar::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 24px;
+
+    width: 70px;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6d5cff,
+            #b3e3cf
+        );
+
+    box-shadow:
+        0 0 12px rgba(109, 92, 255, 0.5);
+}
+
+
+.sidebar-title {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: #5e6272;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CATEGORIES
+   ========================================================= */
+
+.lesson-categories {
+    margin-bottom: 28px;
+}
+
+
+.category-button {
+    width: 100%;
+
+    margin-bottom: 7px;
+
+    padding: 11px 12px;
+
+    border: 1px solid transparent;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #888b99;
+
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.category-button:hover {
+    color: #ffffff;
+
+    background: rgba(118, 103, 255, 0.06);
+
+    border-color: rgba(118, 103, 255, 0.12);
+
+    transform: translateX(3px);
+}
+
+
+.category-button.active {
+    color: #f0f0f7;
+
+    background: rgba(118, 103, 255, 0.11);
+
+    border-color: rgba(118, 103, 255, 0.28);
+
+    box-shadow:
+        inset 3px 0 0 #7667ff;
+}
+
+
+/* =========================================================
+   LESSON LIST
+   ========================================================= */
+
+.lesson-list {
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+}
+
+
+.lesson-list-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.lesson-list-item {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 7px;
+
+    padding: 10px 11px;
+
+    border: 1px solid transparent;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #9295a2;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.lesson-list-row .lesson-list-item {
+    flex: 1;
+}
+
+
+.lesson-list-item span {
+    color: #5d6170;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+.lesson-list-item:hover {
+    color: #ffffff;
+
+    background:
+        rgba(179, 227, 207, 0.045);
+
+    border-color:
+        rgba(179, 227, 207, 0.12);
+}
+
+
+.no-lessons {
+    padding: 10px 0;
+
+    color: #555968;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.lesson-delete-button {
+    width: 31px;
+    height: 31px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border:
+        1px solid
+        rgba(255, 100, 120, 0.14);
+
+    border-radius: 8px;
+
+    background:
+        rgba(255, 80, 100, 0.03);
+
+    color: #8a5660;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    opacity: 0.45;
+
+    transition:
+        opacity 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.lesson-list-row:hover
+.lesson-delete-button {
+    opacity: 1;
+}
+
+
+.lesson-delete-button:hover {
+    color: #ff8395;
+
+    border-color:
+        rgba(255, 100, 120, 0.35);
+
+    background:
+        rgba(255, 80, 100, 0.07);
+
+    transform: scale(1.06);
+}
+
+
+/* =========================================================
+   MAIN LESSON AREA
+   ========================================================= */
+
+.lesson-main {
+    min-height: 600px;
+
+    padding: 28px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 18, 26, 0.96),
+            rgba(9, 10, 15, 0.98)
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.3);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.lesson-empty {
+    min-height: 520px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+.lesson-empty > span {
+    margin-bottom: 15px;
+
+    color: #6d62ff;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+.lesson-empty h2 {
+    margin: 0 0 14px;
+
+    color: #f0f0f6;
+
+    font-family: var(--heading);
+
+    font-size: 34px;
+
+    font-weight: 700;
+}
+
+
+.lesson-empty p {
+    max-width: 450px;
+
+    color: #737685;
+
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   LESSON VIEWER
+   ========================================================= */
+
+.lesson-viewer {
+    max-width: 820px;
+
+    margin: 0 auto;
+
+    text-align: left;
+}
+
+
+.lesson-viewer-header {
+    margin-bottom: 38px;
+
+    padding-bottom: 25px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+}
+
+
+.lesson-viewer-header > span {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #b3e3cf;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+.lesson-viewer-header h1 {
+    margin: 0;
+
+    color: #f7f7fb;
+
+    font-family: var(--heading);
+
+    font-size:
+        clamp(38px, 5vw, 60px);
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+}
+
+
+/* =========================================================
+   MARKDOWN
+   ========================================================= */
+
+.lesson-markdown {
+    color: #c2c4ce;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+.lesson-markdown h1,
+.lesson-markdown h2,
+.lesson-markdown h3 {
+    margin-top: 36px;
+
+    margin-bottom: 14px;
+
+    color: #f2f2f6;
+
+    font-family: var(--heading);
+
+    font-weight: 700;
+}
+
+
+.lesson-markdown h1 {
+    font-size: 34px;
+}
+
+
+.lesson-markdown h2 {
+    font-size: 27px;
+}
+
+
+.lesson-markdown h3 {
+    font-size: 21px;
+
+    color: #b3e3cf;
+}
+
+
+.lesson-markdown p {
+    margin: 0 0 18px;
+
+    color: #a6a9b5;
+}
+
+
+.lesson-markdown strong {
+    color: #ffffff;
+}
+
+
+.lesson-markdown em {
+    color: #968cff;
+
+    font-style: normal;
+}
+
+
+.lesson-markdown ul,
+.lesson-markdown ol {
+    padding-left: 24px;
+
+    margin-bottom: 20px;
+
+    color: #a9acb7;
+}
+
+
+.lesson-markdown li {
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   INLINE CODE
+   ========================================================= */
+
+.lesson-markdown code {
+    font-family: var(--mono);
+
+    font-size: 13px;
+}
+
+
+.lesson-markdown p code,
+.lesson-markdown li code {
+    display: inline;
+
+    padding: 3px 7px;
+
+    border-radius: 5px;
+
+    background:
+        rgba(118, 103, 255, 0.1);
+
+    color: #b9b1ff;
+
+    white-space: normal;
+}
+
+
+/* =========================================================
+   CODE BLOCKS
+   ========================================================= */
+
+.lesson-markdown pre {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin: 28px 0;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    white-space: pre;
+
+    border:
+        1px solid
+        rgba(118, 103, 255, 0.16);
+
+    border-radius: 12px;
+
+    background: #0c0e15;
+
+    box-shadow:
+        inset 0 0 30px
+        rgba(118, 103, 255, 0.025);
+}
+
+
+.lesson-markdown pre code {
+    display: block;
+
+    width: 100%;
+
+    padding: 0;
+
+    white-space: pre;
+
+    font-family: var(--mono);
+
+    line-height: 1.65;
+
+    background: transparent;
+
+    color: #d5d6de;
+}
+
+
+/* =========================================================
+   BLOCKQUOTE
+   ========================================================= */
+
+.lesson-markdown blockquote {
+    margin: 24px 0;
+
+    padding: 18px 20px;
+
+    border-left:
+        3px solid #b3e3cf;
+
+    background:
+        rgba(179, 227, 207, 0.035);
+
+    color: #aeb4b8;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.lesson-markdown table {
+    width: 100%;
+
+    margin: 24px 0;
+
+    border-collapse: collapse;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+}
+
+
+.lesson-markdown th,
+.lesson-markdown td {
+    padding: 12px 14px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    text-align: left;
+}
+
+
+.lesson-markdown th {
+    color: #ffffff;
+
+    background:
+        rgba(118, 103, 255, 0.08);
+}
+
+
+/* =========================================================
+   LATEX / KATEX
+   ========================================================= */
+
+.lesson-markdown .katex-display {
+    margin: 28px 0;
+
+    padding: 20px;
+
+    overflow-x: auto;
+
+    border:
+        1px solid
+        rgba(179, 227, 207, 0.1);
+
+    border-radius: 10px;
+
+    background:
+        rgba(179, 227, 207, 0.02);
+}
+
+
+.lesson-markdown .katex {
+    color: #e8e9ef;
+
+    font-size: 1.06em;
+}
+
+
+/* =========================================================
+   UPLOAD BOX
+   ========================================================= */
+
+.lesson-upload {
+    margin-bottom: 28px;
+
+    padding: 22px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 180px 1fr auto;
+
+    gap: 10px;
+
+    border:
+        1px solid
+        rgba(118, 103, 255, 0.16);
+
+    border-radius: 12px;
+
+    background:
+        rgba(118, 103, 255, 0.035);
+}
+
+
+.upload-label {
+    grid-column: 1 / -1;
+
+    margin-bottom: 5px;
+
+    color: #7e72ff;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+.lesson-upload input,
+.lesson-upload select {
+    min-width: 0;
+
+    padding: 11px 12px;
+
+    border: 1px solid #292c39;
+
+    border-radius: 8px;
+
+    background: #0d0f16;
+
+    color: #e6e7ed;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    outline: none;
+}
+
+
+.lesson-upload input:focus,
+.lesson-upload select:focus {
+    border-color: #7164ff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(113, 100, 255, 0.08);
+}
+
+
+.lesson-upload button {
+    padding: 11px 16px;
+
+    border: 1px solid #776aff;
+
+    border-radius: 8px;
+
+    background: #6659e9;
+
+    color: #ffffff;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.lesson-upload button:hover {
+    transform: translateY(-2px);
+
+    background: #7265f0;
+
+    box-shadow:
+        0 0 20px
+        rgba(102, 89, 233, 0.25);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .wordvec-graphic {
+        width: 430px;
+
+        max-width: 40vw;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .learning-page {
+        padding: 90px 20px;
+    }
+
+
+    .learning-header {
+        min-height: auto;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+    }
+
+
+    .wordvec-graphic {
+        width: 100%;
+
+        max-width: 520px;
+
+        margin: 10px auto 0;
+
+        opacity: 0.8;
+
+        transform:
+            perspective(900px)
+            rotateX(0)
+            rotateY(0);
+    }
+
+
+    .wordvec-graphic:hover {
+        transform:
+            translateY(-4px)
+            scale(1.01);
+    }
+
+
+    .learning-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .lesson-sidebar {
+        position: static;
+    }
+
+
+    .lesson-categories {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 6px;
+    }
+
+
+    .category-button {
+        width: auto;
+    }
+
+
+    .lesson-upload {
+        grid-template-columns: 1fr;
+    }
+
+
+    .upload-label {
+        grid-column: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .learning-page {
+        padding:
+            70px 14px
+            80px;
+    }
+
+
+    .learning-header h1 {
+        font-size: 46px;
+    }
+
+
+    .learning-header p {
+        font-size: 13px;
+    }
+
+
+    .wordvec-graphic {
+        max-width: 100%;
+
+        opacity: 0.75;
+    }
+
+
+    .wordvec-label {
+        font-size: 7px;
+    }
+
+
+    .lesson-main {
+        padding: 20px;
+    }
+
+
+    .lesson-viewer-header h1 {
+        font-size: 36px;
+    }
+
+
+    .lesson-markdown {
+        font-size: 14px;
+    }
+
+
+    .lesson-sidebar {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .wordvec-graphic,
+    .wordvec-graphic::before,
+    .wordvec-graphic::after,
+
+    .vector-purple,
+    .vector-mint,
+
+    .projection,
+
+    .point-purple,
+    .point-mint,
+
+    .word-purple,
+    .word-mint,
+
+    .axis-line,
+    .axis-arrow,
+    .axis-text,
+
+    .origin-glow,
+    .origin-point,
+
+    .wordvec-label {
+        animation: none !important;
+
+        transition: none !important;
+    }
+
+
+    .axis-line {
+        stroke-dasharray: none;
+
+        stroke-dashoffset: 0;
+    }
+
+
+    .vector-purple,
+    .vector-mint {
+        stroke-dasharray: none;
+
+        stroke-dashoffset: 0;
+    }
+
+
+    .point-purple,
+    .point-mint,
+    .word-purple,
+    .word-mint,
+    .axis-arrow,
+    .axis-text,
+    .wordvec-label {
+        opacity: 1;
+    }
+
+}
