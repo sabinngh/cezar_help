@@ -88,6 +88,12 @@ class Problem(db.Model):
         db.ForeignKey("users.id"),
         nullable=False
     )
+    submissions = db.relationship(
+        "Submission",
+        back_populates="problem",
+        lazy=True,
+        cascade="all, delete-orphan"
+    )
 
     def to_dict(self):
 
