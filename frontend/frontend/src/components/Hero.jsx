@@ -441,6 +441,33 @@ function Hero() {
 
             </div>
 
+
+            {/* =====================================================
+                HERO → OUR STORY TRANSITION
+            ===================================================== */}
+
+            <div className="hero-story-transition" aria-hidden="true">
+                <div className="hero-transition-glow"></div>
+
+                <div className="hero-transition-beam">
+                    <span className="beam-core"></span>
+                    <span className="beam-pulse pulse-1"></span>
+                    <span className="beam-pulse pulse-2"></span>
+                    <span className="beam-pulse pulse-3"></span>
+                </div>
+
+                <div className="hero-transition-particles">
+                    <i className="transition-particle tp-1"></i>
+                    <i className="transition-particle tp-2"></i>
+                    <i className="transition-particle tp-3"></i>
+                    <i className="transition-particle tp-4"></i>
+                    <i className="transition-particle tp-5"></i>
+                    <i className="transition-particle tp-6"></i>
+                </div>
+
+                <div className="hero-transition-line"></div>
+            </div>
+
         </section>
     );
 }
