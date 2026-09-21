@@ -22,10 +22,7 @@ function useRevealOnScroll(enabled) {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("revealed");
-
-                        observer.unobserve(
-                            entry.target
-                        );
+                        observer.unobserve(entry.target);
                     }
                 });
             },
@@ -54,274 +51,224 @@ const achievementCatalog = [
     {
         id: "first_solve",
         name: "First Contact",
-        description:
-            "Solve your first savaML problem.",
-        requirement:
-            "1 problem solved",
+        description: "Solve your first savaML problem.",
+        requirement: "1 problem solved",
         icon: "✦",
         rarity: "COMMON"
     },
-
     {
         id: "problem_hunter",
         name: "Problem Hunter",
         description:
             "Build momentum by solving five different problems.",
-        requirement:
-            "5 problems solved",
+        requirement: "5 problems solved",
         icon: "◎",
         rarity: "RARE"
     },
-
     {
         id: "elite_solver",
         name: "Elite Solver",
         description:
             "Reach double digits in completed AI challenges.",
-        requirement:
-            "10 problems solved",
+        requirement: "10 problems solved",
         icon: "◇",
         rarity: "EPIC"
     },
-
     {
         id: "problem_architect",
         name: "Problem Architect",
         description:
             "Create and publish your first savaML problem.",
-        requirement:
-            "1 problem authored",
+        requirement: "1 problem authored",
         icon: "⌘",
         rarity: "RARE"
     },
-
     {
         id: "perfect_run",
         name: "Perfect Run",
         description:
             "Earn three perfect scores across your submissions.",
-        requirement:
-            "3 perfect scores",
+        requirement: "3 perfect scores",
         icon: "100",
         rarity: "EPIC"
     },
-
     {
         id: "consistent_solver",
         name: "Consistent Solver",
         description:
             "Keep practicing until twenty challenges are complete.",
-        requirement:
-            "20 problems solved",
+        requirement: "20 problems solved",
         icon: "↗",
         rarity: "EPIC"
     },
-
     {
         id: "solver_25",
         name: "Quarter Century",
         description:
             "Cross the twenty-five solved problem milestone.",
-        requirement:
-            "25 problems solved",
+        requirement: "25 problems solved",
         icon: "25",
         rarity: "EPIC"
     },
-
     {
         id: "solver_50",
         name: "Problem Machine",
         description:
             "Become one of savaML's most experienced solvers.",
-        requirement:
-            "50 problems solved",
+        requirement: "50 problems solved",
         icon: "50",
         rarity: "LEGENDARY"
     },
-
     {
         id: "model_builder",
         name: "Model Builder",
         description:
             "Complete your first machine learning challenge.",
-        requirement:
-            "Complete 1 ML challenge",
+        requirement: "Complete 1 ML challenge",
         icon: "△",
         rarity: "COMMON"
     },
-
     {
         id: "deep_diver",
         name: "Deep Diver",
         description:
             "Explore the deeper layers of neural networks.",
-        requirement:
-            "5 Deep Learning problems",
+        requirement: "5 Deep Learning problems",
         icon: "◈",
         rarity: "RARE"
     },
-
     {
         id: "nlp_explorer",
         name: "Language Explorer",
         description:
             "Begin mastering Natural Language Processing.",
-        requirement:
-            "3 NLP problems",
+        requirement: "3 NLP problems",
         icon: "⌁",
         rarity: "RARE"
     },
-
     {
         id: "visionary",
         name: "Visionary",
         description:
             "Prove your skills in Computer Vision.",
-        requirement:
-            "3 Computer Vision problems",
+        requirement: "3 Computer Vision problems",
         icon: "◉",
         rarity: "RARE"
     },
-
     {
         id: "algorithmist",
         name: "Algorithmist",
         description:
             "Master the algorithmic foundations behind AI.",
-        requirement:
-            "5 algorithm problems",
+        requirement: "5 algorithm problems",
         icon: "λ",
         rarity: "EPIC"
     },
-
     {
         id: "submission_10",
         name: "Getting Started",
         description:
             "Send ten solutions through the savaML evaluator.",
-        requirement:
-            "10 submissions",
+        requirement: "10 submissions",
         icon: "10",
         rarity: "COMMON"
     },
-
     {
         id: "submission_50",
         name: "Persistent",
         description:
             "Keep iterating until you reach fifty submissions.",
-        requirement:
-            "50 submissions",
+        requirement: "50 submissions",
         icon: "50",
         rarity: "RARE"
     },
-
     {
         id: "century",
         name: "Century",
         description:
             "Reach one hundred total submissions.",
-        requirement:
-            "100 submissions",
+        requirement: "100 submissions",
         icon: "100",
         rarity: "LEGENDARY"
     },
-
     {
         id: "high_scorer",
         name: "High Scorer",
         description:
             "Accumulate a serious total score across challenges.",
-        requirement:
-            "1000 total score",
+        requirement: "1000 total score",
         icon: "▲",
         rarity: "EPIC"
     },
-
     {
         id: "score_2500",
         name: "Signal Boost",
         description:
             "Push your accumulated score beyond 2500.",
-        requirement:
-            "2500 total score",
+        requirement: "2500 total score",
         icon: "⚡",
         rarity: "LEGENDARY"
     },
-
     {
         id: "top_ten",
         name: "Top Ten",
         description:
             "Enter the top ten of the savaML leaderboard.",
-        requirement:
-            "Reach global rank #10",
+        requirement: "Reach global rank #10",
         icon: "10",
         rarity: "LEGENDARY"
     },
-
     {
         id: "podium",
         name: "Podium",
         description:
             "Reach the top three on the global leaderboard.",
-        requirement:
-            "Reach global rank #3",
+        requirement: "Reach global rank #3",
         icon: "Ⅲ",
         rarity: "LEGENDARY"
     },
-
     {
         id: "number_one",
         name: "Singularity",
         description:
             "Reach the number one position on savaML.",
-        requirement:
-            "Reach global rank #1",
+        requirement: "Reach global rank #1",
         icon: "Ⅰ",
         rarity: "MYTHIC"
     },
-
     {
         id: "author_five",
         name: "Challenge Designer",
         description:
             "Contribute several original problems to the platform.",
-        requirement:
-            "5 problems authored",
+        requirement: "5 problems authored",
         icon: "✎",
         rarity: "EPIC"
     },
-
     {
         id: "author_ten",
         name: "Problem Engineer",
         description:
             "Become one of savaML's major challenge creators.",
-        requirement:
-            "10 problems authored",
+        requirement: "10 problems authored",
         icon: "⚙",
         rarity: "LEGENDARY"
     },
-
     {
         id: "profile_complete",
         name: "Identity Online",
         description:
             "Complete every field in your savaML profile.",
-        requirement:
-            "100% profile completion",
+        requirement: "100% profile completion",
         icon: "◎",
         rarity: "COMMON"
     },
-
     {
         id: "github_connected",
         name: "Open Source",
         description:
             "Connect your GitHub identity to your savaML profile.",
-        requirement:
-            "Add GitHub to profile",
+        requirement: "Add GitHub to profile",
         icon: "</>",
         rarity: "COMMON"
     }
@@ -351,21 +298,59 @@ function Profile() {
     const [loading, setLoading] =
         useState(true);
 
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/api/profile`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
+    const [uploadingPicture, setUploadingPicture] =
+        useState(false);
+
+    const [formData, setFormData] =
+        useState({
+            high_school: "",
+            city: "",
+            country: "",
+            github: "",
+            about: ""
+        });
+
+    const [stats, setStats] =
+        useState({
+            problems_solved: 0,
+            submissions_count: 0,
+            problems_authored: 0,
+            total_score: 0,
+            average_score: 0,
+            global_rank: "-",
+            achievements: []
+        });
+
+
+    useRevealOnScroll(!loading && Boolean(user));
+
+
+    /* =====================================================
+       PROFILE PICTURE
+    ===================================================== */
+
+    const handleProfilePictureUpload =
+        async (file) => {
+
+            if (!file || !token) {
+                return;
+            }
+
+            const uploadData =
+                new FormData();
+
+            uploadData.append(
+                "file",
+                file
             );
 
+            setUploadingPicture(true);
 
             try {
 
                 const response =
                     await fetch(
-                        "http://localhost:5001/api/profile/picture",
+                        `${import.meta.env.VITE_API_URL}/api/profile/picture`,
                         {
                             method: "POST",
 
@@ -378,9 +363,7 @@ function Profile() {
                         }
                     );
 
-
                 let data;
-
 
                 try {
                     data =
@@ -392,12 +375,10 @@ function Profile() {
                     };
                 }
 
-
                 console.log(
                     "PROFILE PICTURE RESPONSE:",
                     data
                 );
-
 
                 if (response.ok) {
 
@@ -421,7 +402,6 @@ function Profile() {
                     "PROFILE PICTURE UPLOAD ERROR:",
                     error
                 );
-
 
                 alert(
                     "Could not upload profile picture."
@@ -452,12 +432,11 @@ function Profile() {
                     return;
                 }
 
-
                 try {
 
                     const response =
                         await fetch(
-                            "http://localhost:5001/api/profile",
+                            `${import.meta.env.VITE_API_URL}/api/profile`,
                             {
                                 headers: {
                                     Authorization:
@@ -466,10 +445,8 @@ function Profile() {
                             }
                         );
 
-
                     const data =
                         await response.json();
-
 
                     if (response.ok) {
 
@@ -499,7 +476,6 @@ function Profile() {
 
             };
 
-
         fetchProfile();
 
     }, [token]);
@@ -516,12 +492,11 @@ function Profile() {
 
                 if (!token) return;
 
-
                 try {
 
                     const response =
                         await fetch(
-                            "http://localhost:5001/api/profile/stats",
+                            `${import.meta.env.VITE_API_URL}/api/profile/stats`,
                             {
                                 headers: {
                                     Authorization:
@@ -530,14 +505,37 @@ function Profile() {
                             }
                         );
 
-
                     const data =
                         await response.json();
 
-
                     if (response.ok) {
 
-                        setStats(data);
+                        setStats({
+                            problems_solved:
+                                data.problems_solved ?? 0,
+
+                            submissions_count:
+                                data.submissions_count ?? 0,
+
+                            problems_authored:
+                                data.problems_authored ?? 0,
+
+                            total_score:
+                                data.total_score ?? 0,
+
+                            average_score:
+                                data.average_score ?? 0,
+
+                            global_rank:
+                                data.global_rank ?? "-",
+
+                            achievements:
+                                Array.isArray(
+                                    data.achievements
+                                )
+                                    ? data.achievements
+                                    : []
+                        });
 
                     } else {
 
@@ -559,7 +557,6 @@ function Profile() {
 
             };
 
-
         fetchStats();
 
     }, [token]);
@@ -572,7 +569,6 @@ function Profile() {
     useEffect(() => {
 
         if (!user) return;
-
 
         setFormData({
             high_school:
@@ -601,24 +597,25 @@ function Profile() {
     const handleChange =
         (e) => {
 
-            setFormData({
-                ...formData,
+            const {
+                name,
+                value
+            } = e.target;
 
-                [e.target.name]:
-                    e.target.value
-            });
+            setFormData(
+                (previous) => ({
+                    ...previous,
+                    [name]: value
+                })
+            );
 
-            const response = await fetch(
-                "${import.meta.env.VITE_API_URL}/api/profile",
-                {
-                    method: "PUT",
+        };
 
 
     const handleCancel =
         () => {
 
             setIsEditing(false);
-
 
             setFormData({
                 high_school:
@@ -647,7 +644,7 @@ function Profile() {
 
                 const response =
                     await fetch(
-                        "http://localhost:5001/api/profile",
+                        `${import.meta.env.VITE_API_URL}/api/profile`,
                         {
                             method: "PUT",
 
@@ -666,10 +663,8 @@ function Profile() {
                         }
                     );
 
-
                 const data =
                     await response.json();
-
 
                 if (response.ok) {
 
@@ -709,7 +704,6 @@ function Profile() {
     if (loading) {
 
         return (
-
             <main className="profile-page">
 
                 <div className="profile-loading">
@@ -721,7 +715,6 @@ function Profile() {
                 </div>
 
             </main>
-
         );
 
     }
@@ -730,17 +723,13 @@ function Profile() {
     if (!user) {
 
         return (
-
             <main className="profile-page">
 
                 <div className="profile-loading">
-
                     PLEASE LOGIN
-
                 </div>
 
             </main>
-
         );
 
     }
@@ -773,7 +762,7 @@ function Profile() {
 
     const profilePictureUrl =
         user.profile_picture
-            ? `http://localhost:5001${user.profile_picture}`
+            ? `${import.meta.env.VITE_API_URL}${user.profile_picture}`
             : null;
 
 
@@ -949,14 +938,11 @@ function Profile() {
                                     const file =
                                         e.target.files?.[0];
 
-
                                     if (!file) return;
-
 
                                     handleProfilePictureUpload(
                                         file
                                     );
-
 
                                     e.target.value = "";
 
