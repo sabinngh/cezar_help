@@ -1,62 +1,115 @@
 import { Link } from "react-router-dom";
 
-import "../styles/problemCard.css";
 
-function ProblemCard({ problem }) {
+function ProblemCard({
+    problem,
+    index,
+    isAdmin,
+    onDelete
+}) {
+
+    const difficultyClass =
+        problem.difficulty
+            ?.toLowerCase() || "easy";
+
 
     return (
 
-        <div className="problem-card">
+        <article className="problem-card">
 
-            <div className="problem-card-top">
+            <div className="problem-card-line" />
+
+
+            <div className="problem-card-header">
+
+                <span className="problem-number">
+                    {String(index + 1).padStart(2, "0")}
+                </span>
+
 
                 <span
-                    className={`difficulty ${problem.difficulty.toLowerCase()}`}
+                    className={
+                        `problem-difficulty ${difficultyClass}`
+                    }
                 >
+                    <i />
+
                     {problem.difficulty}
                 </span>
 
             </div>
 
-            <h2>
 
-                {problem.title}
+            <div className="problem-card-body">
 
-            </h2>
-
-            <p className="problem-description">
-
-                {(problem.short_description || "").length > 140
-
-                    ? problem.short_description.substring(0, 140) + "..."
-
-                    : problem.short_description}
-
-            </p>
-
-            <div className="problem-footer">
-
-                <span>
-
-                    by {problem.author?.username || "Unknown"}
-
+                <span className="problem-type">
+                    NOTEBOOK CHALLENGE
                 </span>
 
-                <Link
-                    to={`/problems/${problem.slug}`}
-                    className="problem-open-btn"
-                >
 
-                    Open →
+                <h3>
+                    {problem.title}
+                </h3>
 
-                </Link>
+
+                <p>
+                    {problem.short_description}
+                </p>
 
             </div>
 
-        </div>
+
+            <div className="problem-card-footer">
+
+                <div className="problem-author">
+
+                    <span>
+                        CREATED BY
+                    </span>
+
+                    <strong>
+                        {
+                            problem.author?.username ||
+                            "savaML"
+                        }
+                    </strong>
+
+                </div>
+
+
+                <div className="problem-card-actions">
+
+                    {isAdmin && (
+
+                        <button
+                            className="problem-delete"
+                            onClick={() =>
+                                onDelete(problem)
+                            }
+                            title="Delete problem"
+                        >
+                            ×
+                        </button>
+
+                    )}
+
+
+                    <Link
+                        to={`/problems/${problem.slug}`}
+                        className="problem-open"
+                    >
+                        OPEN
+                        <span>→</span>
+                    </Link>
+
+                </div>
+
+            </div>
+
+        </article>
 
     );
-
 }
+
 
 export default ProblemCard;
