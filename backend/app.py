@@ -1,5 +1,6 @@
 from flask import Flask, g, session
 from extensions import db
+import os
 
 from models.user import User
 from models.problem import Problem
@@ -21,6 +22,13 @@ app = Flask(__name__,
             template_folder='templates',
             static_folder='static')
 
+UPLOAD_FOLDER = os.path.join(
+    os.getcwd(),
+    "uploads"
+)
+
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
 
 CORS(app, origins=["http://localhost:5173"])
 
@@ -33,6 +41,31 @@ jwt = JWTManager(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = \
     "postgresql://postgres:postgres@localhost:5433/mydatabase"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+os.makedirs(
+
+    os.path.join(UPLOAD_FOLDER, "notebooks"),
+
+    exist_ok=True
+
+)
+
+os.makedirs(
+
+    os.path.join(UPLOAD_FOLDER, "starter"),
+
+    exist_ok=True
+
+)
+
+os.makedirs(
+
+    os.path.join(UPLOAD_FOLDER, "ground_truth"),
+
+    exist_ok=True
+
+)
+
 
 # Initialize extensions
 db.init_app(app)

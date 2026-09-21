@@ -342,35 +342,22 @@ function AdminDashboard() {
 
                             <ProblemForm
 
-                                problem={editingProblem}
-
                                 onSuccess={(problem) => {
 
-                                    if (editingProblem) {
+                                    setProblems(prev => [
 
-                                        setProblems(prev =>
-                                            prev.map(p =>
-                                                p.id === problem.id ? problem : p
-                                            )
-                                        );
+                                        problem,
 
-                                    } else {
+                                        ...prev
 
-                                        setProblems(prev => [
-                                            problem,
-                                            ...prev
-                                        ]);
+                                    ]);
 
-                                    }
-
-                                    setEditingProblem(null);
                                     setShowForm(false);
 
                                 }}
 
                                 onCancel={() => {
 
-                                    setEditingProblem(null);
                                     setShowForm(false);
 
                                 }}

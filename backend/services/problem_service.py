@@ -2,40 +2,49 @@ from models.problem import Problem
 
 from repositories.problem_repository import ProblemRepository
 
+from services.file_service import FileService
+
 from utils.slug import slugify
 
 
 class ProblemService:
 
     ALLOWED_DIFFICULTIES = [
+
         "Easy",
+
         "Medium",
+
         "Hard"
+
     ]
 
     @staticmethod
-    def create_problem(data, user_id):
+    def create_problem(
 
-        required_fields = [
+        data,
 
-            "title",
-            "short_description",
-            "statement",
-            "difficulty"
+        notebook,
 
-        ]
+        starter_archive,
 
-        for field in required_fields:
+        ground_truth,
 
-            if field not in data or not str(data[field]).strip():
+        user_id
 
-                return None, f"{field} is required."
+    ):
 
-        if data["difficulty"] not in ProblemService.ALLOWED_DIFFICULTIES:
+        title = data.get("title", "").strip()
+
+        difficulty = data.get("difficulty", "").strip()
+
+        if not title:
+
+            return None, "Title is required."
+
+        if difficulty not in ProblemService.ALLOWED_DIFFICULTIES:
 
             return None, "Invalid difficulty."
-
-        title = data["title"].strip()
 
         slug = slugify(title)
 
@@ -43,56 +52,76 @@ class ProblemService:
 
             return None, "A problem with this title already exists."
 
+        notebook_filename, error = FileService.save_file(
+
+            notebook,
+
+            "notebooks",
+
+            {"ipynb"}
+
+        )
+
+        if error:
+
+            return None, error
+
+        starter_filename, error = FileService.save_file(
+
+            starter_archive,
+
+            "starter",
+
+            {"zip"}
+
+        )
+
+        if error:
+
+            return None, error
+
+        ground_truth_filename, error = FileService.save_file(
+
+            ground_truth,
+
+            "ground_truth",
+
+            {"csv"}
+
+        )
+
+        if error:
+
+            return None, error
+
         problem = Problem(
 
             title=title,
 
             slug=slug,
 
-            difficulty=data["difficulty"],
+            difficulty=difficulty,
 
-            short_description=data["short_description"].strip(),
+            notebook_file=notebook_filename,
 
-            statement=data["statement"].strip(),
+            starter_archive=starter_filename,
 
-            input_description=data.get(
-                "input_description",
-                ""
-            ).strip(),
-
-            output_description=data.get(
-                "output_description",
-                ""
-            ).strip(),
-
-            constraints=data.get(
-                "constraints",
-                ""
-            ).strip(),
-
-            examples=data.get(
-                "examples",
-                ""
-            ).strip(),
-
-            evaluation=data.get(
-                "evaluation",
-                ""
-            ).strip(),
-
-            hints=data.get(
-                "hints",
-                ""
-            ).strip(),
+            ground_truth_file=ground_truth_filename,
 
             resource_link=data.get(
+
                 "resource_link",
+
                 ""
+
             ).strip(),
 
             image_url=data.get(
+
                 "image_url",
+
                 ""
+
             ).strip(),
 
             created_by=user_id
@@ -112,73 +141,6 @@ class ProblemService:
     def get_by_slug(slug):
 
         return ProblemRepository.get_by_slug(slug)
-
-    @staticmethod
-    def update_problem(slug, data):
-
-        problem = ProblemRepository.get_by_slug(slug)
-
-        if not problem:
-
-            return None, "Problem not found."
-
-        if "title" in data:
-
-            title = data["title"].strip()
-
-            if not title:
-
-                return None, "Title cannot be empty."
-
-            new_slug = slugify(title)
-
-            existing = ProblemRepository.get_by_slug(new_slug)
-
-            if existing and existing.id != problem.id:
-
-                return None, "A problem with this title already exists."
-
-            problem.title = title
-            problem.slug = new_slug
-
-        if "difficulty" in data:
-
-            if data["difficulty"] not in ProblemService.ALLOWED_DIFFICULTIES:
-
-                return None, "Invalid difficulty."
-
-            problem.difficulty = data["difficulty"]
-
-        text_fields = [
-
-            "short_description",
-            "statement",
-            "input_description",
-            "output_description",
-            "constraints",
-            "examples",
-            "evaluation",
-            "hints",
-            "resource_link",
-            "image_url"
-
-        ]
-
-        for field in text_fields:
-
-            if field in data:
-
-                value = data[field]
-
-                if value is None:
-
-                    value = ""
-
-                setattr(problem, field, value.strip())
-
-        ProblemRepository.update()
-
-        return problem, None
 
     @staticmethod
     def delete_problem(slug):

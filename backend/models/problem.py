@@ -28,45 +28,23 @@ class Problem(db.Model):
         nullable=False
     )
 
-    short_description = db.Column(
-        db.String(500),
-        nullable=False
+    notebook_file = db.Column(
+        db.String(255)
     )
 
-    statement = db.Column(
-        db.Text,
-        nullable=False
+    starter_archive = db.Column(
+        db.String(255)
     )
 
-    input_description = db.Column(
-        db.Text
-    )
-
-    output_description = db.Column(
-        db.Text
-    )
-
-    constraints = db.Column(
-        db.Text
-    )
-
-    examples = db.Column(
-        db.Text
-    )
-
-    evaluation = db.Column(
-        db.Text
-    )
-
-    hints = db.Column(
-        db.Text
-    )
-
-    resource_link = db.Column(
-        db.String(500)
+    ground_truth_file = db.Column(
+        db.String(255)
     )
 
     image_url = db.Column(
+        db.String(500)
+    )
+
+    resource_link = db.Column(
         db.String(500)
     )
 
@@ -101,25 +79,15 @@ class Problem(db.Model):
 
             "difficulty": self.difficulty,
 
-            "short_description": self.short_description,
+            "notebook_file": self.notebook_file,
 
-            "statement": self.statement,
+            "starter_archive": self.starter_archive,
 
-            "input_description": self.input_description,
-
-            "output_description": self.output_description,
-
-            "constraints": self.constraints,
-
-            "examples": self.examples,
-
-            "evaluation": self.evaluation,
-
-            "hints": self.hints,
-
-            "resource_link": self.resource_link,
+            "ground_truth_file": self.ground_truth_file,
 
             "image_url": self.image_url,
+
+            "resource_link": self.resource_link,
 
             "created_at": self.created_at,
 
