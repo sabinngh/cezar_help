@@ -66,7 +66,7 @@ function FounderCard({
             <div className="founder-info">
 
                 <span className="founder-role">
-                    SAVA ML / FOUNDER
+                    sava.py / FOUNDER
                 </span>
 
                 <h2>

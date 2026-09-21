@@ -16,7 +16,7 @@ function Navbar() {
 
             {/* Logo */}
             <Link to="/" className="navbar-logo">
-                sava<span>ML</span>
+                sava.<span>py</span>
             </Link>
 
             {/* Pages */}

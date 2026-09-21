@@ -47,7 +47,7 @@ function Hero() {
 
                 <h1 className="hero-title">
 
-                    sava<span>ML</span> Club
+                    sava.<span>py</span> Club
 
                 </h1>
 
