@@ -29,7 +29,7 @@ function MeetTheTeam() {
                 </h1>
 
                 <p className="team-description">
-                    The people behind savaML — building a community around
+                    The people behind sava.py — building a community around
                     artificial intelligence, machine learning, research and
                     creative problem solving.
                 </p>

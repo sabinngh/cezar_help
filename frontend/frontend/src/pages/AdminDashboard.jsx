@@ -39,7 +39,7 @@ function AdminDashboard() {
 
             const response = await fetch(
 
-                "http://localhost:5001/api/problems",
+                `${import.meta.env.VITE_API_URL}/api/problems`,
 
                 {
 
@@ -103,7 +103,7 @@ function AdminDashboard() {
 
         const response = await fetch(
 
-            `http://localhost:5001/api/problems/${deleteProblem.slug}`,
+            `${import.meta.env.VITE_API_URL}/api/problems/${deleteProblem.slug}`,
 
             {
 

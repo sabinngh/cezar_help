@@ -77,7 +77,7 @@ function OurStory() {
 
                         <div className="story-ticker-group">
 
-                            <span>SAVAML</span>
+                            <span>SAVA.PY</span>
                             <i>✦</i>
 
                             <span>LEARN AI</span>
@@ -100,7 +100,7 @@ function OurStory() {
                             aria-hidden="true"
                         >
 
-                            <span>SAVAML</span>
+                            <span>SAVA.PY</span>
                             <i>✦</i>
 
                             <span>LEARN AI</span>
@@ -152,7 +152,7 @@ function OurStory() {
 
 
                 <p>
-                    Founded in September 2026, savaML brings together students
+                    Founded in September 2026, sava.py brings together students
                     passionate about data science, algorithms, and artificial
                     intelligence.
                 </p>

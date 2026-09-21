@@ -25,7 +25,7 @@ function Profile() {
         const fetchProfile = async () => {
 
             const response = await fetch(
-                "http://localhost:5001/api/profile",
+                `${import.meta.env.VITE_API_URL}/api/profile`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -91,7 +91,7 @@ function Profile() {
         try {
 
             const response = await fetch(
-                "http://localhost:5001/api/profile",
+                "${import.meta.env.VITE_API_URL}/api/profile",
                 {
                     method: "PUT",
 

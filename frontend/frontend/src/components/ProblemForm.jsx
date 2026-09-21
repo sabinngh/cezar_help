@@ -104,9 +104,9 @@ function ProblemForm({
 
                 editing
 
-                    ? `http://localhost:5001/api/problems/${problem.slug}`
+                    ? `${import.meta.env.VITE_API_URL}/api/problems/${problem.slug}`
 
-                    : "http://localhost:5001/api/problems",
+                    : `${import.meta.env.VITE_API_URL}/api/problems`,
 
                 {
 
