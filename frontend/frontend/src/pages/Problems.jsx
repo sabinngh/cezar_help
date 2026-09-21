@@ -24,7 +24,7 @@ function Problems() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5001/api/problems"
+                    `${import.meta.env.VITE_API_URL}/api/problems`
                 );
 
                 const data = await response.json();

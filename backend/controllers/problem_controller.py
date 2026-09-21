@@ -3,6 +3,7 @@ from flask import Blueprint, request
 from flask_jwt_extended import get_jwt_identity
 
 from services.problem_service import ProblemService
+from repositories.user_repository import UserRepository
 from utils.auth import admin_required
 
 
@@ -34,22 +35,49 @@ def get_problem(slug):
 @admin_required
 def create_problem():
 
-    problem, error = ProblemService.create_problem(
-        request.get_json(),
+    user = UserRepository.get_by_id(
         get_jwt_identity()
     )
 
+    data = request.form
+
+    notebook = request.files.get("notebook")
+
+    starter_archive = request.files.get("starter_archive")
+
+    ground_truth = request.files.get("ground_truth")
+
+    problem, error = ProblemService.create_problem(
+
+        data,
+
+        notebook,
+
+        starter_archive,
+
+        ground_truth,
+
+        user.id
+
+    )
+
     if error:
+
         return {
+
             "message": error
+
         }, 400
 
     return {
-        "message": "Problem created.",
+
+        "message": "Problem created successfully.",
+
         "problem": problem.to_dict()
+
     }, 201
 
-
+'''
 @problem_bp.route("/api/problems/<slug>", methods=["PUT"])
 @admin_required
 def update_problem(slug):
@@ -68,7 +96,7 @@ def update_problem(slug):
         "message": "Problem updated.",
         "problem": problem.to_dict()
     }, 200
-
+'''
 
 @problem_bp.route("/api/problems/<slug>", methods=["DELETE"])
 @admin_required

@@ -31,7 +31,7 @@ function LessonSidebar({
 
         try {
             const response = await fetch(
-                `http://localhost:5001/api/lessons/${lessonId}`,
+                `${import.meta.env.VITE_API_URL}/api/lessons/${lessonId}`,
                 {
                     method: "DELETE",
                     headers: {

@@ -24,7 +24,7 @@ function Login() {
         try {
 
             const response = await fetch(
-                "http://localhost:5001/api/login",
+                `${import.meta.env.VITE_API_URL}/api/login`,
                 {
                     method: "POST",
 
@@ -283,7 +283,7 @@ function Login() {
                 <div className="login-footer">
 
                     <span>
-                        SavaML // AUTHENTICATION SYSTEM
+                        sava.py // AUTHENTICATION SYSTEM
                     </span>
 
                 </div>

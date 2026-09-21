@@ -190,7 +190,133 @@ function OurStory() {
 
             {/* ==========================================
                 INTRO
-            ========================================== */}
+            ===================================================== */}
+
+            <div
+                className="story-intro"
+                onMouseMove={handleMouseMove}
+                style={{
+                    "--mouse-x": `${mousePosition.x}%`,
+                    "--mouse-y": `${mousePosition.y}%`
+                }}
+            >
+
+                <div className="intro-grid"></div>
+
+
+                <span className="section-tag">
+                    01 / OUR STORY
+                </span>
+
+
+                <h2>
+                    More than a club.
+                    <span> A community.</span>
+                </h2>
+
+
+                <p>
+                    Founded in September 2026, sava.py brings together students
+                    passionate about data science, algorithms, and artificial
+                    intelligence.
+                </p>
+
+            </div>
+
+
+            {/* =====================================================
+                TIMELINE
+            ===================================================== */}
+
+            <div className="story-timeline">
+
+
+                {/* =================================================
+                    NODE 01
+                ================================================= */}
+
+                <div id="practice" className="story-node">
+
+                    <div className="node-point">
+                        <span>01</span>
+                    </div>
+
+
+                    <div className="story-card">
+
+                        <span className="story-label">
+                            FOUNDATION
+                        </span>
+
+
+                        <h3>
+                            Curiosity <span>drives us.</span>
+                        </h3>
+
+
+                        <p>
+                            Our core mission is to cultivate curiosity and
+                            enthusiasm for computer science, providing members
+                            with an environment that fosters deep learning,
+                            active collaboration, and intellectual growth.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {/* =================================================
+                    NODE 02
+                ================================================= */}
+
+                <div id="research" className="story-node">
+
+                    <div className="node-point">
+                        <span>02</span>
+                    </div>
+
+
+                    <div className="story-card">
+
+                        <span className="story-label">
+                            LEARNING
+                        </span>
+
+
+                        <h3>
+                            Learn. <span>Build. Grow.</span>
+                        </h3>
+
+
+                        <p>
+                            Through our weekly meetings, members explore
+                            fundamental and advanced topics in machine learning
+                            and algorithmic thinking, combining theoretical
+                            concepts with practical applications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {/* =================================================
+                    NODE 03
+                ================================================= */}
+
+                <div id="future" className="story-node">
+
+                    <div className="node-point">
+                        <span>03</span>
+                    </div>
+
+
+                    <div className="story-card">
+
+                        <span className="story-label">
+                            PRACTICE
+                        </span>
 
             <div className="how-container">
 

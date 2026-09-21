@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useAuth } from "../AuthContext";
 
@@ -18,47 +18,63 @@ function ProblemForm({
 
     const editing = problem !== null;
 
-    const [error, setError] = useState("");
-
     const [loading, setLoading] = useState(false);
+
+    const [error, setError] = useState("");
 
     const [formData, setFormData] = useState({
 
-        title: problem?.title || "",
+        title: "",
 
-        difficulty: problem?.difficulty || "Easy",
+        difficulty: "Easy",
 
-        short_description: problem?.short_description || "",
+        image_url: "",
 
-        statement: problem?.statement || "",
+        resource_link: "",
 
-        input_description: problem?.input_description || "",
+        notebook: null,
 
-        output_description: problem?.output_description || "",
+        starter_archive: null,
 
-        constraints: problem?.constraints || "",
-
-        examples: problem?.examples || "",
-
-        evaluation: problem?.evaluation || "",
-
-        hints: problem?.hints || "",
-
-        resource_link: problem?.resource_link || "",
-
-        image_url: problem?.image_url || ""
+        ground_truth: null
 
     });
 
-    const handleChange = (e) => {
+    useEffect(() => {
+
+        if (!problem) return;
 
         setFormData({
 
-            ...formData,
+            title: problem.title,
 
-            [e.target.name]: e.target.value
+            difficulty: problem.difficulty,
+
+            image_url: problem.image_url || "",
+
+            resource_link: problem.resource_link || "",
+
+            notebook: null,
+
+            starter_archive: null,
+
+            ground_truth: null
 
         });
+
+    }, [problem]);
+
+    const handleChange = (e) => {
+
+        const { name, value, files } = e.target;
+
+        setFormData(prev => ({
+
+            ...prev,
+
+            [name]: files ? files[0] : value
+
+        }));
 
     };
 
@@ -70,17 +86,27 @@ function ProblemForm({
 
         setError("");
 
+        const body = new FormData();
+
+        Object.entries(formData).forEach(([key, value]) => {
+
+            if (value !== null && value !== "") {
+
+                body.append(key, value);
+
+            }
+
+        });
+
         try {
-
-            const url = editing
-
-                ? `http://localhost:5001/api/problems/${problem.slug}`
-
-                : "http://localhost:5001/api/problems";
 
             const response = await fetch(
 
-                url,
+                editing
+
+                    ? `${import.meta.env.VITE_API_URL}/api/problems/${problem.slug}`
+
+                    : `${import.meta.env.VITE_API_URL}/api/problems`,
 
                 {
 
@@ -88,13 +114,11 @@ function ProblemForm({
 
                     headers: {
 
-                        "Content-Type": "application/json",
-
                         Authorization: `Bearer ${token}`
 
                     },
 
-                    body: JSON.stringify(formData)
+                    body
 
                 }
 
@@ -110,17 +134,15 @@ function ProblemForm({
 
             }
 
-            if (onSuccess) {
-
-                onSuccess(data.problem);
-
-            }
+            onSuccess(data.problem);
 
         }
 
-        catch {
+        catch (err) {
 
-            setError("Server error.");
+            console.error(err);
+
+            setError("Could not connect to the server.");
 
         }
 
@@ -131,28 +153,6 @@ function ProblemForm({
         }
 
     };
-
-    const renderTextarea = (label, name, rows = 4) => (
-
-        <>
-
-            <label>{label}</label>
-
-            <textarea
-
-                rows={rows}
-
-                name={name}
-
-                value={formData[name]}
-
-                onChange={handleChange}
-
-            />
-
-        </>
-
-    );
 
     return (
 
@@ -166,7 +166,15 @@ function ProblemForm({
 
             <h2>
 
-                {editing ? "Edit Problem" : "Create Problem"}
+                {
+
+                    editing
+
+                        ? "Edit Problem"
+
+                        : "Create Problem"
+
+                }
 
             </h2>
 
@@ -178,11 +186,15 @@ function ProblemForm({
 
             <input
 
+                type="text"
+
                 name="title"
 
                 value={formData.title}
 
                 onChange={handleChange}
+
+                required
 
             />
 
@@ -202,105 +214,95 @@ function ProblemForm({
 
             >
 
-                <option>Easy</option>
+                <option value="Easy">
 
-                <option>Medium</option>
+                    Easy
 
-                <option>Hard</option>
+                </option>
+
+                <option value="Medium">
+
+                    Medium
+
+                </option>
+
+                <option value="Hard">
+
+                    Hard
+
+                </option>
 
             </select>
 
-            {renderTextarea(
-
-                "Short Description",
-
-                "short_description",
-
-                2
-
-            )}
-
-            {renderTextarea(
-
-                "Problem Statement",
-
-                "statement",
-
-                16
-
-            )}
-
-            {renderTextarea(
-
-                "Input Description",
-
-                "input_description"
-
-            )}
-
-            {renderTextarea(
-
-                "Output Description",
-
-                "output_description"
-
-            )}
-
-            {renderTextarea(
-
-                "Constraints",
-
-                "constraints"
-
-            )}
-
-            {renderTextarea(
-
-                "Examples",
-
-                "examples"
-
-            )}
-
-            {renderTextarea(
-
-                "Evaluation",
-
-                "evaluation"
-
-            )}
-
-            {renderTextarea(
-
-                "Hints",
-
-                "hints"
-
-            )}
-
             <label>
 
-                Resource Link
+                Notebook (.ipynb)
 
             </label>
 
             <input
 
-                name="resource_link"
+                type="file"
 
-                value={formData.resource_link}
+                name="notebook"
+
+                accept=".ipynb"
 
                 onChange={handleChange}
+
+                required={!editing}
 
             />
 
             <label>
 
-                Image URL
+                Starter ZIP (.zip)
 
             </label>
 
             <input
+
+                type="file"
+
+                name="starter_archive"
+
+                accept=".zip"
+
+                onChange={handleChange}
+
+                required={!editing}
+
+            />
+
+            <label>
+
+                Ground Truth (.csv)
+
+            </label>
+
+            <input
+
+                type="file"
+
+                name="ground_truth"
+
+                accept=".csv"
+
+                onChange={handleChange}
+
+                required={!editing}
+
+            />
+
+            <label>
+
+                Image URL (optional)
+
+            </label>
+
+            <input
+
+                type="text"
 
                 name="image_url"
 
@@ -310,37 +312,57 @@ function ProblemForm({
 
             />
 
-            {error && (
+            <label>
 
-                <p className="form-error">
+                Resource Link (optional)
 
-                    {error}
+            </label>
 
-                </p>
+            <input
 
-            )}
+                type="text"
+
+                name="resource_link"
+
+                value={formData.resource_link}
+
+                onChange={handleChange}
+
+            />
+
+            {
+
+                error && (
+
+                    <p className="form-error">
+
+                        {error}
+
+                    </p>
+
+                )
+
+            }
 
             <div className="form-buttons">
 
-                {onCancel && (
+                <button
 
-                    <button
+                    type="button"
 
-                        type="button"
+                    className="cancel-btn"
 
-                        className="cancel-btn"
+                    onClick={onCancel}
 
-                        onClick={onCancel}
+                >
 
-                    >
+                    Cancel
 
-                        Cancel
-
-                    </button>
-
-                )}
+                </button>
 
                 <button
+
+                    type="submit"
 
                     className="save-btn"
 
@@ -348,15 +370,19 @@ function ProblemForm({
 
                 >
 
-                    {loading
+                    {
 
-                        ? "Saving..."
+                        loading
 
-                        : editing
+                            ? "Saving..."
 
-                        ? "Save Changes"
+                            : editing
 
-                        : "Create Problem"}
+                                ? "Save Changes"
+
+                                : "Create Problem"
+
+                    }
 
                 </button>
 

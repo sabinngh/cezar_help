@@ -351,98 +351,13 @@ function Profile() {
     const [loading, setLoading] =
         useState(true);
 
-    const [uploadingPicture, setUploadingPicture] =
-        useState(false);
-
-
-    const [formData, setFormData] =
-        useState({
-            high_school: "",
-            city: "",
-            country: "",
-            github: "",
-            about: ""
-        });
-
-
-    const [stats, setStats] =
-        useState({
-            problems_authored: 0,
-            problems_solved: 0,
-            submissions_count: 0,
-            total_score: 0,
-            average_score: 0,
-            perfect_scores: 0,
-            global_rank: "-",
-            achievements: []
-        });
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    useRevealOnScroll(
-        !loading && !!user
-    );
-
-
-    /* =====================================================
-       PROFILE PICTURE UPLOAD
-    ===================================================== */
-
-    const handleProfilePictureUpload =
-        async (file) => {
-
-            if (!file) return;
-
-
-            const allowedTypes = [
-                "image/png",
-                "image/jpeg",
-                "image/webp"
-            ];
-
-
-            if (
-                !allowedTypes.includes(
-                    file.type
-                )
-            ) {
-                alert(
-                    "Only PNG, JPG/JPEG and WEBP images are allowed."
-                );
-
-                return;
-            }
-
-
-            const maxSize =
-                5 * 1024 * 1024;
-
-
-            if (
-                file.size >
-                maxSize
-            ) {
-                alert(
-                    "Profile picture must be smaller than 5 MB."
-                );
-
-                return;
-            }
-
-
-            setUploadingPicture(true);
-
-
-            const uploadData =
-                new FormData();
-
-
-            uploadData.append(
-                "file",
-                file
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/profile`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
             );
 
 
@@ -693,7 +608,10 @@ function Profile() {
                     e.target.value
             });
 
-        };
+            const response = await fetch(
+                "${import.meta.env.VITE_API_URL}/api/profile",
+                {
+                    method: "PUT",
 
 
     const handleCancel =

@@ -24,7 +24,7 @@ function Learning() {
     const loadLessons = async () => {
 
         let url =
-            "http://localhost:5001/api/lessons";
+            `${import.meta.env.VITE_API_URL}/api/lessons`;
 
         if (category !== "All") {
             url += `?category=${encodeURIComponent(category)}`;
@@ -59,7 +59,7 @@ function Learning() {
                     </h1>
 
                     <p>
-                        Explore lessons, theory and resources created for savaML members.
+                        Explore lessons, theory and resources created for sava.py members.
                     </p>
                 </div>
 

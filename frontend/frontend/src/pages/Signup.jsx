@@ -13,7 +13,7 @@ function Signup() {
         setMessage("Creating account...");
 
         try {
-            const response = await fetch("http://localhost:5001/api/signup", {
+            const response = await fetch("${import.meta.env.VITE_API_URL}/api/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function Signup() {
                 </h1>
 
                 <p className="signup-subtitle">
-                    // initialize your savaML profile
+                    // initialize your sava.py profile
                 </p>
 
 
@@ -134,7 +134,7 @@ function Signup() {
 
 
                 <div className="signup-footer">
-                    savaML // account registration
+                    sava.py // account registration
                 </div>
 
             </div>

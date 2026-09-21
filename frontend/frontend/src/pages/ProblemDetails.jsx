@@ -20,7 +20,7 @@ function ProblemDetails() {
 
                 const response = await fetch(
 
-                    `http://localhost:5001/api/problems/${slug}`
+                    `${import.meta.env.VITE_API_URL}/api/problems/${slug}`
 
                 );
 

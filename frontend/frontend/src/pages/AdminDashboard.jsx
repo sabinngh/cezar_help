@@ -39,7 +39,7 @@ function AdminDashboard() {
 
             const response = await fetch(
 
-                "http://localhost:5001/api/problems",
+                `${import.meta.env.VITE_API_URL}/api/problems`,
 
                 {
 
@@ -103,7 +103,7 @@ function AdminDashboard() {
 
         const response = await fetch(
 
-            `http://localhost:5001/api/problems/${deleteProblem.slug}`,
+            `${import.meta.env.VITE_API_URL}/api/problems/${deleteProblem.slug}`,
 
             {
 
@@ -342,35 +342,22 @@ function AdminDashboard() {
 
                             <ProblemForm
 
-                                problem={editingProblem}
-
                                 onSuccess={(problem) => {
 
-                                    if (editingProblem) {
+                                    setProblems(prev => [
 
-                                        setProblems(prev =>
-                                            prev.map(p =>
-                                                p.id === problem.id ? problem : p
-                                            )
-                                        );
+                                        problem,
 
-                                    } else {
+                                        ...prev
 
-                                        setProblems(prev => [
-                                            problem,
-                                            ...prev
-                                        ]);
+                                    ]);
 
-                                    }
-
-                                    setEditingProblem(null);
                                     setShowForm(false);
 
                                 }}
 
                                 onCancel={() => {
 
-                                    setEditingProblem(null);
                                     setShowForm(false);
 
                                 }}

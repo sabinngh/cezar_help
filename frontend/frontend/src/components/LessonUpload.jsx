@@ -26,7 +26,7 @@ function LessonUpload({ onUploaded }) {
         
 
         const response = await fetch(
-            "http://localhost:5001/api/lessons/upload",
+            `${import.meta.env.VITE_API_URL}/api/lessons/upload`,
             {
                 method: "POST",
 
