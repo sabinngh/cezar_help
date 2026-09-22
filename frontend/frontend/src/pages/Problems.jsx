@@ -207,45 +207,31 @@ function Problems() {
                     </p>
 
 
-                    <div className="problems-stats">
+                    <div className="problems-hero-stats">
 
-                        <div>
-                            <strong>
-                                {problems.length}
-                            </strong>
-                            <span>
-                                TOTAL
-                            </span>
+                        <div className="hero-stat total">
+                            <strong>{problems.length}</strong>
+                            <span>TOTAL</span>
                         </div>
 
-                        <div>
-                            <strong>
-                                {easyCount}
-                            </strong>
-                            <span>
-                                EASY
-                            </span>
+                        <div className="hero-stat easy">
+                            <strong>{easyCount}</strong>
+                            <span>EASY</span>
                         </div>
 
-                        <div>
-                            <strong>
-                                {mediumCount}
-                            </strong>
-                            <span>
-                                MEDIUM
-                            </span>
+                        <div className="hero-stat medium">
+                            <strong>{mediumCount}</strong>
+                            <span>MEDIUM</span>
                         </div>
 
-                        <div>
-                            <strong>
-                                {hardCount}
-                            </strong>
-                            <span>
-                                HARD
-                            </span>
+                        <div className="hero-stat hard">
+                            <strong>{hardCount}</strong>
+                            <span>HARD</span>
                         </div>
 
                     </div>
+
+                    
 
                 </div>
 
