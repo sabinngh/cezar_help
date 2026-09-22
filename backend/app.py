@@ -2,6 +2,8 @@ from flask import Flask, g, session
 from extensions import db
 import os
 
+from dotenv import load_dotenv
+
 from models.user import User
 from models.problem import Problem
 
@@ -31,19 +33,20 @@ UPLOAD_FOLDER = os.path.join(
     "uploads"
 )
 
+load_dotenv() 
+
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
 CORS(app, origins=["http://localhost:5173"])
 
 # --- CONFIGURATION ---
-app.config["SECRET_KEY"] = "carinas-secret-key-here"
-app.config["JWT_SECRET_KEY"] = "carinas-jwt-secret-key"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=8)
 
 jwt = JWTManager(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = \
-    "postgresql://postgres:postgres@localhost:5433/mydatabase"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 os.makedirs(

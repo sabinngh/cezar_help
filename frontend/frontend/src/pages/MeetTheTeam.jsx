@@ -36,7 +36,7 @@ function MeetTheTeam() {
 
                 <div className="team-status">
                     <span className="team-status-dot"></span>
-                    SAVA ML CORE TEAM
+                    sava.py CORE TEAM
                 </div>
 
             </section>
