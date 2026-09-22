@@ -112,8 +112,8 @@ app.register_blueprint(home_bp)
 app.register_blueprint(problem_bp)
 
 # --- DB INITIALIZATION ---
-with app.app_context():
-    db.create_all()
+#with app.app_context():
+#    db.create_all()
 
 # --- APP ENTRYPOINT ---
 if __name__ == "__main__":
