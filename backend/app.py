@@ -19,6 +19,10 @@ from flask_migrate import Migrate
 from controllers.lesson_controller import lesson_bp
 from models.lesson import Lesson
 from datetime import timedelta
+from controllers.submission_controller import submission_bp
+from models.submission import Submission
+from flask import send_from_directory
+import os
 
 app = Flask(__name__,
             template_folder='templates',
@@ -84,10 +88,25 @@ def load_logged_in_user():
     else:
         g.user = User.query.get(user_id)
 
+#profile pic
+@app.route(
+    "/uploads/profile_pictures/<filename>"
+)
+def profile_picture_file(filename):
+
+    return send_from_directory(
+        os.path.join(
+            app.root_path,
+            "uploads",
+            "profile_pictures"
+        ),
+        filename
+    )
+
 # --- BLUEPRINTS ---
 app.register_blueprint(user_bp)
 app.register_blueprint(auth_bp)
-
+app.register_blueprint(submission_bp)
 app.register_blueprint(lesson_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(problem_bp)

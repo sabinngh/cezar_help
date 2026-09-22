@@ -28,24 +28,19 @@ class Problem(db.Model):
         nullable=False
     )
 
-    notebook_file = db.Column(
-        db.String(255)
+    short_description = db.Column(
+        db.String(500),
+        nullable=False
     )
 
-    starter_archive = db.Column(
-        db.String(255)
+    content = db.Column(
+        db.Text,
+        nullable=False
     )
 
-    ground_truth_file = db.Column(
-        db.String(255)
-    )
-
-    image_url = db.Column(
-        db.String(500)
-    )
-
-    resource_link = db.Column(
-        db.String(500)
+    original_filename = db.Column(
+        db.String(255),
+        nullable=True
     )
 
     created_at = db.Column(
@@ -67,40 +62,36 @@ class Problem(db.Model):
         nullable=False
     )
 
+    submissions = db.relationship(
+        "Submission",
+        back_populates="problem",
+        lazy=True,
+        cascade="all, delete-orphan"
+    )
+
     def to_dict(self):
 
         return {
-
             "id": self.id,
-
             "title": self.title,
-
             "slug": self.slug,
-
             "difficulty": self.difficulty,
-
-            "notebook_file": self.notebook_file,
-
-            "starter_archive": self.starter_archive,
-
-            "ground_truth_file": self.ground_truth_file,
-
-            "image_url": self.image_url,
-
-            "resource_link": self.resource_link,
-
-            "created_at": self.created_at,
-
-            "updated_at": self.updated_at,
-
+            "short_description": self.short_description,
+            "content": self.content,
+            "original_filename": self.original_filename,
+            "created_at": (
+                self.created_at.isoformat()
+                if self.created_at
+                else None
+            ),
+            "updated_at": (
+                self.updated_at.isoformat()
+                if self.updated_at
+                else None
+            ),
             "created_by": self.created_by,
-
             "author": {
-
                 "id": self.author.id,
-
                 "username": self.author.username
-
             } if self.author else None
-
         }

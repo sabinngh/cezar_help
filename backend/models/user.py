@@ -33,7 +33,8 @@ class User(db.Model):
             "country": self.country,
             "github": self.github,
             "about": self.about,
-            "role" : self.role
+            "role" : self.role,
+            "profile_picture": self.profile_picture
         }
 
     problems = db.relationship(
@@ -41,6 +42,14 @@ class User(db.Model):
         backref="author",
         lazy=True
     )
-
-
+    submissions = db.relationship(
+        "Submission",
+        back_populates="user",
+        lazy=True,
+        cascade="all, delete-orphan"
+    )
+    profile_picture = db.Column(
+        db.String(500),
+        nullable=True
+    )
 

@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
 
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+
+import "katex/dist/katex.min.css";
 import "../styles/problemDetails.css";
+
 
 function ProblemDetails() {
 
     const { slug } = useParams();
 
     const [problem, setProblem] = useState(null);
-
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
 
     useEffect(() => {
 
@@ -18,29 +27,29 @@ function ProblemDetails() {
 
             try {
 
+                setError("");
+
                 const response = await fetch(
-
                     `${import.meta.env.VITE_API_URL}/api/problems/${slug}`
-
                 );
 
                 const data = await response.json();
 
-                if (response.ok) {
-
-                    setProblem(data);
-
+                if (!response.ok) {
+                    throw new Error(
+                        data.message ||
+                        "Problem not found."
+                    );
                 }
 
-            }
+                setProblem(data);
 
-            catch (error) {
+            } catch (error) {
 
                 console.error(error);
+                setError(error.message);
 
-            }
-
-            finally {
+            } finally {
 
                 setLoading(false);
 
@@ -48,221 +57,155 @@ function ProblemDetails() {
 
         };
 
+
         fetchProblem();
 
     }, [slug]);
 
+
     if (loading) {
-
         return (
-
             <div className="problem-loading">
-
-                Loading...
-
+                Loading problem...
             </div>
-
         );
-
     }
 
-    if (!problem) {
 
+    if (error || !problem) {
         return (
-
             <div className="problem-loading">
-
-                Problem not found.
-
+                {error || "Problem not found."}
             </div>
-
         );
-
     }
+
 
     return (
 
-        <div className="problem-page">
+        <main className="problem-details-page">
 
-            <div className="problem-container">
+            <section className="problem-details-header">
 
-                <h1 className="problem-title">
+                <span className="problem-details-tag">
+                    NOTEBOOK CHALLENGE
+                </span>
 
+                <h1>
                     {problem.title}
-
                 </h1>
 
-                <div className="problem-meta">
+                <div className="problem-details-meta">
 
                     <span
-                        className={`difficulty-badge ${problem.difficulty.toLowerCase()}`}
+                        className={
+                            `difficulty-badge ${
+                                problem.difficulty?.toLowerCase()
+                            }`
+                        }
                     >
-
                         {problem.difficulty}
-
                     </span>
+
+                    {problem.original_filename && (
+                        <span>
+                            {problem.original_filename}
+                        </span>
+                    )}
 
                 </div>
 
                 {problem.short_description && (
-
-                    <p className="problem-short-description">
-
+                    <p>
                         {problem.short_description}
-
                     </p>
-
                 )}
 
-                {problem.image_url && (
+            </section>
 
-                    <img
 
-                        src={problem.image_url}
+            <section className="problem-notebook">
 
-                        alt={problem.title}
+                <ReactMarkdown
 
-                        className="problem-image"
+                    remarkPlugins={[
+                        remarkMath
+                    ]}
 
-                    />
+                    rehypePlugins={[
+                        rehypeKatex
+                    ]}
 
-                )}
+                    components={{
 
-                <Section
+                        code({
+                            inline,
+                            className,
+                            children,
+                            ...props
+                        }) {
 
-                    title="Problem Statement"
+                            const match =
+                                /language-(\w+)/.exec(
+                                    className || ""
+                                );
 
-                    content={problem.statement}
+                            if (!inline && match) {
 
-                />
+                                return (
+                                    <SyntaxHighlighter
+                                        style={vscDarkPlus}
+                                        language={match[1]}
+                                        PreTag="div"
+                                    >
+                                        {
+                                            String(children)
+                                                .replace(
+                                                    /\n$/,
+                                                    ""
+                                                )
+                                        }
+                                    </SyntaxHighlighter>
+                                );
 
-                <Section
+                            }
 
-                    title="Input"
+                            return (
+                                <code
+                                    className={className}
+                                    {...props}
+                                >
+                                    {children}
+                                </code>
+                            );
+                        }
 
-                    content={problem.input_description}
+                    }}
+                >
 
-                />
+                    {problem.content || ""}
 
-                <Section
+                </ReactMarkdown>
 
-                    title="Output"
+            </section>
 
-                    content={problem.output_description}
 
-                />
+            <footer className="problem-details-footer">
 
-                <Section
+                <span>
+                    CREATED BY
+                </span>
 
-                    title="Constraints"
+                <strong>
+                    {problem.author?.username || "Unknown"}
+                </strong>
 
-                    content={problem.constraints}
+            </footer>
 
-                />
-
-                <Section
-
-                    title="Examples"
-
-                    content={problem.examples}
-
-                />
-
-                <Section
-
-                    title="Evaluation"
-
-                    content={problem.evaluation}
-
-                />
-
-                <Section
-
-                    title="Hints"
-
-                    content={problem.hints}
-
-                />
-
-                {problem.resource_link && (
-
-                    <div className="problem-section">
-
-                        <h2>
-
-                            🔗 Additional Resource
-
-                        </h2>
-
-                        <a
-
-                            href={problem.resource_link}
-
-                            target="_blank"
-
-                            rel="noreferrer"
-
-                            className="problem-link"
-
-                        >
-
-                            Open Resource
-
-                        </a>
-
-                    </div>
-
-                )}
-
-                <div className="problem-footer">
-
-                    Created by
-
-                    <strong>
-
-                        {" "}
-                        {problem.author?.username || "Unknown"}
-
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
+        </main>
 
     );
-
 }
 
-function Section({ title, content }) {
-
-    if (!content || content.trim() === "") {
-
-        return null;
-
-    }
-
-    return (
-
-        <div className="problem-section">
-
-            <h2>
-
-                {title}
-
-            </h2>
-
-            <p>
-
-                {content}
-
-            </p>
-
-        </div>
-
-    );
-
-}
 
 export default ProblemDetails;

@@ -1,27 +1,72 @@
-from flask import Blueprint, request
+import json
+import re
 
+from flask import Blueprint, request
 from flask_jwt_extended import get_jwt_identity
 
-from services.problem_service import ProblemService
-from repositories.user_repository import UserRepository
+from repositories.problem_repository import ProblemRepository
+from models.problem import Problem
 from utils.auth import admin_required
 
 
 problem_bp = Blueprint("problem", __name__)
 
 
+def make_slug(title):
+    slug = title.lower().strip()
+    slug = re.sub(r"[^a-z0-9\s-]", "", slug)
+    slug = re.sub(r"[\s-]+", "-", slug)
+    return slug.strip("-")
+
+
+def notebook_to_markdown(file):
+    notebook = json.load(file)
+
+    markdown_parts = []
+
+    for cell in notebook.get("cells", []):
+        cell_type = cell.get("cell_type")
+        source = "".join(cell.get("source", []))
+
+        if cell_type == "markdown":
+            markdown_parts.append(source)
+
+        elif cell_type == "code":
+            markdown_parts.append(
+                f"```python\n{source}\n```"
+            )
+
+    return "\n\n".join(markdown_parts)
+
+
+# -----------------------------------
+# GET ALL PROBLEMS
+# PUBLIC
+# -----------------------------------
+
 @problem_bp.route("/api/problems", methods=["GET"])
 def get_problems():
 
-    problems = ProblemService.get_all()
+    problems = ProblemRepository.get_all()
 
-    return [problem.to_dict() for problem in problems], 200
+    return [
+        problem.to_dict()
+        for problem in problems
+    ], 200
 
 
-@problem_bp.route("/api/problems/<slug>", methods=["GET"])
+# -----------------------------------
+# GET ONE PROBLEM
+# PUBLIC
+# -----------------------------------
+
+@problem_bp.route(
+    "/api/problems/<slug>",
+    methods=["GET"]
+)
 def get_problem(slug):
 
-    problem = ProblemService.get_by_slug(slug)
+    problem = ProblemRepository.get_by_slug(slug)
 
     if not problem:
         return {
@@ -31,83 +76,110 @@ def get_problem(slug):
     return problem.to_dict(), 200
 
 
-@problem_bp.route("/api/problems", methods=["POST"])
+# -----------------------------------
+# UPLOAD PROBLEM
+# ADMIN ONLY
+# -----------------------------------
+
+@problem_bp.route(
+    "/api/problems/upload",
+    methods=["POST"]
+)
 @admin_required
-def create_problem():
+def upload_problem():
 
-    user = UserRepository.get_by_id(
-        get_jwt_identity()
+    user_id = get_jwt_identity()
+
+    title = request.form.get("title")
+    difficulty = request.form.get("difficulty")
+    short_description = request.form.get(
+        "short_description"
     )
 
-    data = request.form
+    file = request.files.get("file")
 
-    notebook = request.files.get("notebook")
-
-    starter_archive = request.files.get("starter_archive")
-
-    ground_truth = request.files.get("ground_truth")
-
-    problem, error = ProblemService.create_problem(
-
-        data,
-
-        notebook,
-
-        starter_archive,
-
-        ground_truth,
-
-        user.id
-
-    )
-
-    if error:
-
+    if (
+        not title
+        or not difficulty
+        or not short_description
+        or not file
+    ):
         return {
-
-            "message": error
-
+            "message": "Missing fields."
         }, 400
 
+    filename = file.filename or ""
+
+    if not filename.lower().endswith(".ipynb"):
+        return {
+            "message": "Only .ipynb files are supported."
+        }, 400
+
+    try:
+        content = notebook_to_markdown(file)
+
+    except (
+        json.JSONDecodeError,
+        UnicodeDecodeError,
+        TypeError
+    ):
+        return {
+            "message": "Invalid notebook file."
+        }, 400
+
+    slug = make_slug(title)
+
+    if not slug:
+        return {
+            "message": "Invalid title."
+        }, 400
+
+    existing = ProblemRepository.get_by_slug(slug)
+
+    if existing:
+        return {
+            "message":
+                "A problem with this title already exists."
+        }, 400
+
+    problem = Problem(
+        title=title,
+        slug=slug,
+        difficulty=difficulty,
+        short_description=short_description,
+        content=content,
+        original_filename=filename,
+        created_by=user_id
+    )
+
+    ProblemRepository.create(problem)
+
     return {
-
-        "message": "Problem created successfully.",
-
+        "message": "Problem uploaded.",
         "problem": problem.to_dict()
-
     }, 201
 
-'''
-@problem_bp.route("/api/problems/<slug>", methods=["PUT"])
-@admin_required
-def update_problem(slug):
 
-    problem, error = ProblemService.update_problem(
-        slug,
-        request.get_json()
-    )
+# -----------------------------------
+# DELETE PROBLEM
+# ADMIN ONLY
+# -----------------------------------
 
-    if error:
-        return {
-            "message": error
-        }, 400
-
-    return {
-        "message": "Problem updated.",
-        "problem": problem.to_dict()
-    }, 200
-'''
-
-@problem_bp.route("/api/problems/<slug>", methods=["DELETE"])
+@problem_bp.route(
+    "/api/problems/<slug>",
+    methods=["DELETE"]
+)
 @admin_required
 def delete_problem(slug):
 
-    error = ProblemService.delete_problem(slug)
+    problem = ProblemRepository.get_by_slug(slug)
 
-    if error:
+    if not problem:
         return {
-            "message": error
+            "message": "Problem not found."
         }, 404
+
+    ProblemRepository.delete(problem)
 
     return {
         "message": "Problem deleted."
