@@ -162,6 +162,41 @@
     letter-spacing: 3px;
 }
 
+/* ===========================
+   HERO DIFFICULTY COLORS
+=========================== */
+
+.hero-stat.total strong{
+    color:#f1f1f7;
+}
+
+.hero-stat.easy strong{
+    color:#61ff8b;
+    text-shadow:0 0 10px rgba(97,255,139,.25);
+}
+
+.hero-stat.medium strong{
+    color:#ffca55;
+    text-shadow:0 0 10px rgba(255,202,85,.25);
+}
+
+.hero-stat.hard strong{
+    color:#ff6b6b;
+    text-shadow:0 0 10px rgba(255,107,107,.25);
+}
+
+.hero-stat.easy span{
+    color:#61ff8b;
+}
+
+.hero-stat.medium span{
+    color:#ffca55;
+}
+
+.hero-stat.hard span{
+    color:#ff6b6b;
+}
+
 
 /* =========================================
    HERO GRAPHIC

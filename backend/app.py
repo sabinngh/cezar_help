@@ -24,6 +24,8 @@ from models.submission import Submission
 from flask import send_from_directory
 import os
 
+from commands import init_commands
+
 app = Flask(__name__,
             template_folder='templates',
             static_folder='static')
@@ -78,6 +80,7 @@ os.makedirs(
 db.init_app(app)
 
 migrate = Migrate(app, db)
+init_commands(app)
 
 # --- USER SESSION HOOK ---
 @app.before_request
@@ -112,8 +115,8 @@ app.register_blueprint(home_bp)
 app.register_blueprint(problem_bp)
 
 # --- DB INITIALIZATION ---
-with app.app_context():
-    db.create_all()
+#with app.app_context():
+#    db.create_all()
 
 # --- APP ENTRYPOINT ---
 if __name__ == "__main__":
