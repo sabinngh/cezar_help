@@ -30,6 +30,20 @@ app = Flask(__name__,
             template_folder='templates',
             static_folder='static')
 
+CORS(
+    app,
+    resources={
+        r"/api/*": {
+            "origins": [
+                "https://www.savapy.com",
+                "https://savapy.com",
+                "https://savapy.vercel.app",
+            ]
+        }
+    },
+    supports_credentials=True,
+)
+
 UPLOAD_FOLDER = os.path.join(
     os.getcwd(),
     "uploads"
@@ -39,8 +53,6 @@ load_dotenv()
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-
-CORS(app, origins=["http://localhost:5173"])
 
 # --- CONFIGURATION ---
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
