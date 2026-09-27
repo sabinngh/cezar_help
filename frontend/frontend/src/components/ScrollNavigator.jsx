@@ -4,9 +4,6 @@ import "../styles/scrollNavigator.css";
 const sections = [
     { id: "hero", label: "HOME" },
     { id: "story", label: "STORY" },
-    { id: "practice", label: "PRACTICE" },
-    { id: "research", label: "RESEARCH" },
-    { id: "future", label: "FUTURE" },
     { id: "goals", label: "GOALS" }
 ];
 
