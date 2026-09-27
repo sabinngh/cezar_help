@@ -1701,3 +1701,289 @@
     }
 
 }
+
+/* =========================================================
+   FINAL PROBLEMS PAGE ALIGNMENT
+   Matches the current Problems.jsx markup.
+========================================================= */
+
+.database-index {
+    display: block;
+    color: #7667ff;
+    font-family: monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.database-count {
+    flex-shrink: 0;
+    color: #4d4f5c;
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.difficulty-filters button {
+    padding: 10px 17px;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    color: #747684;
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.difficulty-filters button:hover {
+    color: #b9b9c3;
+}
+
+.difficulty-filters button.active {
+    border-color: rgba(118, 103, 255, 0.45);
+    background: rgba(118, 103, 255, 0.11);
+    color: #b6afff;
+}
+
+.problems-state {
+    color: #666875;
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+
+.problems-state.error {
+    color: #d47685;
+}
+
+/* =========================================================
+   HERO PHOTO + DECISION SPACE
+   Image: /public/images/problems-hero.jpg
+========================================================= */
+
+.problems-graphic {
+    position: relative;
+    width: min(430px, 100%);
+    aspect-ratio: 1.28 / 1;
+    justify-self: end;
+    overflow: visible;
+    isolation: isolate;
+}
+
+.problems-graphic::before {
+    content: "";
+    position: absolute;
+    inset: -8% -8% -8% -14%;
+    z-index: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(9, 10, 17, 0.74) 0%,
+            rgba(9, 10, 17, 0.28) 35%,
+            rgba(9, 10, 17, 0.12) 68%,
+            rgba(9, 10, 17, 0.62) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(9, 10, 17, 0.58) 0%,
+            rgba(9, 10, 17, 0.08) 38%,
+            rgba(9, 10, 17, 0.68) 100%
+        ),
+        url("/images/problems-hero.jpg") center 52% / cover no-repeat;
+    opacity: 0.82;
+    -webkit-mask-image:
+        linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 12%,
+            rgba(0, 0, 0, 0.75) 30%,
+            #000 48%,
+            #000 92%,
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 12%,
+            rgba(0, 0, 0, 0.75) 30%,
+            #000 48%,
+            #000 92%,
+            transparent 100%
+        );
+    pointer-events: none;
+}
+
+.problems-graphic::after {
+    content: "";
+    position: absolute;
+    inset: 7% 2% 3% 8%;
+    z-index: 1;
+    background: radial-gradient(
+        circle at 54% 50%,
+        rgba(118, 103, 255, 0.08),
+        transparent 58%
+    );
+    pointer-events: none;
+}
+
+.problem-orbit {
+    z-index: 2;
+    border-color: rgba(150, 145, 190, 0.18);
+}
+
+.orbit-one {
+    width: 132px;
+    height: 132px;
+}
+
+.orbit-two {
+    width: 225px;
+    height: 225px;
+}
+
+.orbit-three {
+    width: 325px;
+    height: 325px;
+}
+
+.problem-core {
+    z-index: 5;
+    color: #b3aaff;
+    font-family: monospace;
+    font-size: 16px;
+    background: rgba(9, 10, 17, 0.64);
+    border-color: rgba(118, 103, 255, 0.68);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.graphic-label,
+.problem-node {
+    z-index: 4;
+    text-shadow: 0 1px 7px rgba(0, 0, 0, 0.95);
+}
+
+.graphic-label {
+    top: 1%;
+    right: 0;
+}
+
+.node-data {
+    left: -2%;
+    top: 49%;
+}
+
+.node-model {
+    right: -1%;
+    top: 39%;
+}
+
+.node-loss {
+    left: 21%;
+    bottom: 5%;
+}
+
+.node-score {
+    right: 6%;
+    bottom: 18%;
+}
+
+@media (max-width: 850px) {
+    .database-index {
+        font-size: 9px;
+        letter-spacing: 4px;
+    }
+
+    .database-count {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .problems-graphic {
+        display: none;
+    }
+}
+
+@media (max-width: 550px) {
+    .database-index {
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
+
+    .database-count {
+        font-size: 9px;
+    }
+
+    .difficulty-filters button {
+        width: 100%;
+        padding: 11px 10px;
+    }
+
+    .problems-state {
+        min-height: 220px;
+        font-size: 10px;
+    }
+}
+
+/* =========================================================
+   MOVE DECISION-SPACE DRAWING LEFT
+   Photo stays right; circles only slightly overlap it
+========================================================= */
+
+/* Move the three concentric circles left */
+.problems-graphic .problem-orbit {
+    left: -5%;
+    right: auto;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Move f(x) to the same new center */
+.problems-graphic .problem-core {
+    left: -5%;
+    right: auto;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Move MODEL / DECISION SPACE with the drawing */
+.problems-graphic .graphic-label {
+    left: -30%;
+    right: auto;
+    top: -5%;
+}
+
+
+/* Reposition the four labels around the circles */
+
+.problems-graphic .node-data {
+    left: -40%;
+    top: 49%;
+}
+
+.problems-graphic .node-model {
+    left: 23%;
+    right: auto;
+    top: 37%;
+}
+
+.problems-graphic .node-loss {
+    left: -22%;
+    bottom: 5%;
+}
+
+.problems-graphic .node-score {
+    left: 17%;
+    right: auto;
+    bottom: 17%;
+}

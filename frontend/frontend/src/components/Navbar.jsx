@@ -50,7 +50,8 @@ function Navbar() {
                 </Link>
 
                 <Link to="/meet-the-team" className="nav-link">
-                    Meet The Team
+                    <span className="team-label-desktop">Meet The Team</span>
+                    <span className="team-label-mobile">Team</span>
                 </Link>
             </div>
 

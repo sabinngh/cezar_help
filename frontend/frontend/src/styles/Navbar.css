@@ -254,3 +254,132 @@
     }
 
 }
+/* =========================================================
+   MOBILE NAVBAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        width: calc(100% - 24px);
+        height: auto;
+
+        margin: 12px auto 18px;
+        padding: 16px 14px 14px;
+
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        gap: 0;
+
+        top: 10px;
+
+        border-radius: 16px;
+    }
+
+
+    /* Logo */
+
+    .navbar-logo {
+        font-size: 17px;
+        flex-shrink: 0;
+    }
+
+
+    /* Login / signup area */
+
+    .navbar-user {
+        margin-left: auto;
+
+        display: flex;
+        align-items: center;
+
+        gap: 5px;
+    }
+
+
+    .login-button,
+    .signup-button {
+        padding: 8px 9px;
+
+        font-size: 12px;
+
+        border-radius: 8px;
+    }
+
+
+    /* Navigation becomes second row */
+
+    .navbar-links {
+        order: 3;
+
+        width: 100%;
+
+        margin: 14px 0 0;
+
+        padding-top: 11px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 2px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+
+    .nav-link {
+        padding: 7px 5px;
+
+        font-size: 11px;
+
+        white-space: nowrap;
+
+        text-align: center;
+    }
+
+
+    /* Logged-in user */
+
+    .user-container {
+        padding: 4px;
+    }
+
+
+    .user-avatar {
+        width: 30px;
+        height: 30px;
+
+        font-size: 12px;
+    }
+
+
+    .username {
+        display: none;
+    }
+
+
+    .logout-button {
+        padding: 8px 9px;
+
+        font-size: 11px;
+
+        margin: 0;
+    }
+}
+
+.team-label-mobile {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .team-label-desktop {
+        display: none;
+    }
+
+    .team-label-mobile {
+        display: inline;
+    }
+}

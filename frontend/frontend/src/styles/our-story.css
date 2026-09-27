@@ -1888,3 +1888,96 @@
         animation: none;
     }
 }
+
+/* =========================================================
+   LEARNING LOOP PHOTO BACKGROUND
+   ========================================================= */
+
+.learning-loop {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+
+/* Photo layer */
+.learning-loop::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+
+    background:
+        url("/images/learning-loop.jpg")
+        center 45% / cover no-repeat;
+
+    opacity: 0.50;
+
+    transform: scale(1.03);
+
+    pointer-events: none;
+}
+
+
+/* Dark fade over the photo */
+.learning-loop::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(11, 11, 25, 0.94) 0%,
+            rgba(11, 11, 25, 0.68) 30%,
+            rgba(11, 11, 25, 0.68) 70%,
+            rgba(11, 11, 25, 0.94) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(11, 11, 25, 0.72) 0%,
+            rgba(11, 11, 25, 0.45) 50%,
+            rgba(11, 11, 25, 0.82) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* Make sure loop content stays above the image */
+.learning-loop > * {
+    position: relative;
+    z-index: 2;
+}
+
+.learning-loop {
+    position: relative;
+
+    width: min(920px, 92%);
+
+    margin: 75px auto 0;
+
+    padding: 40px 38px 36px;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    border:
+        1px solid
+        rgba(117, 100, 255, 0.15);
+
+    border-radius: 14px;
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.8s ease 0.75s,
+        transform 0.8s cubic-bezier(.16, 1, .3, 1) 0.75s;
+}
