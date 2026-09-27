@@ -1,4 +1,5 @@
 import "../styles/hero.css";
+import { Link } from "react-router-dom";
 
 import { useState } from "react";
 
@@ -63,23 +64,20 @@ function Hero() {
 
                 <div className="hero-buttons">
 
-                    <a
-                        href="/learning"
+                    <Link
+                        to="/learning"
                         className="hero-button primary"
                     >
                         Start Learning
-
                         <span>↗</span>
+                    </Link>
 
-                    </a>
-
-
-                    <a
-                        href="/problems"
+                    <Link
+                        to="/problems"
                         className="hero-button secondary"
                     >
                         Explore Problems
-                    </a>
+                    </Link>
 
                 </div>
 
